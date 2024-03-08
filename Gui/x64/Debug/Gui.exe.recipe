@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\Martin\source\repos\AaUD1_SemPrac\x64\Debug\Gui.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\Martin\source\repos\AaUD1_SemPrac\Gui\images\fail.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Martin\source\repos\AaUD1_SemPrac\Gui\images\info.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Martin\source\repos\AaUD1_SemPrac\Gui\images\pass.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Martin\source\repos\AaUD1_SemPrac\Gui\images\warning.png</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

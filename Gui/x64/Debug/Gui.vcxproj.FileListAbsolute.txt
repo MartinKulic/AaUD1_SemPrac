@@ -1,0 +1,10 @@
+C:\Users\kulich\Desktop\AUS-VS2022\x64\Debug\images\fail.png
+C:\Users\kulich\Desktop\AUS-VS2022\x64\Debug\images\info.png
+C:\Users\kulich\Desktop\AUS-VS2022\x64\Debug\images\pass.png
+C:\Users\kulich\Desktop\AUS-VS2022\x64\Debug\images\warning.png
+C:\Users\kulich\Desktop\AUS-VS2022\Gui\x64\Debug\Gui.vcxproj.AssemblyReference.cache
+C:\Users\Martin\source\repos\AaUD1_SemPrac\x64\Debug\images\fail.png
+C:\Users\Martin\source\repos\AaUD1_SemPrac\x64\Debug\images\info.png
+C:\Users\Martin\source\repos\AaUD1_SemPrac\x64\Debug\images\pass.png
+C:\Users\Martin\source\repos\AaUD1_SemPrac\x64\Debug\images\warning.png
+C:\Users\Martin\source\repos\AaUD1_SemPrac\Gui\x64\Debug\Gui.vcxproj.AssemblyReference.cache
