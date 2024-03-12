@@ -24,12 +24,18 @@
     <ClCompile Include="UzemnaJednotka.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Struktura.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Obec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UzemnaJednotka.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Struktura.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

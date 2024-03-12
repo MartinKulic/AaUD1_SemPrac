@@ -130,11 +130,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Obec.cpp" />
+    <ClCompile Include="Struktura.cpp" />
     <ClCompile Include="UzemnaJednotka.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Obec.h" />
+    <ClInclude Include="Struktura.h" />
     <ClInclude Include="UzemnaJednotka.h" />
   </ItemGroup>
   <ItemGroup>

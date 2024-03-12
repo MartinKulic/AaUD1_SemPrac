@@ -21,9 +21,13 @@ public:
 
 	UzemnaJednotka(string nnazov, string nkod, TypUzemia ntypU) : nazov(nnazov), kod(nkod), typUzemia(ntypU)
 		{};
+	UzemnaJednotka(string nnazov, TypUzemia ntypU) : nazov(nnazov), typUzemia(ntypU)
+		{};
+	UzemnaJednotka(UzemnaJednotka &ref);
 	~UzemnaJednotka();
 
 	void addUzemnuPodjednotku(UzemnaJednotka* newUzemnaJednotka);
 	void acknowledgeUzemnuNadJednotku(UzemnaJednotka* nadJednotka);
+	string getKod() { return this->kod; };
 };
 
