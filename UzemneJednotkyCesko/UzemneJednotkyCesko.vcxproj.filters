@@ -18,28 +18,19 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Obec.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UzemnaJednotka.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Struktura.cpp">
+    <ClCompile Include="Obec.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Obec.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UzemnaJednotka.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Struktura.h">
+    <ClInclude Include="Obec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\Zadanie\CR.csv" />
   </ItemGroup>
 </Project>
