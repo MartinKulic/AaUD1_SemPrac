@@ -129,12 +129,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Nacitavac.cpp" />
     <ClCompile Include="Obec.cpp" />
     <ClCompile Include="UzemnaJednotka.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Nacitavac.h" />
     <ClInclude Include="Obec.h" />
     <ClInclude Include="UzemnaJednotka.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="converted.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

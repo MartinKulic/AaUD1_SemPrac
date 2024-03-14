@@ -24,8 +24,7 @@ public:
 	{};
 	UzemnaJednotka(string nnazov, TypUzemia ntypU) : nazov(nnazov), typUzemia(ntypU)
 	{};
-	//UzemnaJednotka(UzemnaJednotka& ref);
-	//~UzemnaJednotka();
+	friend ostream& operator<<(ostream& os, const UzemnaJednotka& obec);
 	string getKod() { return this->kod; };
 };
 
