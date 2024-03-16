@@ -38,6 +38,9 @@
     <ClInclude Include="Nacitavac.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Algoritmus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="converted.csv" />

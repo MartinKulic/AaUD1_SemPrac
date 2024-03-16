@@ -22,6 +22,10 @@ namespace Nacitavac
 		Obec* toRet = new Obec(polozky[4], polozky[5], polozky[6], stoul(polozky[9]), stoul(polozky[10]), stoul(polozky[11]), stoul(polozky[12]), kanalizacia, polozky[14] != "-" ? 1 : 0, polozky[15] != "-" ? 1 : 0);
 		return toRet;
 	}
+	UzemnaJednotka* vytvorNovuUzemnuJednotku(string nazov, string kod, TypUzemia typ)
+	{
+		return new UzemnaJednotka(nazov, kod, typ);
+	}
 
 	void Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>& kraje, std::vector<UzemnaJednotka*>& okresy, std::vector<Obec*>& obce)
 	{
@@ -56,7 +60,7 @@ namespace Nacitavac
 
 				polozky[0] = pomocny.substr(0, pomocny.find(';'));
 
-				aktualnyKraj = new UzemnaJednotka(polozky[2], polozky[0], kraj);
+				aktualnyKraj = vytvorNovuUzemnuJednotku(polozky[2], polozky[0], kraj);
 				kraje.push_back(aktualnyKraj);
 				continue;
 			}
@@ -66,7 +70,7 @@ namespace Nacitavac
 			// okres existuje a je v tom istom okrese ako predchadzajuci no problem : inak Vytvor novy okres
 			if ((!aktualnyOkres || aktualnyOkres->getKod() != polozky[1]) && (polozky[1] != "x"))
 			{
-				aktualnyOkres = new UzemnaJednotka(polozky[2], polozky[1], soorp);
+				aktualnyOkres = vytvorNovuUzemnuJednotku(polozky[2], polozky[1], soorp);
 				okresy.push_back(aktualnyOkres);
 			}
 

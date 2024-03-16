@@ -22,10 +22,10 @@ public:
 
 	UzemnaJednotka(string nnazov, string nkod, TypUzemia ntypU) : nazov(nnazov), kod(nkod), typUzemia(ntypU)
 	{};
-	UzemnaJednotka(string nnazov, TypUzemia ntypU) : nazov(nnazov), typUzemia(ntypU)
-	{};
+
 	friend ostream& operator<<(ostream& os, const UzemnaJednotka& obec);
 	string getKod() { return this->kod; };
+	string getNazov() { return this->nazov; };
 };
 
 

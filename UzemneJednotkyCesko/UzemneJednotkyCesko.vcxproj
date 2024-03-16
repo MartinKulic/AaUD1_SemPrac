@@ -134,6 +134,7 @@
     <ClCompile Include="UzemnaJednotka.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Algoritmus.h" />
     <ClInclude Include="Nacitavac.h" />
     <ClInclude Include="Obec.h" />
     <ClInclude Include="UzemnaJednotka.h" />
