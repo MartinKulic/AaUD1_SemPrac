@@ -4,24 +4,22 @@
 
 using namespace std;
 
-template<typename T>
+template<typename TypeOfContainer>
 class Algoritmus
 {
+	//static_assert(std::is_same<typename TypeOfContainer::iterator, typename TypeOfContainer::iterator>::value, "TypeOfContainer must have a nested type named iterator");
+
+	//using ContainerIterator = typename TypeOfContainer::iterator;
 public:
 	template<typename F>
-	void filtruj(typename vector<T>::iterator begin, typename vector<T>::iterator end, typename vector<T>& vyfiltrovane, F filter);
+	static void filtruj(typename TypeOfContainer::iterator begin, typename TypeOfContainer::iterator end, TypeOfContainer& vyfiltrovane, F filter);
 };
 
-//template<typename T>
-//inline void Algoritmus<T>::filtruj(typename vector<T>::iterator begin, typename vector<T>::iterator end, vector<T>& vyfiltrovane, bool(*Plati)(T kde))
-//{
-//}
-
-template<typename T>
+template<typename TypeOfContainer>
 template<typename F>
-inline void Algoritmus<T>::filtruj(typename vector<T>::iterator begin, typename vector<T>::iterator end, typename vector<T>& vyfiltrovane, F filter)
+inline void Algoritmus<TypeOfContainer>::filtruj(typename TypeOfContainer::iterator begin, typename TypeOfContainer::iterator end, typename TypeOfContainer& vyfiltrovane, F filter)
 {
-	typename vector<T>::iterator current = begin;
+	typename TypeOfContainer::iterator current = begin;
 	
 	for (; current != end; current++)
 	{
@@ -29,3 +27,4 @@ inline void Algoritmus<T>::filtruj(typename vector<T>::iterator begin, typename 
 			vyfiltrovane.push_back(*current);
 	}
 }
+

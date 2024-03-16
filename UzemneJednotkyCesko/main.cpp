@@ -26,7 +26,7 @@ int main()
     cout << "\n----------------\n";
 
     std::vector<UzemnaJednotka*> vyfiltrovaneKraje;
-    Algoritmus<UzemnaJednotka*> alg;
+    Algoritmus<vector<UzemnaJednotka*>> alg;
 
     char contains[] = "CKÝ";
     alg.filtruj(kraje.begin(), kraje.end(), vyfiltrovaneKraje, [contains](UzemnaJednotka* u) { return u->getNazov().find(contains) == -1 ? false : true; });
@@ -47,7 +47,7 @@ int main()
     }
     cout << "\n--------------------------\n";
 
-    Algoritmus<Obec*> algo;
+    Algoritmus<vector<Obec*>> algo;
     vector<Obec*> vyfiltrovaneObce1;
     char oZacinaNa[] = "Zi";
     algo.filtruj(obce.begin(), obce.end(), vyfiltrovaneObce1, [oZacinaNa](Obec* o) {return o->getNazov().find(oZacinaNa) == 0 ? true : false; });
@@ -69,6 +69,16 @@ int main()
     }
     cout << vyfiltrovaneObce2.size();
     cout << "\n--------------------------\n";
+
+    vector<Obec*> vyfObce3;
+    char oStartsWith2[] = "Kan";
+    Algoritmus<vector<Obec*>>::filtruj(obce.begin(), obce.end(), vyfObce3, [oStartsWith2](Obec* o) {return o->getNazov().find(oStartsWith2) == -1 ? false : true; });
+    for (Obec* o : vyfObce3)
+    {
+        cout << *o;
+    }
+
+
 
     cout << "Koniec\n";
 }
