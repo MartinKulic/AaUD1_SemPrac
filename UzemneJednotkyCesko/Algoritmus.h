@@ -4,24 +4,22 @@
 
 using namespace std;
 
-template<typename TypeOfContainer>
+template<typename DruhKontaineru>
 class Algoritmus
 {
 public:
 	template<typename F>
-	static void filtruj(typename TypeOfContainer::iterator begin, typename TypeOfContainer::iterator end, TypeOfContainer& vyfiltrovane, F filter);
+	static void filtruj(typename DruhKontaineru::iterator begin, typename DruhKontaineru::iterator end, DruhKontaineru& vyfiltrovane, F filter);
 };
 
-template<typename TypeOfContainer>
+template<typename DruhKontaineru>
 template<typename F>
-inline void Algoritmus<TypeOfContainer>::filtruj(typename TypeOfContainer::iterator begin, typename TypeOfContainer::iterator end, typename TypeOfContainer& vyfiltrovane, F filter)
+inline void Algoritmus<DruhKontaineru>::filtruj(typename DruhKontaineru::iterator begin, typename DruhKontaineru::iterator end, typename DruhKontaineru& vyfiltrovane, F filter)
 {
-	typename TypeOfContainer::iterator current = begin;
-	
-	for (; current != end; current++)
+	for (typename DruhKontaineru::iterator aktualny = begin ; aktualny != end; aktualny++)
 	{
-		if (filter(*current))
-			vyfiltrovane.push_back(*current);
+		if (filter(*aktualny))
+			vyfiltrovane.push_back(*aktualny);
 	}
 }
 

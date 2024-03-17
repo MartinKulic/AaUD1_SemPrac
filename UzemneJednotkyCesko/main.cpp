@@ -93,11 +93,10 @@ int main()
         }
         cout << vyfObce3.size();
 
-        Obec::vypisHlavicku();
+
         // Destrucotrs-------------------
         for (Obec* o : obce)
         {
-            cout << *o;
             delete o;
         }
         for (UzemnaJednotka* u : okresy)

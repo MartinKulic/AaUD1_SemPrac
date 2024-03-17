@@ -11,7 +11,7 @@ ostream& operator<<(ostream& os, const UzemnaJednotka& uj)
 		os << "K~-~-~{ ~"<< setw(30) << uj.nazov << " ~ }~-~-~ " << uj.kod << endl;
 		break;
 	case soorp:
-		os << "o-~-~-<~ " << left << setw(20) << uj.nazov << "~>-~-~-" << uj.kod << endl;
+		os << "o-~-~-<~ " << left << setw(20) << uj.nazov << "~>-~-~- " << uj.kod << endl;
 		break;
 	default:
 		os << uj.typUzemia << "\t" << uj.nazov << " " << uj.kod;
