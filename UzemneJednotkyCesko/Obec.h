@@ -19,15 +19,14 @@ private:
 	bool vodovod = false;
 	bool plynofikacia = false;
 
-
 public:
 	Obec(string nnazov, string nkod, string ntyp, unsigned int nKatastralnaVymera, unsigned int nPocetObyvatelovCelkom, unsigned int npocetObyvatelov0az14, unsigned int npocetObyvatelov65aViac, Kanalizacia nKanalizacia, bool nVodovod, bool nPlyn) :
 		UzemnaJednotka(nnazov, nkod, TypUzemia(obec)), typObce(ntyp), kanalizacia(nKanalizacia), katastralnaVymera(nKatastralnaVymera), pocetObyvatelovCelkom(nPocetObyvatelovCelkom),
 		pocetObyvatelov0az14(npocetObyvatelov0az14), pocetObyvatelov65aViac(npocetObyvatelov65aViac), vodovod(nVodovod), plynofikacia(nPlyn) {};
-	//~Obec();
 
 
 	friend ostream& operator<<(ostream& os, const Obec& obec);
+	static void vypisHlavicku();
 };
 string parseKanalizaciaToStr(const Kanalizacia& kanalizacia);
 
