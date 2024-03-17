@@ -5,7 +5,7 @@
 
 #define space_for_KOD 6
 #define space_for_NAZOV 30
-#define space_for_TYP_OBCE 8
+#define space_for_TYP_OBCE 12
 #define space_for_KATAST_VYMERA 9
 #define space_for_POCET_OBYV 9
 
@@ -52,7 +52,7 @@ void Obec::vypisHlavicku()
         cout << '-';
     }
     cout << '|' << endl;
-    cout << "  kod  |              nazov             | typ obce | kat. vymera | poc. obyv | obyv 0-14 | obyv 65+  | kan | vod | plyn |" << endl;
+    cout << "  kod  |              nazov             |   typ obce   | kat. vymera | poc. obyv | obyv 0-14 | obyv 65+  | kan | vod | plyn |" << endl;
     //for (int i = 0; i < space_for_KOD + 3 + space_for_NAZOV + 3 + space_for_TYP_OBCE + 3 + space_for_KATAST_VYMERA + 3 + (3 * space_for_KATAST_VYMERA) + 9 + 3 + 3 + 3 + 3 + 3 + 3; i++)
     //{
     //    cout << '-';

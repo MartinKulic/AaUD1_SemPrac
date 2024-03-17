@@ -77,8 +77,11 @@ Obec* Nacitavac::vytvorNovuObec(string polozky[])
 	else
 		kanalizacia = Kanalizacia(nezname);
 
-
-	Obec* toRet = new Obec(polozky[4], polozky[5], polozky[6], stoul(polozky[9]), stoul(polozky[10]), stoul(polozky[11]), stoul(polozky[12]), kanalizacia, polozky[14] != "-" ? 1 : 0, polozky[15] != "-" ? 1 : 0);
+	odstranMedzery(polozky[9]);
+	odstranMedzery(polozky[10]);
+	odstranMedzery(polozky[11]);
+	odstranMedzery(polozky[12]);
+	Obec* toRet = new Obec(polozky[4], polozky[5], polozky[6], stoul( polozky[9]), stoul(polozky[10]), stoul(polozky[11]), stoul(polozky[12]), kanalizacia, polozky[14] != "-" ? 1 : 0, polozky[15] != "-" ? 1 : 0);
 	return toRet;
 }
 
@@ -101,4 +104,15 @@ UzemnaJednotka* Nacitavac::vytvorNovuUzemnuJednotku(string polozky[], TypUzemia 
 		break;
 	}
 	return newUzemnaJednotka;;
+}
+
+void Nacitavac::odstranMedzery(string& textNaSpeacovanie)
+{
+	string pomocny;
+	for (char ch : textNaSpeacovanie)
+	{
+		if (ch != ' ')
+			pomocny += ch;
+	}
+	textNaSpeacovanie = pomocny;
 }
