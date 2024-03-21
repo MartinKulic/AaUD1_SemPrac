@@ -1,0 +1,118 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (UzemneJednotkyCesko.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Obec.cpp
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Obec.h(10,21): error C2955: 'UzemnaJednotka': use of class template requires template argument list
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Obec.h(25,3): error C2614: 'Obec': illegal member initialization: 'UzemnaJednotka' is not a base or member
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Obec.cpp(9,16): error C2039: 'kod': is not a member of 'Obec'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Obec.h(10,7): message : see declaration of 'Obec'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Obec.cpp(9,57): error C2039: 'nazov': is not a member of 'Obec'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Obec.h(10,7): message : see declaration of 'Obec'
+  Struktura.cpp
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Obec.h(10,21): error C2955: 'UzemnaJednotka': use of class template requires template argument list
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Obec.h(25,3): error C2614: 'Obec': illegal member initialization: 'UzemnaJednotka' is not a base or member
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.h(9,28): error C2955: 'UzemnaJednotka': use of class template requires template argument list
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.h(9,14): error C2955: 'UzemnaJednotka': use of class template requires template argument list
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.h(9,7): error C2976: 'std::vector': too few template arguments
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\vector(438,1): message : see declaration of 'std::vector'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.h(9,31): error C2955: 'std::vector': use of class template requires template argument list
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\vector(438,1): message : see declaration of 'std::vector'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.h(11,18): error C2955: 'UzemnaJednotka': use of class template requires template argument list
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(8,1): error C2512: 'std::vector': no appropriate default constructor available
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\vector(438,1): message : see declaration of 'std::vector'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(10,21): error C2955: 'UzemnaJednotka': use of class template requires template argument list
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(11,21): error C2955: 'UzemnaJednotka': use of class template requires template argument list
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(25,37): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(46,38): error C2662: 'std::string UzemnaJednotka<T>::getKod(void)': cannot convert 'this' pointer from 'UzemnaJednotka' to 'UzemnaJednotka<T> &'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(46,26): message : Reason: cannot convert from 'UzemnaJednotka' to 'UzemnaJednotka<T>'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(46,26): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(35,9): message : see declaration of 'UzemnaJednotka<T>::getKod'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(46,38): message : while trying to match the argument list '()'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(46,23): error C2088: '==': illegal for class
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(53,29): error C2662: 'void UzemnaJednotka<T>::addUzemnuPodjednotku(UzemnaJednotka<T> *)': cannot convert 'this' pointer from 'UzemnaJednotka' to 'UzemnaJednotka<T> &'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(53,17): message : Reason: cannot convert from 'UzemnaJednotka' to 'UzemnaJednotka<T>'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(53,17): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(33,7): message : see declaration of 'UzemnaJednotka<T>::addUzemnuPodjednotku'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(53,29): message : while trying to match the argument list '(Obec *)'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(58,44): error C2662: 'std::string UzemnaJednotka<T>::getKod(void)': cannot convert 'this' pointer from 'UzemnaJednotka' to 'UzemnaJednotka<T> &'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(58,31): message : Reason: cannot convert from 'UzemnaJednotka' to 'UzemnaJednotka<T>'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(58,31): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(35,9): message : see declaration of 'UzemnaJednotka<T>::getKod'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(58,44): message : while trying to match the argument list '()'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(58,55): error C2088: '!=': illegal for class
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(60,51): error C2641: cannot deduce template arguments for 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(60,51): error C2780: 'UzemnaJednotka<T> UzemnaJednotka(UzemnaJednotka<T> &)': expects 1 arguments - 3 provided
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(30,2): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(60,51): error C2780: 'UzemnaJednotka<T> UzemnaJednotka(std::string,TypUzemia)': expects 2 arguments - 3 provided
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(28,2): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(60,51): error C2783: 'UzemnaJednotka<T> UzemnaJednotka(std::string,std::string,TypUzemia)': could not deduce template argument for 'T'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(26,2): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(60,51): error C2780: 'UzemnaJednotka<T> UzemnaJednotka(UzemnaJednotka<T>)': expects 1 arguments - 3 provided
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(60,51): error C2514: 'UzemnaJednotka': class template cannot be constructed
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(61,29): error C2662: 'void UzemnaJednotka<T>::addUzemnuPodjednotku(UzemnaJednotka<T> *)': cannot convert 'this' pointer from 'UzemnaJednotka' to 'UzemnaJednotka<T> &'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(61,17): message : Reason: cannot convert from 'UzemnaJednotka' to 'UzemnaJednotka<T>'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(61,17): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(33,7): message : see declaration of 'UzemnaJednotka<T>::addUzemnuPodjednotku'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(61,29): message : while trying to match the argument list '(UzemnaJednotka *)'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(64,17): error C2662: 'void UzemnaJednotka<T>::addUzemnuPodjednotku(UzemnaJednotka<T> *)': cannot convert 'this' pointer from 'UzemnaJednotka' to 'UzemnaJednotka<T> &'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(64,4): message : Reason: cannot convert from 'UzemnaJednotka' to 'UzemnaJednotka<T>'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(64,4): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(33,7): message : see declaration of 'UzemnaJednotka<T>::addUzemnuPodjednotku'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(64,17): message : while trying to match the argument list '(Obec *)'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(72,28): error C2955: 'UzemnaJednotka': use of class template requires template argument list
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(74,21): error C2955: 'UzemnaJednotka': use of class template requires template argument list
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(74,50): error C2641: cannot deduce template arguments for 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(74,50): error C2780: 'UzemnaJednotka<T> UzemnaJednotka(UzemnaJednotka<T> &)': expects 1 arguments - 3 provided
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(30,2): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(74,50): error C2780: 'UzemnaJednotka<T> UzemnaJednotka(std::string,TypUzemia)': expects 2 arguments - 3 provided
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(28,2): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(74,50): error C2783: 'UzemnaJednotka<T> UzemnaJednotka(std::string,std::string,TypUzemia)': could not deduce template argument for 'T'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(26,2): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(74,50): error C2780: 'UzemnaJednotka<T> UzemnaJednotka(UzemnaJednotka<T>)': expects 1 arguments - 3 provided
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(74,50): error C2514: 'UzemnaJednotka': class template cannot be constructed
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(75,10): error C2663: 'std::vector<_Ty,_Alloc>::push_back': no overloaded function has valid conversion for 'this' pointer
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\vector(876,23): message : could be 'void std::vector<_Ty,_Alloc>::push_back(_Ty &&)'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(75,10): message : 'void std::vector<_Ty,_Alloc>::push_back(_Ty &&)': cannot convert 'this' pointer from 'std::vector' to 'std::vector<_Ty,_Alloc> &'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(75,5): message : Reason: cannot convert from 'std::vector' to 'std::vector<_Ty,_Alloc>'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(75,5): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\vector(872,23): message : or       'void std::vector<_Ty,_Alloc>::push_back(const _Ty &)'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(75,10): message : 'void std::vector<_Ty,_Alloc>::push_back(const _Ty &)': cannot convert 'this' pointer from 'std::vector' to 'std::vector<_Ty,_Alloc> &'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(75,5): message : Reason: cannot convert from 'std::vector' to 'std::vector<_Ty,_Alloc>'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(75,5): message : Conversion requires a second user-defined-conversion operator or constructor
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.cpp(75,10): message : while trying to match the argument list '(UzemnaJednotka *)'
+  UzemnaJednotka.cpp
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.cpp(8,3): warning C4150: deletion of pointer to incomplete type 'T'; no destructor called
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.cpp(4,22): message : see declaration of 'T'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.cpp(12,31): error C2511: 'void UzemnaJednotka<T>::addUzemnuPodjednotku(T *)': overloaded member function not found in 'UzemnaJednotka<T>'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.cpp(4,1): message : see declaration of 'UzemnaJednotka<T>'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.cpp(14,5): error C2671: 'UzemnaJednotka<T>::addUzemnuPodjednotku': static member functions do not have 'this' pointers
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.cpp(16,3): error C2671: 'UzemnaJednotka<T>::addUzemnuPodjednotku': static member functions do not have 'this' pointers
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.cpp(17,3): error C2027: use of undefined type 'T'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.cpp(4,22): message : see declaration of 'T'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.cpp(17,51): error C2671: 'UzemnaJednotka<T>::addUzemnuPodjednotku': static member functions do not have 'this' pointers
+  main.cpp
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Obec.h(10,21): error C2955: 'UzemnaJednotka': use of class template requires template argument list
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Obec.h(25,3): error C2614: 'Obec': illegal member initialization: 'UzemnaJednotka' is not a base or member
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.h(9,28): error C2955: 'UzemnaJednotka': use of class template requires template argument list
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.h(9,14): error C2955: 'UzemnaJednotka': use of class template requires template argument list
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.h(9,7): error C2976: 'std::vector': too few template arguments
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\vector(438,1): message : see declaration of 'std::vector'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.h(9,31): error C2955: 'std::vector': use of class template requires template argument list
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.37.32822\include\vector(438,1): message : see declaration of 'std::vector'
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\Struktura.h(11,18): error C2955: 'UzemnaJednotka': use of class template requires template argument list
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko(stareZle)\UzemnaJednotka.h(15,1): message : see declaration of 'UzemnaJednotka'
+  Generating Code...

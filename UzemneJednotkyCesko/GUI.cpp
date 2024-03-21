@@ -22,9 +22,10 @@ void GUI::printError(errorType et, std::string msg="")
         //cout << msg << "\n";
         cout << "Rozpoznané príkazy majú nasledovný formát:\n";
         cout << "  Druh vyh¾adávania   Èo je vyh¾adávané   Kde sa vyh¾adáva:\n";
-        cout << "\t* o (obsahuje) h¾adaný reazec obec/okres/kraj - napr. o nad obec -> vypíše všetky obce obsahujúce \"nad\" vo svojom nazve\n";
-        cout << "\t* z (zaèína na) h¾adaný reazec obec/okres/kraj - napr. z okres Èe -> vypísš všetky okrasy zaèínajúce na \"Èe\"\n";
-        SetConsoleTextAttribute(handle, 115);
+        cout << "\t* o (obsahuje) h¾adaný reazec ob/ok/kr - napr. o nad ob -> vypíše všetky obce obsahujúce \"nad\" vo svojom nazve\n";
+        cout << "\t* z (zaèína na) h¾adaný reazec ob/ok/kr - napr. z Èe ok -> vypísš všetky okrasy zaèínajúce na \"Èe\"\n";
+        cout << "\t* e pre ukoncenie\n";
+        SetConsoleTextAttribute(handle, 113);
         cout << "Príkazy sa zadávajú postupne a potvrdzujú Enterom\n";
         SetConsoleTextAttribute(handle, 15);
         cout << "Vyhladávanie je case sensitiv\n";
@@ -32,7 +33,7 @@ void GUI::printError(errorType et, std::string msg="")
     case nespravneVstupnePar:
         SetConsoleTextAttribute(handle, 12);
         cout << "\nParameter: \" ";
-        SetConsoleTextAttribute(handle, 124);
+        SetConsoleTextAttribute(handle, 79);
         cout << msg;
         SetConsoleTextAttribute(handle, 12);
         cout << " \"Nerozpoznany.\n";
@@ -174,7 +175,9 @@ void GUI::startLoop()
         cin >> druhVyhladavanie;
         pos.X++;
         this->setCursorPos(pos);
-        if (druhVyhladavanie == "o")
+        if (druhVyhladavanie == "e")
+            break;
+        else if (druhVyhladavanie == "o")
         {
             cout << "bsahuje ";
         }
@@ -204,6 +207,7 @@ void GUI::startLoop()
         cout << '\"';
         cout << vyhladavanyRetazec;
         cout << "\" v ";
+        pos = this->getCursorPos();
         //---------------------------------------------------------
         cin >> kde;
         if (kde != "kr" && kde != "ok" && kde != "ob")
@@ -213,8 +217,11 @@ void GUI::startLoop()
         }
         //---------------------------------------------------------
 
+        pos.X += 2;
+        this->setCursorPos(pos);
         if (kde == "ob")
         {
+            cout << "ce\n";
             vector<Obec*> vyfiltrovaneObce;
             Algoritmus<vector<Obec*>>::filtruj(obce.begin(), obce.end(), vyfiltrovaneObce, GUI::getFuncion<Obec>(druhVyhladavanie, vyhladavanyRetazec));
 
@@ -223,15 +230,20 @@ void GUI::startLoop()
             {
                 cout << *o;
             }
+            cout << "\n\nNajdených: " << vyfiltrovaneObce.size() << " zhôd";
         }
         else if (kde == "kr")
         {
+            cout << "aje\n";
             this->filtrujUJ(druhVyhladavanie, vyhladavanyRetazec, kraje);
         }
         else
+        {
+            cout << "resy\n";
             this->filtrujUJ(druhVyhladavanie, vyhladavanyRetazec, okresy);
-
-
+        }
+        
+        cout << "\n\n====================================================================================================\n\n\n";
         }
 }
 void GUI::filtrujUJ(std::string druhVyhladavanie, string vyhladavanyRetazec, std::vector<UzemnaJednotka*>& zdroj)
@@ -243,6 +255,7 @@ void GUI::filtrujUJ(std::string druhVyhladavanie, string vyhladavanyRetazec, std
     {
         cout << *u;
     }
+    cout << "\n\nNajdených: " << vyfiltrovaneUJ.size() << " zhôd";
 }
 
 
