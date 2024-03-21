@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GUI.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Nacitavac.cpp" />
     <ClCompile Include="Obec.cpp" />
@@ -135,12 +136,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algoritmus.h" />
+    <ClInclude Include="GUI.h" />
     <ClInclude Include="Nacitavac.h" />
     <ClInclude Include="Obec.h" />
     <ClInclude Include="UzemnaJednotka.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="converted.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="artCUJ.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

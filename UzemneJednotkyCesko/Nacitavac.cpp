@@ -2,12 +2,13 @@
 #include<iostream>
 
 #include "Nacitavac.h"
+#include "GUI.h"
 
 
 using namespace std;
-void Nacitavac::Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>& kraje, std::vector<UzemnaJednotka*>& okresy, std::vector<Obec*>& obce)
+void Nacitavac::Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>& kraje, std::vector<UzemnaJednotka*>& okresy, std::vector<Obec*>& obce, GUIProgressBar* progBar, int freq)
 {
-	cout << "Nacitavam:";
+
 	UzemnaJednotka* aktualnyKraj = nullptr;
 	UzemnaJednotka* aktualnyOkres = nullptr;
 	int pocNacitanych = 0;
@@ -57,14 +58,15 @@ void Nacitavac::Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>&
 		obce.push_back(novaObec);
 		//cout << *novaObec;    
 		pocNacitanych++;
-		if (pocNacitanych > 60)
+		if (pocNacitanych > freq)
 		{
-			cout << "*";
+			progBar->Progressed(1);
 			pocNacitanych = 0;
 		}
 
 	}
 	vstupnyCitac.close();
+	progBar->Finished();
 }
 
 Obec* Nacitavac::vytvorNovuObec(string polozky[])
@@ -116,3 +118,16 @@ void Nacitavac::odstranMedzery(string& textNaSpeacovanie)
 	}
 	textNaSpeacovanie = pomocny;
 }
+
+Nacitavac::Nacitavac(const char subor[])
+{
+	prud.open(subor);
+}
+
+istream& Nacitavac::dajRiadok(string& line)
+{
+	return getline(prud, line);
+}
+
+
+
