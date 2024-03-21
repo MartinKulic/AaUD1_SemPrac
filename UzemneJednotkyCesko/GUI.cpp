@@ -12,20 +12,35 @@
 
 using namespace std;
 
-void GUI::printError(errorType et, std::string msg)
+void GUI::printError(errorType et, std::string msg="")
 {
     HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
     switch (et)
     {
     case VseobecnyHelp:
         SetConsoleTextAttribute(handle, 15);
-        cout << msg << "\n";
+        //cout << msg << "\n";
         cout << "Rozpoznané príkazy majú nasledovný formát:\n";
+        cout << "  Druh vyh¾adávania   Èo je vyh¾adávané   Kde sa vyh¾adáva:\n";
         cout << "\t* o (obsahuje) h¾adaný reazec obec/okres/kraj - napr. o nad obec -> vypíše všetky obce obsahujúce \"nad\" vo svojom nazve\n";
         cout << "\t* z (zaèína na) h¾adaný reazec obec/okres/kraj - napr. z okres Èe -> vypísš všetky okrasy zaèínajúce na \"Èe\"\n";
+        SetConsoleTextAttribute(handle, 115);
+        cout << "Príkazy sa zadávajú postupne a potvrdzujú Enterom\n";
+        SetConsoleTextAttribute(handle, 15);
         cout << "Vyhladávanie je case sensitiv\n";
         break;
     case nespravneVstupnePar:
+        SetConsoleTextAttribute(handle, 12);
+        cout << "\nParameter: \" ";
+        SetConsoleTextAttribute(handle, 124);
+        cout << msg;
+        SetConsoleTextAttribute(handle, 12);
+        cout << " \"Nerozpoznany.\n";
+        SetConsoleTextAttribute(handle, 64);
+        cout << "Použi len tieto príkazy\n";
+        GUI::printError(VseobecnyHelp);
+        SetConsoleTextAttribute(handle, 15);
+
         break;
     default:
         break;
@@ -129,6 +144,8 @@ void GUI::nacitavanie(const char vstupnySubor[])
 
     SetConsoleTextAttribute(handle, 15);
 }
+
+
 void GUI::vykreskyFiggle(const char pothToFile[], COORD startPos)
 {
     Nacitavac nac(pothToFile);
@@ -145,13 +162,90 @@ void GUI::vykreskyFiggle(const char pothToFile[], COORD startPos)
 void GUI::startLoop()
 {
     //SetConsoleMode(handle, ENABLE_LINE_INPUT);
-    string userIn;
+    string druhVyhladavanie;
+    string vyhladavanyRetazec;
+    string kde;
+    this->printError(VseobecnyHelp, "");
+    COORD pos;;
     while (1)
     {
-        this->printError(VseobecnyHelp, "");
-        cin >> userIn;
+        cout << "operácia> ";
+        pos = this->getCursorPos();
+        cin >> druhVyhladavanie;
+        pos.X++;
+        this->setCursorPos(pos);
+        if (druhVyhladavanie == "o")
+        {
+            cout << "bsahuje ";
+        }
+        else if(druhVyhladavanie == "z")
+        {
+            cout << "acina ";
+        }
+        else
+        {
+            string msg;
+            msg += druhVyhladavanie;
+            GUI::printError(nespravneVstupnePar, msg);
+            continue;
+        }
+        //---------------------------------------------------------
+        pos = this->getCursorPos();
+        cout << "(èo/na) ";
+
+        cin >> vyhladavanyRetazec;
+
+        this->setCursorPos(pos);      
+        for (int i = 0; i < 8 + vyhladavanyRetazec.size(); i++) {
+            cout << ' ';
+        }
+        
+        this->setCursorPos(pos);
+        cout << '\"';
+        cout << vyhladavanyRetazec;
+        cout << "\" v ";
+        //---------------------------------------------------------
+        cin >> kde;
+        if (kde != "kr" && kde != "ok" && kde != "ob")
+        {
+            GUI::printError(nespravneVstupnePar, kde);
+            continue;
+        }
+        //---------------------------------------------------------
+
+        if (kde == "ob")
+        {
+            vector<Obec*> vyfiltrovaneObce;
+            Algoritmus<vector<Obec*>>::filtruj(obce.begin(), obce.end(), vyfiltrovaneObce, GUI::getFuncion<Obec>(druhVyhladavanie, vyhladavanyRetazec));
+
+            Obec::vypisHlavicku();
+            for (Obec* o : vyfiltrovaneObce)
+            {
+                cout << *o;
+            }
+        }
+        else if (kde == "kr")
+        {
+            this->filtrujUJ(druhVyhladavanie, vyhladavanyRetazec, kraje);
+        }
+        else
+            this->filtrujUJ(druhVyhladavanie, vyhladavanyRetazec, okresy);
+
+
+        }
+}
+void GUI::filtrujUJ(std::string druhVyhladavanie, string vyhladavanyRetazec, std::vector<UzemnaJednotka*>& zdroj)
+{
+    vector<UzemnaJednotka*> vyfiltrovaneUJ;
+    Algoritmus<vector<UzemnaJednotka*>>::filtruj(zdroj.begin(), zdroj.end(), vyfiltrovaneUJ, GUI::getFuncion<UzemnaJednotka>(druhVyhladavanie, vyhladavanyRetazec));
+    
+    for (UzemnaJednotka* u : vyfiltrovaneUJ)
+    {
+        cout << *u;
     }
 }
+
+
 
 //---------------------------------------------------------------
 GUIProgressBar::GUIProgressBar(GUI* ngui, string caption, int ntotalLength)
