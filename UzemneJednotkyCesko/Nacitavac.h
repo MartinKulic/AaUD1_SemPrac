@@ -18,6 +18,6 @@ private:
 public:
 	Nacitavac(const char subor[]);
 	istream& dajRiadok(string& line);
-	static void Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>& kraje, std::vector<UzemnaJednotka*>& okresy, std::vector<Obec*>& obce, GUIProgressBar* gui, int freq);
+	static void Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>& kraje, std::vector<UzemnaJednotka*>& okresy, std::vector<Obec*>& obce, GUI* gui, int freq);
 };
 

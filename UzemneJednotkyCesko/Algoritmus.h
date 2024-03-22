@@ -9,12 +9,12 @@ class Algoritmus
 {
 public:
 	template<typename F>
-	static void filtruj(typename DruhKontaineru::iterator begin, typename DruhKontaineru::iterator end, DruhKontaineru& vyfiltrovane, F filter);
+	static void filtruj(typename DruhKontaineru::iterator begin, typename DruhKontaineru::iterator end, DruhKontaineru& vyfiltrovane, std::function<bool(F)> filter);
 };
 
 template<typename DruhKontaineru>
 template<typename F>
-inline void Algoritmus<DruhKontaineru>::filtruj(typename DruhKontaineru::iterator begin, typename DruhKontaineru::iterator end, typename DruhKontaineru& vyfiltrovane, F filter)
+inline void Algoritmus<DruhKontaineru>::filtruj(typename DruhKontaineru::iterator begin, typename DruhKontaineru::iterator end, typename DruhKontaineru& vyfiltrovane, std::function<bool(F)> filter)
 {
 	for (typename DruhKontaineru::iterator aktualny = begin ; aktualny != end; aktualny++)
 	{

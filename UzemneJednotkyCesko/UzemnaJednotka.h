@@ -26,6 +26,7 @@ public:
 	friend ostream& operator<<(ostream& os, const UzemnaJednotka& obec);
 	string getKod() { return this->kod; };
 	string getNazov() { return this->nazov; };
+	static void vypisHlavicku() { ; };
 };
 
 

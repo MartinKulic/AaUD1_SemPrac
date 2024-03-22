@@ -12,7 +12,11 @@ enum errorType {
 	VseobecnyHelp,
 	nespravneVstupnePar
 };
-
+enum operationType {
+	obsahuje,
+	zacina
+};
+using namespace std;
 class GUI
 {
 private:
@@ -23,8 +27,9 @@ private:
 	HANDLE handle;
 
 	void nacitavanie(const char vstupnySubor[]);
-	template< typename T > std::function<bool(T*)> getFuncion(string predslaOp, string vyhladavanyRetazec);
-	void filtrujUJ(std::string druhVyhladavanie, string vyhladavanyRetazec, std::vector<UzemnaJednotka*>& zdroj);
+	template< typename T > std::function<bool(T)> getFuncion(string predslaOp, string vyhladavanyRetazec);
+	template<typename Con, typename of> void filtruj(string predslaOp, string vyhladavanyRetazec, Con* v);
+
 public:
 	GUI(const char vstupnySubor[]);
 	void startLoop();
@@ -32,33 +37,19 @@ public:
 	COORD getCursorPos();
 	void setCursorPos(COORD newpos);
 	HANDLE& getHandle() { return this->handle; };
-	void vykreskyFiggle(const char pothToFile[], COORD startPos);
+	
+	void Progressed(int by);
+
 	~GUI();
 };
 
-class GUIProgressBar
-{
-private:
-	int totalLength;
-	int progressed = 0;
-	
-	GUI* gui;
-	COORD progressedPartOfProgressBar;
-	COORD endOfProggressBar;
-
-public:
-	GUIProgressBar(GUI* ngui, string caption, int ntotalLength);
-	void Progressed(int by);
-	void Finished();
-};
-
 template<typename T>
-inline std::function<bool(T*)> GUI::getFuncion(string predslaOp, string vyhladavanyRetazec)
+inline std::function<bool(T)> GUI::getFuncion(string predslaOp, string vyhladavanyRetazec)
 {
 	if(predslaOp == "o")
-		return [vyhladavanyRetazec](T* o) {return o->getNazov().find(vyhladavanyRetazec) != -1; };
+		return [vyhladavanyRetazec](T o) {return o->getNazov().find(vyhladavanyRetazec) != -1; };
 	else
-		return [vyhladavanyRetazec](T* o) {
+		return [vyhladavanyRetazec](T o) {
 		if (vyhladavanyRetazec.size() > o->getNazov().size())
 			return false;
 
@@ -69,5 +60,24 @@ inline std::function<bool(T*)> GUI::getFuncion(string predslaOp, string vyhladav
 		}
 		return true;
 		};
+	
+}
+
+template<typename Con, typename of>
+inline void GUI::filtruj(string op, string vyhladavanyRetazec, Con* v )
+{
+	Con vyfiltrovane;	
+
+	std::function<bool(of*)> fun;
+	fun = GUI::getFuncion<of*>(op, vyhladavanyRetazec);
+
+	Algoritmus<Con>::filtruj(v->begin(), v->end(), vyfiltrovane, fun);
+	
+	of::vypisHlavicku();
+	for (of* el : vyfiltrovane)
+	{
+		cout << *el;
+	}
+
 	
 }

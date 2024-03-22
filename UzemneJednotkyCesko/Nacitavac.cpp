@@ -6,7 +6,7 @@
 
 
 using namespace std;
-void Nacitavac::Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>& kraje, std::vector<UzemnaJednotka*>& okresy, std::vector<Obec*>& obce, GUIProgressBar* progBar, int freq)
+void Nacitavac::Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>& kraje, std::vector<UzemnaJednotka*>& okresy, std::vector<Obec*>& obce, GUI* progBar, int freq)
 {
 
 	UzemnaJednotka* aktualnyKraj = nullptr;
@@ -66,7 +66,6 @@ void Nacitavac::Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>&
 
 	}
 	vstupnyCitac.close();
-	progBar->Finished();
 }
 
 Obec* Nacitavac::vytvorNovuObec(string polozky[])

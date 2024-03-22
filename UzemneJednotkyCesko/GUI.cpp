@@ -76,8 +76,13 @@ GUI::GUI(const char vstupnySubor[])
 	//otestuj vstupny sub
     
 	this->nacitavanie(vstupnySubor);
-    PlaySound(TEXT("videoplayback.wav"), NULL, SND_ASYNC);
+    //PlaySound(TEXT("videoplayback.wav"), NULL, SND_ASYNC);
 
+}
+
+void GUI::Progressed(int by)
+{
+    cout << '*';
 }
 
 GUI::~GUI()
@@ -99,218 +104,82 @@ GUI::~GUI()
 
 void GUI::nacitavanie(const char vstupnySubor[])
 {
-    string caption = "Nacitavanie: ";
-
-    CONSOLE_SCREEN_BUFFER_INFO buffinfo;
-    GetConsoleScreenBufferInfo(handle, &buffinfo);
-    int totalProgressBarLen = buffinfo.srWindow.Right - buffinfo.srWindow.Left + 1 - caption.size()-8;
-
-    GUIProgressBar progBar(this, caption, totalProgressBarLen);
-
-    Nacitavac::Nacitaj(vstupnySubor, kraje, okresy, obce, &progBar, 90);
+    cout << "Nacitavanie: ";
+    Nacitavac::Nacitaj(vstupnySubor, kraje, okresy, obce, this, 90);
 
     SetConsoleTextAttribute(handle, 32);
 
-    cout << "Naèítanie prebehlo úspešne:\n" << "\n\tKraje: " << kraje.size() << "\n\n\tSORP:  " << okresy.size() << "\n\n\tObce:  " << obce.size();
-
-    SetConsoleTextAttribute(handle, 62);
-    COORD pos = this->getCursorPos();
-    pos.X += 20;
-    pos.Y -= 6;
-    this->vykreskyFiggle("artCUJ.txt", pos);
-   
+    cout << "\nNaèítanie prebehlo úspešne:\n" << "\n\tKraje: " << kraje.size() << "\n\n\tSORP:  " << okresy.size() << "\n\n\tObce:  " << obce.size(); 
     cout << endl;
     SetConsoleTextAttribute(handle, 8);
-    for (int i = 0; i < totalProgressBarLen + caption.size()+3; i++)
+
+    for (int i = 0; i < 100; i++)
     {
         cout << '=';
     }
-    pos = this->getCursorPos();
-    cout << 'o';
-    int riadokPokracovanie = pos.Y+2;
-    pos.Y--;
-    for (; pos.Y > 0; pos.Y--)
-    {
-        this->setCursorPos(pos);
-        cout << "||";
-
-    }
-    pos.X = 0;
-    pos.Y = riadokPokracovanie;
-    this->setCursorPos(pos);
-
+    
     SetConsoleTextAttribute(handle, 14);
-    cout << "Drahý uživate¾, gratulujeme k úspešnému spusteniu našeho super duper programu. V tento moment uspešne prebehlo naèitanie vstupných údajou zo súboru, ktorý si zadal ako vstupný parameter.\n";
+    cout << "\nDrahý uživate¾, gratulujeme k úspešnému spusteniu našeho super duper programu. V tento moment uspešne prebehlo naèitanie vstupných údajou zo súboru, ktorý si zadal ako vstupný parameter.\n";
     cout << "Program slúži na vyfiltrovanie zoznamu krajou, okresou(SORP) alebo obcí. Prosím pokraèuj inštrukciami nižšie\n";
 
     SetConsoleTextAttribute(handle, 15);
 }
 
-
-void GUI::vykreskyFiggle(const char pothToFile[], COORD startPos)
-{
-    Nacitavac nac(pothToFile);
-    string toPrint;
-    while (nac.dajRiadok(toPrint))
-    {
-        this->setCursorPos(startPos);
-        cout << toPrint;
-        startPos.Y++;
-    }
-}
     
 
 void GUI::startLoop()
 {
-    //SetConsoleMode(handle, ENABLE_LINE_INPUT);
-    string druhVyhladavanie;
-    string vyhladavanyRetazec;
-    string kde;
-    this->printError(VseobecnyHelp, "");
-    COORD pos;;
+    GUI::printError(VseobecnyHelp, "");
+
     while (1)
     {
-        cout << "operácia> ";
-        pos = this->getCursorPos();
-        cin >> druhVyhladavanie;
-        pos.X++;
-        this->setCursorPos(pos);
-        if (druhVyhladavanie == "e")
-            break;
-        else if (druhVyhladavanie == "o")
+        string operacia;
+        string param;
+        string kde;
+
+        cout << "o = obsahuje, z = zacina na\n";
+        cout << "Zvol operaciu (o/z): ";
+        cin >> operacia;
+        if (operacia != "o" && operacia != "z")
         {
-            cout << "bsahuje ";
-        }
-        else if(druhVyhladavanie == "z")
-        {
-            cout << "acina ";
-        }
-        else
-        {
-            string msg;
-            msg += druhVyhladavanie;
-            GUI::printError(nespravneVstupnePar, msg);
+            GUI::printError(nespravneVstupnePar, operacia);
             continue;
         }
-        //---------------------------------------------------------
-        pos = this->getCursorPos();
-        cout << "(èo/na) ";
-
-        cin >> vyhladavanyRetazec;
-
-        this->setCursorPos(pos);      
-        for (int i = 0; i < 8 + vyhladavanyRetazec.size(); i++) {
-            cout << ' ';
-        }
+        cout << "Zadaj h¾adaný reazec\n";
         
-        this->setCursorPos(pos);
-        cout << '\"';
-        cout << vyhladavanyRetazec;
-        cout << "\" v ";
-        pos = this->getCursorPos();
-        //---------------------------------------------------------
+        cin >> ws;
+        getline(cin, param);
+
+        cout << "ob = obece, ok = okresy, kr = kraje\n";
+        cout << "Nad krorým po¾om: ";
         cin >> kde;
-        if (kde != "kr" && kde != "ok" && kde != "ob")
+
+        if (kde=="ob")
         {
-            GUI::printError(nespravneVstupnePar, kde);
-            continue;
+            this->filtruj<vector<Obec*>, Obec>(operacia, param, &obce);
+
+            /*vector<Obec*> vyf;
+            std::function<bool(Obec*)> fun;
+            fun = GUI::getFuncion<Obec*>(operacia, param);
+
+            Algoritmus<vector<Obec*>>::filtruj(obce.begin(), obce.end(), vyf, fun);*/
+
+
         }
-        //---------------------------------------------------------
-
-        pos.X += 2;
-        this->setCursorPos(pos);
-        if (kde == "ob")
+     /*   else if (kde == "ok")
         {
-            cout << "ce\n";
-            vector<Obec*> vyfiltrovaneObce;
-            Algoritmus<vector<Obec*>>::filtruj(obce.begin(), obce.end(), vyfiltrovaneObce, GUI::getFuncion<Obec>(druhVyhladavanie, vyhladavanyRetazec));
-
-            Obec::vypisHlavicku();
-            for (Obec* o : vyfiltrovaneObce)
-            {
-                cout << *o;
-            }
-            cout << "\n\nNajdených: " << vyfiltrovaneObce.size() << " zhôd";
+            filtruj<vector, UzemnaJednotka>(operacia, param, okresy);
         }
         else if (kde == "kr")
         {
-            cout << "aje\n";
-            this->filtrujUJ(druhVyhladavanie, vyhladavanyRetazec, kraje);
-        }
+            filtruj<vector, UzemnaJednotka>(operacia, param, kraje);
+        }*/
         else
         {
-            cout << "resy\n";
-            this->filtrujUJ(druhVyhladavanie, vyhladavanyRetazec, okresy);
+            GUI::printError(nespravneVstupnePar, "kde");
         }
         
-        cout << "\n\n====================================================================================================\n\n\n";
-        }
-}
-void GUI::filtrujUJ(std::string druhVyhladavanie, string vyhladavanyRetazec, std::vector<UzemnaJednotka*>& zdroj)
-{
-    vector<UzemnaJednotka*> vyfiltrovaneUJ;
-    Algoritmus<vector<UzemnaJednotka*>>::filtruj(zdroj.begin(), zdroj.end(), vyfiltrovaneUJ, GUI::getFuncion<UzemnaJednotka>(druhVyhladavanie, vyhladavanyRetazec));
-    
-    for (UzemnaJednotka* u : vyfiltrovaneUJ)
-    {
-        cout << *u;
     }
-    cout << "\n\nNajdených: " << vyfiltrovaneUJ.size() << " zhôd";
 }
 
 
-
-//---------------------------------------------------------------
-GUIProgressBar::GUIProgressBar(GUI* ngui, string caption, int ntotalLength)
-{
-    gui = ngui;
-    SetConsoleTextAttribute(gui->getHandle(), 11);
-    totalLength = ntotalLength;    
-    cout << caption;
-    SetConsoleTextAttribute(gui->getHandle(), 8);
-    cout << '{';
-    progressedPartOfProgressBar = gui->getCursorPos();
-    progressedPartOfProgressBar.X++;
-
-
-    for (int i = 0; i < totalLength; i++) {
-        cout << '-';
-    }
-
-    endOfProggressBar = gui->getCursorPos();
-    endOfProggressBar.X--;
-    cout << '}';
-}
-
-void GUIProgressBar::Progressed(int by)
-{
-    int moveBy = (by * totalLength) / 100;
-
-    for (int i = 0; i < moveBy; i++)
-    {
-        if (progressedPartOfProgressBar.X + moveBy >= endOfProggressBar.X)
-            continue;
-
-        gui->setCursorPos(progressedPartOfProgressBar);
-        cout << '\b' << '*';
-        progressedPartOfProgressBar.X++;
-    }
-
-}
-
-void GUIProgressBar::Finished()
-{
-    gui->setCursorPos(endOfProggressBar);
-    int duration = endOfProggressBar.X - progressedPartOfProgressBar.X+1;
-
-    for (int i = 0; i < duration; i++)
-    {
-        cout << '\b';
-    }
-
-    for (int i = 0; i < duration+1; i++)
-    {
-        cout << '*';
-    }
-    cout << endl;
-}
