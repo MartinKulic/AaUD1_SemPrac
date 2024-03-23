@@ -140,7 +140,12 @@ void GUI::startLoop()
         cout << "o = obsahuje, z = zacina na\n";
         cout << "Zvol operaciu (o/z): ";
         cin >> operacia;
-        if (operacia != "o" && operacia != "z")
+
+        if (operacia == "e")
+        {
+            break;
+        }
+        else if (operacia != "o" && operacia != "z")
         {
             GUI::printError(nespravneVstupnePar, operacia);
             continue;
@@ -158,27 +163,20 @@ void GUI::startLoop()
         {
             this->filtruj<vector<Obec*>, Obec>(operacia, param, &obce);
 
-            /*vector<Obec*> vyf;
-            std::function<bool(Obec*)> fun;
-            fun = GUI::getFuncion<Obec*>(operacia, param);
-
-            Algoritmus<vector<Obec*>>::filtruj(obce.begin(), obce.end(), vyf, fun);*/
-
-
         }
-     /*   else if (kde == "ok")
+        else if (kde == "ok")
         {
-            filtruj<vector, UzemnaJednotka>(operacia, param, okresy);
+            this->filtruj<vector<UzemnaJednotka*>, UzemnaJednotka>(operacia, param, &okresy);
         }
         else if (kde == "kr")
         {
-            filtruj<vector, UzemnaJednotka>(operacia, param, kraje);
-        }*/
+            this->filtruj<vector<UzemnaJednotka*>, UzemnaJednotka>(operacia, param, &kraje);
+        }
         else
         {
             GUI::printError(nespravneVstupnePar, "kde");
         }
-        
+                
     }
 }
 

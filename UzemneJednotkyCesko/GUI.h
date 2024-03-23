@@ -73,11 +73,17 @@ inline void GUI::filtruj(string op, string vyhladavanyRetazec, Con* v )
 
 	Algoritmus<Con>::filtruj(v->begin(), v->end(), vyfiltrovane, fun);
 	
+	if (vyfiltrovane.size() == 0)
+	{
+		cout << "\nNeboli najdene ziadne zhody.\n";
+	}
+
 	of::vypisHlavicku();
 	for (of* el : vyfiltrovane)
 	{
 		cout << *el;
 	}
-
+	cout << "\nNajdenych " << vyfiltrovane.size() << " zhod\n";
+	cout << "\n==========================================================\n\n";
 	
 }
