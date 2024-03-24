@@ -16,6 +16,10 @@ void Nacitavac::Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>&
 	//Citanie-----------------------------------
 
 	ifstream vstupnyCitac(vstupnySubor);
+
+	if (vstupnyCitac.fail())
+		throw problemZoSuborumExeption("Subor sa nepodarilo otvorit.");
+
 	string line;
 	while (getline(vstupnyCitac, line))//vstupnyCitac.good()
 	{
@@ -77,6 +81,11 @@ Obec* Nacitavac::vytvorNovuObec(string polozky[])
 		kanalizacia = Kanalizacia(stoi(polozky[13]));
 	else
 		kanalizacia = Kanalizacia(nezname);
+
+	if (polozky[4][0] == '\"')  // Pridane kvoli nekonzistencii vstupneho suboru - niektore zaznamy su v ""
+	{
+		polozky[4] = polozky[4].substr(1, polozky[4].size()-2);
+	}
 
 	odstranMedzery(polozky[9]);
 	odstranMedzery(polozky[10]);

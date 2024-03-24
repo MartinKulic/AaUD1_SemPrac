@@ -1,11 +1,11 @@
 #include <iostream>
 #include <Windows.h>
-#include <mmsystem.h>
+//#include <mmsystem.h>
 
 #include "GUI.h"
 #include "Nacitavac.h"
 
-#pragma comment(lib,"winmm.lib")
+//#pragma comment(lib,"winmm.lib")
 
 
 #define WIDTH_OF_WINDOW 1300
@@ -22,13 +22,13 @@ void GUI::printError(errorType et, std::string msg="")
         //cout << msg << "\n";
         cout << "Rozpoznané príkazy majú nasledovný formát:\n";
         cout << "  Druh vyh¾adávania   Èo je vyh¾adávané   Kde sa vyh¾adáva:\n";
-        cout << "\t* o (obsahuje) h¾adaný reazec ob/ok/kr - napr. o nad ob -> vypíše všetky obce obsahujúce \"nad\" vo svojom nazve\n";
-        cout << "\t* z (zaèína na) h¾adaný reazec ob/ok/kr - napr. z Èe ok -> vypísš všetky okrasy zaèínajúce na \"Èe\"\n";
-        cout << "\t* e pre ukoncenie\n";
+        cout << "\t* o (obsahuje) |> h¾adaný reazec |> ob/ok/kr - napr. o nad ob -> vypíše všetky obce obsahujúce \"nad\" vo svojom nazve\n";
+        cout << "\t* z (zaèína na) |> h¾adaný reazec |> ob/ok/kr - napr. z Èe ok -> vypísš všetky okrasy zaèínajúce na \"Èe\"\n";
+        cout << "\t* e -> ukoncenie\n";
         SetConsoleTextAttribute(handle, 113);
-        cout << "Príkazy sa zadávajú postupne a potvrdzujú Enterom\n";
+        cout << "Príkazy sa zadávajú postupne a potvrdzujú Enterom";
         SetConsoleTextAttribute(handle, 15);
-        cout << "Vyhladávanie je case sensitiv\n";
+        cout << "\nVyhladávanie je case sensitiv\n";
         break;
     case nespravneVstupnePar:
         SetConsoleTextAttribute(handle, 12);
@@ -36,32 +36,31 @@ void GUI::printError(errorType et, std::string msg="")
         SetConsoleTextAttribute(handle, 79);
         cout << msg;
         SetConsoleTextAttribute(handle, 12);
-        cout << " \"Nerozpoznany.\n";
+        cout << " \"Nerozpoznany.";
         SetConsoleTextAttribute(handle, 64);
-        cout << "Použi len tieto príkazy\n";
+        cout << "\nPouži len tieto príkazy\n";
         GUI::printError(VseobecnyHelp);
         SetConsoleTextAttribute(handle, 15);
 
+        break;
+    case nespravneSpustenie:
+        SetConsoleTextAttribute(handle, 64);
+        cout << msg << "\nProgram nama dostator parametrou.";
+        SetConsoleTextAttribute(handle, 12);
+        cout << "\nProsim uistite sa, ze ste pri spustani zadali ustupny subor.\n";
+        SetConsoleTextAttribute(handle, 15);
+        break;
+    case chybaSoVstupnymSuborom:
+        SetConsoleTextAttribute(handle, 64);
+        cout << msg << "\nVstupny subor sa nenasiel, neda sa otvorit alebo jeho format je nespravny.";
+        SetConsoleTextAttribute(handle, 12);
+        cout << "\nProsim uistite sa, ze subor cesta k suboru je spravna a jeho format je zrozumitelny pre tento program.\n";
+        SetConsoleTextAttribute(handle, 15);
         break;
     default:
         break;
     }
 }
-
-COORD GUI::getCursorPos()
-{
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    GetConsoleScreenBufferInfo(handle, &csbi);
-    return csbi.dwCursorPosition;
-}
-
-void GUI::setCursorPos(COORD newpos)
-{
-    SetConsoleCursorPosition(handle, newpos);
-}
-
-
-
 
 GUI::GUI(const char vstupnySubor[])
 {
@@ -105,7 +104,9 @@ GUI::~GUI()
 void GUI::nacitavanie(const char vstupnySubor[])
 {
     cout << "Nacitavanie: ";
-    Nacitavac::Nacitaj(vstupnySubor, kraje, okresy, obce, this, 90);
+
+        Nacitavac::Nacitaj(vstupnySubor, kraje, okresy, obce, this, 90);
+
 
     SetConsoleTextAttribute(handle, 32);
 
@@ -161,7 +162,7 @@ void GUI::startLoop()
 
         if (kde=="ob")
         {
-            this->filtruj<vector<Obec*>, Obec>(operacia, param, &obce);
+           this->filtruj<vector<Obec*>, Obec>(operacia, param, &obce);
 
         }
         else if (kde == "ok")
@@ -174,7 +175,7 @@ void GUI::startLoop()
         }
         else
         {
-            GUI::printError(nespravneVstupnePar, "kde");
+            GUI::printError(nespravneVstupnePar, kde);
         }
                 
     }

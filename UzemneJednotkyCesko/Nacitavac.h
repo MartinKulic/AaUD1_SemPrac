@@ -21,3 +21,13 @@ public:
 	static void Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>& kraje, std::vector<UzemnaJednotka*>& okresy, std::vector<Obec*>& obce, GUI* gui, int freq);
 };
 
+class problemZoSuborumExeption : public exception
+{
+private:
+	string message;
+public:
+	problemZoSuborumExeption(string msg) : message(msg) {};
+	char* what() { return &message[0]; };
+	string  getMsg() { return this->message; };
+};
+

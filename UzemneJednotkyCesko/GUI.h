@@ -10,12 +10,11 @@
 
 enum errorType {
 	VseobecnyHelp,
-	nespravneVstupnePar
+	nespravneVstupnePar,
+	nespravneSpustenie,
+	chybaSoVstupnymSuborom
 };
-enum operationType {
-	obsahuje,
-	zacina
-};
+
 using namespace std;
 class GUI
 {
@@ -28,15 +27,12 @@ private:
 
 	void nacitavanie(const char vstupnySubor[]);
 	template< typename T > std::function<bool(T)> getFuncion(string predslaOp, string vyhladavanyRetazec);
-	template<typename Con, typename of> void filtruj(string predslaOp, string vyhladavanyRetazec, Con* v);
+	template<typename Con, typename of> Con filtruj(string predslaOp, string vyhladavanyRetazec, Con* v);
 
 public:
 	GUI(const char vstupnySubor[]);
 	void startLoop();
 	static void printError(errorType et, std::string msg);
-	COORD getCursorPos();
-	void setCursorPos(COORD newpos);
-	HANDLE& getHandle() { return this->handle; };
 	
 	void Progressed(int by);
 
@@ -46,6 +42,11 @@ public:
 template<typename T>
 inline std::function<bool(T)> GUI::getFuncion(string predslaOp, string vyhladavanyRetazec)
 {
+	if (vyhladavanyRetazec == "*")
+	{
+		return [](T o) {return true; };
+	}
+
 	if(predslaOp == "o")
 		return [vyhladavanyRetazec](T o) {return o->getNazov().find(vyhladavanyRetazec) != -1; };
 	else
@@ -64,7 +65,7 @@ inline std::function<bool(T)> GUI::getFuncion(string predslaOp, string vyhladava
 }
 
 template<typename Con, typename of>
-inline void GUI::filtruj(string op, string vyhladavanyRetazec, Con* v )
+inline Con GUI::filtruj(string op, string vyhladavanyRetazec, Con* v )
 {
 	Con vyfiltrovane;	
 
@@ -75,15 +76,24 @@ inline void GUI::filtruj(string op, string vyhladavanyRetazec, Con* v )
 	
 	if (vyfiltrovane.size() == 0)
 	{
+		SetConsoleTextAttribute(handle, 158);
 		cout << "\nNeboli najdene ziadne zhody.\n";
+		SetConsoleTextAttribute(handle, 15);
 	}
+
 
 	of::vypisHlavicku();
 	for (of* el : vyfiltrovane)
 	{
 		cout << *el;
 	}
+	SetConsoleTextAttribute(handle, 22);
 	cout << "\nNajdenych " << vyfiltrovane.size() << " zhod\n";
-	cout << "\n==========================================================\n\n";
+	SetConsoleTextAttribute(handle, 9);
+	cout << "\n====================================================================================================================================\n\n";
+	SetConsoleTextAttribute(handle, 15);
+
+	return vyfiltrovane;
+	
 	
 }
