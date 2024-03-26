@@ -1,11 +1,9 @@
 #include <iostream>
 #include <Windows.h>
-//#include <mmsystem.h>
 
 #include "GUI.h"
 #include "Nacitavac.h"
 
-//#pragma comment(lib,"winmm.lib")
 
 
 #define WIDTH_OF_WINDOW 1300
@@ -71,12 +69,8 @@ GUI::GUI(const char vstupnySubor[])
     GetWindowRect(consloleWindow, &rectangle);
 
     MoveWindow(consloleWindow, rectangle.left, rectangle.top, WIDTH_OF_WINDOW, 600, TRUE);
-
-	//otestuj vstupny sub
     
 	this->nacitavanie(vstupnySubor);
-    //PlaySound(TEXT("videoplayback.wav"), NULL, SND_ASYNC);
-
 }
 
 void GUI::Progressed(int by)
