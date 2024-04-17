@@ -9,6 +9,15 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{09923e40-00f3-478b-a069-2a71213ecdf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\HeaderFiles">
+      <UniqueIdentifier>{ae0ba3e1-66dd-4171-97fa-aa042a1bd6ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Source Files">
+      <UniqueIdentifier>{4506c2bc-bbe0-458e-a1ad-6556738b8dba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,7 +33,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GUI.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>GUI\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,7 +50,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GUI.h">
-      <Filter>Header Files</Filter>
+      <Filter>GUI\HeaderFiles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
