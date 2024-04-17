@@ -6,11 +6,11 @@ enum Kanalizacia { // COV = ÈOV = èistièka odpadových vôd
 	nie, ano, COV, nezname
 };
 
-using namespace std;
+//using namespace std;
 class Obec : public UzemnaJednotka
 {
 private:
-	string typObce = "nezadané";
+	std::string typObce = "nezadané";
 	Kanalizacia kanalizacia = nezname;
 	unsigned int katastralnaVymera = 0;
 	unsigned int pocetObyvatelovCelkom = 0;
@@ -20,14 +20,14 @@ private:
 	bool plynofikacia = false;
 
 public:
-	Obec(string nnazov, string nkod, string ntyp, unsigned int nKatastralnaVymera, unsigned int nPocetObyvatelovCelkom, unsigned int npocetObyvatelov0az14, unsigned int npocetObyvatelov65aViac, Kanalizacia nKanalizacia, bool nVodovod, bool nPlyn) :
+	Obec(std::string nnazov, std::string nkod, std::string ntyp, unsigned int nKatastralnaVymera, unsigned int nPocetObyvatelovCelkom, unsigned int npocetObyvatelov0az14, unsigned int npocetObyvatelov65aViac, Kanalizacia nKanalizacia, bool nVodovod, bool nPlyn) :
 		UzemnaJednotka(nnazov, nkod, TypUzemia(obec)), typObce(ntyp), kanalizacia(nKanalizacia), katastralnaVymera(nKatastralnaVymera), pocetObyvatelovCelkom(nPocetObyvatelovCelkom),
 		pocetObyvatelov0az14(npocetObyvatelov0az14), pocetObyvatelov65aViac(npocetObyvatelov65aViac), vodovod(nVodovod), plynofikacia(nPlyn) {};
 
 
-	friend ostream& operator<<(ostream& os, const Obec& obec);
+	friend std::ostream& operator<<(std::ostream& os, const Obec& obec);
 	static void vypisHlavicku();
 };
-string parseKanalizaciaToStr(const Kanalizacia& kanalizacia);
+std::string parseKanalizaciaToStr(const Kanalizacia& kanalizacia);
 
 

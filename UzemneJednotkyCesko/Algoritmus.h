@@ -2,7 +2,7 @@
 #include <iterator>
 
 
-using namespace std;
+//using namespace std;
 
 template<typename DruhKontaineru>
 class Algoritmus

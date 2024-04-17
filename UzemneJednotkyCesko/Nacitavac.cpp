@@ -132,7 +132,7 @@ Nacitavac::Nacitavac(const char subor[])
 	prud.open(subor);
 }
 
-istream& Nacitavac::dajRiadok(string& line)
+istream& Nacitavac::dajRiadok(std::string& line)
 {
 	return getline(prud, line);
 }
