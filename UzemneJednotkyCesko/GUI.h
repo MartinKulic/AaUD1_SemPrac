@@ -3,6 +3,7 @@
 #include<string>
 #include <Windows.h>
 #include <functional>
+#include <iostream>
 
 #include "Algoritmus.h"
 #include "UzemnaJednotka.h"
