@@ -12,13 +12,15 @@ class Nacitavac
 private:
 	std::ifstream prud;
 
+public:
+	 Nacitavac(const char subor[]);
+	std::istream& dajRiadok(std::string& line);
+	static void Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>& kraje, std::vector<UzemnaJednotka*>& okresy, std::vector<Obec*>& obce, GUI* gui, int freq);
+	
+	
 	static Obec* vytvorNovuObec(std::string polozky[]);
 	static UzemnaJednotka* vytvorNovuUzemnuJednotku(std::string polozky[], TypUzemia typ);
 	static void odstranMedzery(std::string& textNaSpeacovanie);
-public:
-	Nacitavac(const char subor[]);
-	std::istream& dajRiadok(std::string& line);
-	static void Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>& kraje, std::vector<UzemnaJednotka*>& okresy, std::vector<Obec*>& obce, GUI* gui, int freq);
 };
 
 class problemZoSuborumExeption : public std::exception

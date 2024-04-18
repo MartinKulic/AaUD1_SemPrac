@@ -9,6 +9,7 @@
 
 
 #include "GUI.h"
+#include "GUIZadanie2.h"
 #include "Nacitavac.h"
 #include "Algoritmus.h"
 
@@ -26,8 +27,9 @@ int main(int argc, char* argv[])
         {
             try
             {
-                GUI gui(argv[1]);
-                gui.startLoop();
+                //GUI gui(argv[1]);
+                //gui.startLoop();
+                GUIZadanie2 gui(argv[1]);
             }
             catch (problemZoSuborumExeption e)
             {

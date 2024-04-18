@@ -11,7 +11,7 @@ class GUIZadanie2
 {
 private:
 	HANDLE handle;
-	MultiwayTree<UzemnaJednotka> hierarchia;
+	MultiwayTree<UzemnaJednotka*>* hierarchia;
 
 	void nacitavanie(const char vstupnySubor[]);
 public:
@@ -21,7 +21,5 @@ public:
 	void Progressed(int by);
 };
 
-class GUIZadanie2
-{
-};
+
 

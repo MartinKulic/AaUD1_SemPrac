@@ -130,15 +130,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GUI.cpp" />
+    <ClCompile Include="GUIZadanie2.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Nacitavac.cpp" />
+    <ClCompile Include="NacitavacZadanie2.cpp" />
     <ClCompile Include="Obec.cpp" />
     <ClCompile Include="UzemnaJednotka.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algoritmus.h" />
     <ClInclude Include="GUI.h" />
+    <ClInclude Include="GUIZadanie2.h" />
     <ClInclude Include="Nacitavac.h" />
+    <ClInclude Include="NacitavacZadanie2.h" />
     <ClInclude Include="Obec.h" />
     <ClInclude Include="UzemnaJednotka.h" />
   </ItemGroup>
