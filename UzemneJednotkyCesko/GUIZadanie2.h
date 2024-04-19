@@ -18,6 +18,7 @@ private:
 	void nacitavanie(const char vstupnySubor[]);
 public:
 	GUIZadanie2(const char vstupnySubor[]);
+	~GUIZadanie2();
 	void startLoop() {};
 
 	void Progressed(int by);

@@ -26,6 +26,7 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, const UzemnaJednotka& obec);
 	std::string getKod() { return this->kod; };
 	std::string getNazov() { return this->nazov; };
+	TypUzemia getType() { return this->typUzemia; };
 	static void vypisHlavicku() { ; };
 };
 
