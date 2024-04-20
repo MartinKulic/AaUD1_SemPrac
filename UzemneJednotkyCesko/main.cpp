@@ -28,8 +28,8 @@ int main(int argc, char* argv[])
             try
             {
                 //GUI gui(argv[1]);
-                //gui.startLoop();
                 GUIZadanie2 gui(argv[1]);
+                gui.startLoop();
             }
             catch (problemZoSuborumExeption e)
             {

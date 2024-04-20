@@ -53,14 +53,13 @@ void NacitavacZadanie2::Nacitaj(const char vstupnySubor[], ds::amt::MultiWayExpl
 
 			polozky[0] = pomocny.substr(0, pomocny.find(';'));
 
-			//aktualnyKraj = Nacitavac::vytvorNovuUzemnuJednotku(polozky, kraj);
 			
 			aktualnyKraj = &strom.emplaceSon(koren, ntyKraj);
 			aktualnyKraj->data_ = Nacitavac::vytvorNovuUzemnuJednotku(polozky, kraj);
 			ntyOkres = 0;
 			ntyKraj++;
 			pocNacKraj++;
-			//kraje.push_back(aktualnyKraj);
+
 			//Pridaj aktualny Kraj
 
 			continue;
@@ -71,13 +70,11 @@ void NacitavacZadanie2::Nacitaj(const char vstupnySubor[], ds::amt::MultiWayExpl
 		// okres existuje a je v tom istom okrese ako predchadzajuci no problem : inak Vytvor novy okres
 		if ((!aktualnyOkres || (aktualnyOkres->data_->getKod() != polozky[1]) && (polozky[1] != "x")))
 		{
-			//aktualnyOkres = Nacitavac::vytvorNovuUzemnuJednotku(polozky, soorp);
 			aktualnyOkres = &strom.emplaceSon(*aktualnyKraj, ntyOkres);
 			aktualnyOkres->data_ = Nacitavac::vytvorNovuUzemnuJednotku(polozky, soorp);
 			ntaObec = 0;
 			ntyOkres++;
 			pocNacOkres++;
-			//okresy.push_back(aktualnyOkres);
 			//Pridaj aktualny okres
 		}
 
