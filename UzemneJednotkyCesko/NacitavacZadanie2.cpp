@@ -66,9 +66,14 @@ void NacitavacZadanie2::Nacitaj(const char vstupnySubor[], ds::amt::MultiWayExpl
 		}
 
 		Obec* novaObec = Nacitavac::vytvorNovuObec(polozky);
-
+		if ((polozky[1] == "x") && !aktualnyOkres)
+		{
+			strom.emplaceSon(*aktualnyKraj, ntyOkres).data_ = novaObec;
+			ntyOkres++;
+			continue;
+		}
 		// okres existuje a je v tom istom okrese ako predchadzajuci no problem : inak Vytvor novy okres
-		if ((!aktualnyOkres || (aktualnyOkres->data_->getKod() != polozky[1]) && (polozky[1] != "x")))
+		if (!aktualnyOkres || (aktualnyOkres->data_->getKod() != polozky[1]))
 		{
 			aktualnyOkres = &strom.emplaceSon(*aktualnyKraj, ntyOkres);
 			aktualnyOkres->data_ = Nacitavac::vytvorNovuUzemnuJednotku(polozky, soorp);
