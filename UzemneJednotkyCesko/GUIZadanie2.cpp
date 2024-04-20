@@ -3,6 +3,8 @@
 #include "GUIZadanie2.h"
 #include "NacitavacZadanie2.h"
 #include "Obec.h"
+#include "Algoritmus2.h"
+#include "Algoritmus.h"
 
 using namespace std;
 //using namespace ds::adt;
@@ -19,7 +21,7 @@ void GUIZadanie2::printError(errorType et, std::string msg)
 		cout << "*  .  -> spaù, prejde do nadradenej ˙zemnej jednotky.\n";
 		cout << "*  a  -> vypise cel˙ hierarcihu\n";
 		cout << "*  aa -> vypise podhierarchiu\n";
-		cout << "* z/o -> spustÌ filtrovania\n";
+		cout << "* z/o/t-> spustÌ filtrovania (z - zacina na, o - obsahuje, t - je typu)\n";
 		cout << "*  e  -> ukonËenie\n\n";
 		break;
 	case nespravnyArgument:
@@ -86,11 +88,16 @@ void GUIZadanie2::startLoop()
 			}
 			continue;
 		}
+		else if (vstup._Equal("z") || vstup._Equal("o")) {
+			filtrujDialogZO(vstup[0]);
+		}
+		else if (vstup._Equal("t")) {
+			filtrujDialogT();
+		}
 		else if (vstup._Equal("a")) {
 			vypisCeluPodhierarchiu(hierarchia);
 		}
 		else if (vstup._Equal("aa")) {
-			//ds::amt::MultiWayExplicitHierarchy<UzemnaJednotka*>* docasna = new ds::amt::MultiWayExplicitHierarchy<UzemnaJednotka*>;
 			ds::amt::MultiWayExplicitHierarchy<UzemnaJednotka*> docasna;
 			auto* nadradena = zvolenaUzemnaJednotka->parent_;
 			
@@ -100,8 +107,7 @@ void GUIZadanie2::startLoop()
 			docasna.emplaceRoot();
 
 			zvolenaUzemnaJednotka->parent_ = nadradena;
-			
-		    //delete docasna;
+
 		}
 		else if (vstup._Equal("e")) {
 			break;
@@ -113,7 +119,7 @@ void GUIZadanie2::startLoop()
 			{
 				index = stoi(vstup);
 			}
-			catch (const std::invalid_argument& e)
+			catch (const std::invalid_argument)
 			{
 				string msg = vstup + " nie je cislo";
 
@@ -182,15 +188,102 @@ bool GUIZadanie2::skusPrejstNaNadradedny()
 
 bool GUIZadanie2::skusPrejstNaPodradeny(size_t index)
 {
-	if (hierarchia->isLeaf(*zvolenaUzemnaJednotka)) {
-		return false;
-	}
 	ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* zastupca = hierarchia->accessSon(*zvolenaUzemnaJednotka, index);
-	if (zastupca == nullptr) {
+	if (zastupca == nullptr || hierarchia->isLeaf(*zastupca)) {
 		return false;
 	}
 	zvolenaUzemnaJednotka = zastupca;
 	return true;
+}
+
+void GUIZadanie2::filtrujDialogZO(char volba)
+{
+	cout << "Zadaj hæadan˝ reùazec\n";
+
+	string param;
+	cin >> ws;
+	getline(cin, param);
+
+
+	ImplicitSequence<UzemnaJednotka*> vyfiltrovane;
+	ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*> synovia(*zvolenaUzemnaJednotka->sons_);
+	if (volba == 'z') {
+
+		Algoritmus2::filtruj(synovia.begin(), synovia.end(), vyfiltrovane, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
+			if (param.size() > uj->data_->getNazov().size())
+				return false;
+			string ujNazov = uj->data_->getNazov();
+			for (int i = 0; i < param.size(); i++)
+			{
+				if (param[i] != ujNazov[i])
+					return false;
+			}
+			return true;
+			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<UzemnaJednotka*>& zoz) {zoz.insertLast().data_ = uj->data_; });
+		
+	}
+	else if (volba == 'o') {
+		Algoritmus2::filtruj(synovia.begin(), synovia.end(), vyfiltrovane, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
+			return uj->data_->getNazov().find(param) != -1;
+			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<UzemnaJednotka*>& zoz) {zoz.insertLast().data_ = uj->data_; });
+	}
+
+	if (vyfiltrovane.accessFirst() && vyfiltrovane.accessFirst()->data_->getType() == TypUzemia(obec))
+		Obec::vypisHlavicku();
+	auto stop = vyfiltrovane.end();
+	for (auto aktualny = vyfiltrovane.begin(); aktualny != stop; aktualny++) {
+		if ((*aktualny)->getType() == TypUzemia(obec)) {
+			cout << *(Obec*)*aktualny;
+		}
+		else {
+			cout << **aktualny;
+		}
+	}
+	cout << "najden˝ch: " << vyfiltrovane.size() << " zhÙd.\nStlaËte ENTER pre pokracovanie...\n";
+	system("pause");
+}
+
+void GUIZadanie2::filtrujDialogT()
+{
+	string param;
+	cout << "Zvol hladany typ (ob/ok/kr): ";
+	cin >> param;
+
+	ImplicitSequence<UzemnaJednotka*> vyfiltrovane;
+	ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*> synovia(*zvolenaUzemnaJednotka->sons_);
+
+	if (param == "ob") {
+		Algoritmus2::filtruj(synovia.begin(), synovia.end(), vyfiltrovane, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
+			return uj->data_->getType() == TypUzemia(obec);
+			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<UzemnaJednotka*>& zoz) {zoz.insertLast().data_ = uj->data_; });
+	}
+	else if (param == "ok") {
+		Algoritmus2::filtruj(synovia.begin(), synovia.end(), vyfiltrovane, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
+			return uj->data_->getType() == TypUzemia(soorp);
+			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<UzemnaJednotka*>& zoz) {zoz.insertLast().data_ = uj->data_; });
+	}
+	else if (param == "kr") {
+		Algoritmus2::filtruj(synovia.begin(), synovia.end(), vyfiltrovane, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
+			return uj->data_->getType() == TypUzemia(kraj);
+			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<UzemnaJednotka*>& zoz) {zoz.insertLast().data_ = uj->data_; });
+	}
+	else {
+		cout << "nespravne parametre.\n";
+	}
+
+	if (vyfiltrovane.accessFirst() && vyfiltrovane.accessFirst()->data_->getType() == TypUzemia(obec))
+		Obec::vypisHlavicku();
+	auto stop = vyfiltrovane.end();
+	for (auto aktualny = vyfiltrovane.begin(); aktualny != stop; aktualny++) {
+		if ((*aktualny)->getType() == TypUzemia(obec)) {
+			cout << *(Obec*)*aktualny;
+		}
+		else {
+			cout << **aktualny;
+		}
+	}
+	cout << "najden˝ch: " << vyfiltrovane.size() << " zhÙd.\nStlaËte ENTER pre pokracovanie...\n";
+	system("pause");
 }
 
 

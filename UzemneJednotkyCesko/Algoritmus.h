@@ -8,18 +8,18 @@ template<typename DruhKontaineru>
 class Algoritmus
 {
 public:
-	template<typename F>
-	static void filtruj(typename DruhKontaineru::iterator begin, typename DruhKontaineru::iterator end, DruhKontaineru& vyfiltrovane, std::function<bool(F)> filter);
+	template<typename F, typename iter>
+	static void filtruj(iter begin, iter end, DruhKontaineru& vyfiltrovane, std::function<bool(F)> filter);
 	
-	template<typename F>
-	static void filtruj(typename DruhKontaineru::iterator begin, typename DruhKontaineru::iterator end, std::function<bool(F)> filter, std::function<void(typename DruhKontaineru::iterator)> naplnaciaFunkcia);
+	template<typename F, typename iter>
+	static void filtruj(iter begin, iter end, std::function<bool(F)> filter, std::function<void(typename F)> naplnaciaFunkcia);
 };
 
 template<typename DruhKontaineru>
-template<typename F>
-inline void Algoritmus<DruhKontaineru>::filtruj(typename DruhKontaineru::iterator begin, typename DruhKontaineru::iterator end, typename DruhKontaineru& vyfiltrovane, std::function<bool(F)> filter)
+template<typename F, typename iter>
+inline void Algoritmus<DruhKontaineru>::filtruj(iter begin, iter end, typename DruhKontaineru& vyfiltrovane, std::function<bool(F)> filter)
 {
-	for (typename DruhKontaineru::iterator aktualny = begin ; aktualny != end; aktualny++)
+	for (iter aktualny = begin ; aktualny != end; aktualny++)
 	{
 		if (filter(*aktualny))
 			vyfiltrovane.push_back(*aktualny);
@@ -27,12 +27,14 @@ inline void Algoritmus<DruhKontaineru>::filtruj(typename DruhKontaineru::iterato
 }
 
 template<typename DruhKontaineru>
-template<typename F>
-inline void Algoritmus<DruhKontaineru>::filtruj(typename DruhKontaineru::iterator begin, typename DruhKontaineru::iterator end, std::function<bool(F)> filter, std::function<void(typename DruhKontaineru::iterator)> naplnaciaFunkcia)
+template<typename F, typename iter>
+inline void Algoritmus<DruhKontaineru>::filtruj(iter begin, iter end, std::function<bool(F)> filter, std::function<void(F)> naplnaciaFunkcia)
 {
-	for (typename DruhKontaineru::iterator aktualny = begin; aktualny != end; aktualny++)
+	iter aktualny = begin;
+	while (aktualny != end)
 	{
 		if (filter(*aktualny))
 			naplnaciaFunkcia(*aktualny);
+		aktualny++;
 	}
 }

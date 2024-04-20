@@ -64,6 +64,9 @@
     <ClInclude Include="NacitavacZadanie2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Algoritmus2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="converted.csv" />

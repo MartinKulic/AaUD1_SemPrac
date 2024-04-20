@@ -21,14 +21,18 @@ private:
 	//HANDLE handle;
 	//MultiwayTree<UzemnaJednotka*>* hierarchia;
 	ds::amt::MultiWayExplicitHierarchy<UzemnaJednotka*>* hierarchia;
-	ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* zvolenaUzemnaJednotka;
+	ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* zvolenaUzemnaJednotka; //Toto je moj iterator
 
 	void nacitavanie(const char vstupnySubor[]);
+	
 	void vypisCeluPodhierarchiu(ds::amt::MultiWayExplicitHierarchy<UzemnaJednotka*>* podhierarchia);
 	void vypisOcislovanychSynov(const ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>& podkoren);
 
 	bool skusPrejstNaNadradedny();
 	bool skusPrejstNaPodradeny(size_t index);
+
+	void filtrujDialogZO(char v);
+	void filtrujDialogT();
 
 public:
 	GUIZadanie2(const char vstupnySubor[]);
