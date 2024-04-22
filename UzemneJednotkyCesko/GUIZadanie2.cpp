@@ -130,17 +130,19 @@ void GUIZadanie2::startLoop()
 				continue;
 			}
 			if (index < 0 || index > synovia->size()) {
-
+				vypisMenu();
 				string msg = vstup + " Argument je mimo rozsah.";
 				cout <<endl<< msg << endl;
 				continue;
 			}
 			if (!skusPrejstNaPodradeny(index - 1)) {
+				vypisMenu();
 				cout << "Už sa nedá ís hlbšie\n";
 				continue;
 			}
+			vypisMenu();
 		}
-		vypisMenu();
+		//vypisMenu();
 	}
 }
 
@@ -236,11 +238,8 @@ void GUIZadanie2::filtrujDialogZO(char volba)
 	cin >> ws;
 	getline(cin, param);
 
-	ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>* pomocna = new ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>;
-	//ImplicitSequence<UzemnaJednotka*> vyfiltrovane;
-	//ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*> synovia(*zvolenaUzemnaJednotka->sons_);
-	//MultiWayExplicitHierarchy<UzemnaJednotka*> docasna;
-	//docasna.changeRoot(zvolenaUzemnaJednotka);
+	/*ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>* pomocna = new ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>;
+
 	if (volba == 'z') {
 
 		Algoritmus2::filtruj(synovia->begin(), synovia->end(), *pomocna,
@@ -266,10 +265,57 @@ void GUIZadanie2::filtrujDialogZO(char volba)
 			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>& zoz) {zoz.insertLast().data_ = uj; });
 		}
 
-			
+
 
 		delete synovia;
-		synovia = pomocna;
+		synovia = pomocna;*/
+
+	ImplicitSequence<UzemnaJednotka*>* pomocna = new ImplicitSequence<UzemnaJednotka*>;
+	MultiWayExplicitHierarchy<UzemnaJednotka*> podhrierarchia;
+	auto* parent = zvolenaUzemnaJednotka->parent_;
+	podhrierarchia.changeRoot(zvolenaUzemnaJednotka);
+
+	if (volba == 'z') {
+		Algoritmus2::filtruj(podhrierarchia.begin(), podhrierarchia.end(), pomocna,
+			[param](UzemnaJednotka* uj) {
+				if (param.size() > uj->getNazov().size())
+					return false;
+				string ujNazov = uj->getNazov();
+				for (int i = 0; i < param.size(); i++)
+				{
+					if (param[i] != ujNazov[i])
+						return false;
+				}
+				return true;
+			},
+			[](UzemnaJednotka* uj, ImplicitSequence<UzemnaJednotka*>* zoznam) {zoznam->insertLast().data_ = uj; });
+	}
+	else if (volba == 'o') {
+		Algoritmus2::filtruj(podhrierarchia.begin(), podhrierarchia.end(), pomocna,
+			[param](UzemnaJednotka* uj) {
+				return uj->getNazov().find(param) != -1;
+			},
+			[](UzemnaJednotka* uj, ImplicitSequence<UzemnaJednotka*>* zoznam) {zoznam->insertLast().data_ = uj; });
+	}
+
+	cout << "\n--- " << zvolenaUzemnaJednotka->data_->getNazov() << " ->\n";
+	auto stop = pomocna->end();
+	for (auto akt = pomocna->begin(); akt != stop; akt++) {
+		if ((*akt)->getType() == TypUzemia(obec)) {
+			cout << "\t\t\t" << *(Obec*)(*akt);
+		}
+		else
+		{
+			cout << **akt;
+		}
+	}
+
+	pomocna->clear();
+	delete pomocna;
+	podhrierarchia.emplaceRoot();
+	zvolenaUzemnaJednotka->parent_ = parent;
+
+	system("pause");
 	}
 
 void GUIZadanie2::filtrujDialogT()
@@ -278,9 +324,7 @@ void GUIZadanie2::filtrujDialogT()
 	cout << "Zvol hladany typ (ob/ok/kr): ";
 	cin >> param;
 
-	//ImplicitSequence<UzemnaJednotka*> vyfiltrovane;
-	//ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*> synovia(*zvolenaUzemnaJednotka->sons_);
-	ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>* pomocna = new ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>;
+	/*ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>* pomocna = new ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>;
 
 	if (param == "ob") {
 		Algoritmus2::filtruj(synovia->begin(), synovia->end(), *pomocna, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
@@ -302,7 +346,50 @@ void GUIZadanie2::filtrujDialogT()
 	}
 
 	delete synovia;
-	synovia = pomocna;
+	synovia = pomocna;*/
+
+	ImplicitSequence<UzemnaJednotka*>* pomocna = new ImplicitSequence<UzemnaJednotka*>;
+	MultiWayExplicitHierarchy<UzemnaJednotka*> podhrierarchia;
+	auto* parent = zvolenaUzemnaJednotka->parent_;
+	podhrierarchia.changeRoot(zvolenaUzemnaJednotka);
+
+	if (param == "ob") {
+		Algoritmus2::filtruj(podhrierarchia.begin(), podhrierarchia.end(), pomocna,
+			[](UzemnaJednotka* uj) {return uj->getType() == TypUzemia(obec); },
+			[](UzemnaJednotka* uj, ImplicitSequence<UzemnaJednotka*>* zoznam) {zoznam->insertLast().data_ = uj; });
+	}
+	else if (param == "ok") {
+		Algoritmus2::filtruj(podhrierarchia.begin(), podhrierarchia.end(), pomocna,
+			[](UzemnaJednotka* uj) {return uj->getType() == TypUzemia(soorp); },
+			[](UzemnaJednotka* uj, ImplicitSequence<UzemnaJednotka*>* zoznam) {zoznam->insertLast().data_ = uj; });
+	}
+	else if (param == "kr") {
+		Algoritmus2::filtruj(podhrierarchia.begin(), podhrierarchia.end(), pomocna,
+			[](UzemnaJednotka* uj) {return uj->getType() == TypUzemia(kraj); },
+			[](UzemnaJednotka* uj, ImplicitSequence<UzemnaJednotka*>* zoznam) {zoznam->insertLast().data_ = uj; });
+	}
+	else {
+		cout << "nespravne parametre.\n";
+	}
+
+	auto stop = pomocna->end();
+	for (auto akt = pomocna->begin(); akt != stop; akt++) {
+		if ((*akt)->getType() == TypUzemia(obec)) {
+			cout <<"\t\t\t"<< *(Obec*)(*akt);
+		}
+		else
+		{
+			cout << **akt;
+		}
+	}
+
+
+	pomocna->clear();
+	delete pomocna;
+	podhrierarchia.emplaceRoot();
+	zvolenaUzemnaJednotka->parent_ = parent;
+
+	system("pause");
 }
 
 void GUIZadanie2::resetVyfiltrovanyZoznam()
