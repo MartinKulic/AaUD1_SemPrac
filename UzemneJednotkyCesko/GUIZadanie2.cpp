@@ -39,24 +39,23 @@ void GUIZadanie2::printError(errorType et, std::string msg)
 
 GUIZadanie2::GUIZadanie2(const char vstupnySubor[])
 {
-	//hierarchia = new MultiwayTree<UzemnaJednotka*>;
 	hierarchia = new MultiWayExplicitHierarchy<UzemnaJednotka*>;
 	
-	//auto& root = hierarchia->insertRoot();
 	zvolenaUzemnaJednotka = &hierarchia->emplaceRoot();
 	zvolenaUzemnaJednotka->data_ = new UzemnaJednotka("Èeská republika", "000000", TypUzemia(undef));
 
+	synovia = new ImplicitSequence<ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>;
 
 	this->nacitavanie(vstupnySubor);
+
+	resetVyfiltrovanyZoznam();
+
 	printError(errorType(VseobecnyHelp), "");
-
-
-	//vypisCeluPodhierarchiu(hierarchia);
-
 }
 
 GUIZadanie2::~GUIZadanie2()
 {
+	delete  synovia;
 	hierarchia->processPostOrder(hierarchia->accessRoot(), [](ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* block) {
 		if (block->data_->getType() == TypUzemia(obec)) {
 			delete(Obec*) block->data_;
@@ -73,11 +72,10 @@ GUIZadanie2::~GUIZadanie2()
 
 void GUIZadanie2::startLoop()
 {
+	vypisMenu();
 	while (1)
 	{
-		cout << *zvolenaUzemnaJednotka->data_ << endl;
-		vypisOcislovanychSynov(*zvolenaUzemnaJednotka);
-		cout << "\n> ";
+		cout << ">";
 		string vstup;
 		cin >> vstup;
 
@@ -86,13 +84,17 @@ void GUIZadanie2::startLoop()
 			{
 				cout << "Už si v najnadradenejšom\n";
 			}
+			resetVyfiltrovanyZoznam();
+			vypisMenu();
 			continue;
 		}
 		else if (vstup._Equal("z") || vstup._Equal("o")) {
 			filtrujDialogZO(vstup[0]);
+			vypisMenu();
 		}
 		else if (vstup._Equal("t")) {
 			filtrujDialogT();
+			vypisMenu();
 		}
 		else if (vstup._Equal("a")) {
 			vypisCeluPodhierarchiu(hierarchia);
@@ -102,7 +104,7 @@ void GUIZadanie2::startLoop()
 			auto* nadradena = zvolenaUzemnaJednotka->parent_;
 			
 			docasna.changeRoot(zvolenaUzemnaJednotka);
-			vypisCeluPodhierarchiu(&docasna);
+			vypisCeluPodhierarchiu(&docasna);                   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 			docasna.emplaceRoot();
 
@@ -121,13 +123,16 @@ void GUIZadanie2::startLoop()
 			}
 			catch (const std::invalid_argument)
 			{
+				vypisMenu();
 				string msg = vstup + " nie je cislo";
 
 				printError(nespravnyArgument, msg);
 				continue;
 			}
-			if (index > hierarchia->degree(*zvolenaUzemnaJednotka)) {
-				string msg = vstup + "Argument je mimo rozsah.";
+			if (index < 0 || index > synovia->size()) {
+
+				string msg = vstup + " Argument je mimo rozsah.";
+				cout <<endl<< msg << endl;
 				continue;
 			}
 			if (!skusPrejstNaPodradeny(index - 1)) {
@@ -135,6 +140,7 @@ void GUIZadanie2::startLoop()
 				continue;
 			}
 		}
+		vypisMenu();
 	}
 }
 
@@ -172,9 +178,33 @@ void GUIZadanie2::vypisOcislovanychSynov(const ds::amt::MultiWayExplicitHierarch
 	}
 
 }
+///Vypise a ocisluje zoznam "synovia"
+void GUIZadanie2::vypisOcislovanych()
+{
+	size_t poc = 1;
+
+	auto stop = synovia->end();
+	for (auto akt = synovia->begin(); akt != stop; akt++) {
+		string p = "[" + to_string(poc) + "]";
+		cout  << left << setw(9) << p << (*akt)->data_->getNazov()<<endl;
+		poc++;
+	}
+}
+
+void GUIZadanie2::vypisMenu()
+{
+	int vypiln = 2 * zvolenaUzemnaJednotka->data_->getType();
+	string pom = "=";
+	for (int i = 0; i < vypiln; i++) {
+		pom += "=";
+	}
+	cout << pom << zvolenaUzemnaJednotka->data_->getNazov() <<"=============================="<< endl;
+	vypisOcislovanych();
+}
 
 bool GUIZadanie2::skusPrejstNaNadradedny()
 {
+
 	if (hierarchia->isRoot(*zvolenaUzemnaJednotka)) {
 		return false;
 	}
@@ -188,11 +218,13 @@ bool GUIZadanie2::skusPrejstNaNadradedny()
 
 bool GUIZadanie2::skusPrejstNaPodradeny(size_t index)
 {
-	ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* zastupca = hierarchia->accessSon(*zvolenaUzemnaJednotka, index);
+
+	ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* zastupca = synovia->access(index)->data_;
 	if (zastupca == nullptr || hierarchia->isLeaf(*zastupca)) {
 		return false;
 	}
 	zvolenaUzemnaJednotka = zastupca;
+	resetVyfiltrovanyZoznam();
 	return true;
 }
 
@@ -204,44 +236,41 @@ void GUIZadanie2::filtrujDialogZO(char volba)
 	cin >> ws;
 	getline(cin, param);
 
-
-	ImplicitSequence<UzemnaJednotka*> vyfiltrovane;
-	ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*> synovia(*zvolenaUzemnaJednotka->sons_);
+	ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>* pomocna = new ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>;
+	//ImplicitSequence<UzemnaJednotka*> vyfiltrovane;
+	//ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*> synovia(*zvolenaUzemnaJednotka->sons_);
+	//MultiWayExplicitHierarchy<UzemnaJednotka*> docasna;
+	//docasna.changeRoot(zvolenaUzemnaJednotka);
 	if (volba == 'z') {
 
-		Algoritmus2::filtruj(synovia.begin(), synovia.end(), vyfiltrovane, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
-			if (param.size() > uj->data_->getNazov().size())
-				return false;
-			string ujNazov = uj->data_->getNazov();
-			for (int i = 0; i < param.size(); i++)
-			{
-				if (param[i] != ujNazov[i])
-					return false;
-			}
-			return true;
-			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<UzemnaJednotka*>& zoz) {zoz.insertLast().data_ = uj->data_; });
-		
-	}
-	else if (volba == 'o') {
-		Algoritmus2::filtruj(synovia.begin(), synovia.end(), vyfiltrovane, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
-			return uj->data_->getNazov().find(param) != -1;
-			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<UzemnaJednotka*>& zoz) {zoz.insertLast().data_ = uj->data_; });
-	}
+		Algoritmus2::filtruj(synovia->begin(), synovia->end(), *pomocna,
+			[param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* block) {
 
-	if (vyfiltrovane.accessFirst() && vyfiltrovane.accessFirst()->data_->getType() == TypUzemia(obec))
-		Obec::vypisHlavicku();
-	auto stop = vyfiltrovane.end();
-	for (auto aktualny = vyfiltrovane.begin(); aktualny != stop; aktualny++) {
-		if ((*aktualny)->getType() == TypUzemia(obec)) {
-			cout << *(Obec*)*aktualny;
-		}
-		else {
-			cout << **aktualny;
-		}
+				if (param.size() > block->data_->getNazov().size())
+					return false;
+				string ujNazov = block->data_->getNazov();
+				for (int i = 0; i < param.size(); i++)
+				{
+					if (param[i] != ujNazov[i])
+						return false;
+				}
+				return true;
+			},
+			[](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* block, ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>& vyslednyZ) {
+				vyslednyZ.insertLast().data_ = block;
+			});
 	}
-	cout << "najdených: " << vyfiltrovane.size() << " zhôd.\nStlaète ENTER pre pokracovanie...\n";
-	system("pause");
-}
+		else if (volba == 'o') {
+			Algoritmus2::filtruj(synovia->begin(), synovia->end(), *pomocna, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
+			return uj->data_->getNazov().find(param) != -1;
+			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>& zoz) {zoz.insertLast().data_ = uj; });
+		}
+
+			
+
+		delete synovia;
+		synovia = pomocna;
+	}
 
 void GUIZadanie2::filtrujDialogT()
 {
@@ -249,42 +278,42 @@ void GUIZadanie2::filtrujDialogT()
 	cout << "Zvol hladany typ (ob/ok/kr): ";
 	cin >> param;
 
-	ImplicitSequence<UzemnaJednotka*> vyfiltrovane;
-	ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*> synovia(*zvolenaUzemnaJednotka->sons_);
+	//ImplicitSequence<UzemnaJednotka*> vyfiltrovane;
+	//ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*> synovia(*zvolenaUzemnaJednotka->sons_);
+	ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>* pomocna = new ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>;
 
 	if (param == "ob") {
-		Algoritmus2::filtruj(synovia.begin(), synovia.end(), vyfiltrovane, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
+		Algoritmus2::filtruj(synovia->begin(), synovia->end(), *pomocna, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
 			return uj->data_->getType() == TypUzemia(obec);
-			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<UzemnaJednotka*>& zoz) {zoz.insertLast().data_ = uj->data_; });
+			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>& zoz) {zoz.insertLast().data_ = uj; });
 	}
 	else if (param == "ok") {
-		Algoritmus2::filtruj(synovia.begin(), synovia.end(), vyfiltrovane, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
+		Algoritmus2::filtruj(synovia->begin(), synovia->end(), *pomocna, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
 			return uj->data_->getType() == TypUzemia(soorp);
-			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<UzemnaJednotka*>& zoz) {zoz.insertLast().data_ = uj->data_; });
+			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>& zoz) {zoz.insertLast().data_ = uj; });
 	}
 	else if (param == "kr") {
-		Algoritmus2::filtruj(synovia.begin(), synovia.end(), vyfiltrovane, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
+		Algoritmus2::filtruj(synovia->begin(), synovia->end(), *pomocna, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
 			return uj->data_->getType() == TypUzemia(kraj);
-			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<UzemnaJednotka*>& zoz) {zoz.insertLast().data_ = uj->data_; });
+			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>& zoz) {zoz.insertLast().data_ = uj; });
 	}
 	else {
 		cout << "nespravne parametre.\n";
 	}
 
-	if (vyfiltrovane.accessFirst() && vyfiltrovane.accessFirst()->data_->getType() == TypUzemia(obec))
-		Obec::vypisHlavicku();
-	auto stop = vyfiltrovane.end();
-	for (auto aktualny = vyfiltrovane.begin(); aktualny != stop; aktualny++) {
-		if ((*aktualny)->getType() == TypUzemia(obec)) {
-			cout << *(Obec*)*aktualny;
-		}
-		else {
-			cout << **aktualny;
-		}
-	}
-	cout << "najdených: " << vyfiltrovane.size() << " zhôd.\nStlaète ENTER pre pokracovanie...\n";
-	system("pause");
+	delete synovia;
+	synovia = pomocna;
 }
+
+void GUIZadanie2::resetVyfiltrovanyZoznam()
+{
+	synovia->clear();
+	auto stop = zvolenaUzemnaJednotka->sons_->end();
+	for (auto block = zvolenaUzemnaJednotka->sons_->begin(); block != stop; block++) {
+		synovia->insertLast().data_ = *block;
+	}
+}
+
 
 
 
