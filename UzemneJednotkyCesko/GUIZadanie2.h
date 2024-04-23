@@ -18,8 +18,7 @@ private:
 		nespravnyArgument
 	};
 
-	//HANDLE handle;
-	//MultiwayTree<UzemnaJednotka*>* hierarchia;
+	HANDLE handle;
 	ds::amt::MultiWayExplicitHierarchy<UzemnaJednotka*>* hierarchia;
 	ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* zvolenaUzemnaJednotka; //Toto je moj iterator
 	ds::amt::ImplicitSequence<ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>* synovia;

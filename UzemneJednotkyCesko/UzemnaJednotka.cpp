@@ -11,10 +11,10 @@ ostream& operator<<(ostream& os, const UzemnaJednotka& uj)
 		os << " KRAJ - " << uj.kod << " - " << setw(30) << uj.nazov << endl;
 		break;
 	case soorp:
-		os << "\tOKRES - " << uj.kod << " ~ " << left << setw(30) << uj.nazov << endl;
+		os << "   OKRES - " << uj.kod << " ~ " << left << setw(30) << uj.nazov << endl;
 		break;
 	default:
-		os << "\t\t" << uj.kod << " " <<  uj.nazov  << endl; //<< uj.typUzemia;
+		os << "      " << uj.kod << " " <<  uj.nazov  << endl; //<< uj.typUzemia;
 		break;
 	}
 	return os;

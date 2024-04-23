@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <vector>
 #include <Windows.h>
 
 #define _CRTDBG_MAP_ALLOC
@@ -25,11 +24,25 @@ int main(int argc, char* argv[])
         }
         else
         {
+            string zadanie;
+            cout << "Vyber zadanie 1/2: ";
+            cin >> zadanie;
             try
             {
-                //GUI gui(argv[1]);
-                GUIZadanie2 gui(argv[1]);
-                gui.startLoop();
+                if (zadanie == "1")
+                {
+                    GUI gui(argv[1]);
+                    gui.startLoop();
+                }
+                else if (zadanie == "2")
+                {
+                    GUIZadanie2 gui(argv[1]);
+                    gui.startLoop();
+                }
+                else
+                {
+                    cout << "\n Nezname parametre. Reštertuj program a skjs znova.\n";
+                }
             }
             catch (problemZoSuborumExeption e)
             {

@@ -13,6 +13,7 @@ using namespace ds::amt;
 
 void GUIZadanie2::printError(errorType et, std::string msg)
 {
+	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	switch (et)
 	{
 	case VseobecnyHelp:
@@ -25,9 +26,11 @@ void GUIZadanie2::printError(errorType et, std::string msg)
 		cout << "*  e  -> ukonèenie\n\n";
 		break;
 	case nespravnyArgument:
+		SetConsoleTextAttribute(handle, 12);
 		cout << "Chyba so zadaným parametrom: ";
 		cout << msg;
 		cout << "\nRozpoznané argumenty su len:\n";
+		SetConsoleTextAttribute(handle, 15);
 		printError(VseobecnyHelp, "");
 		break;
 	default:
@@ -49,6 +52,8 @@ GUIZadanie2::GUIZadanie2(const char vstupnySubor[])
 	this->nacitavanie(vstupnySubor);
 
 	resetVyfiltrovanyZoznam();
+
+	handle = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	printError(errorType(VseobecnyHelp), "");
 }
@@ -82,7 +87,9 @@ void GUIZadanie2::startLoop()
 		if (vstup._Equal(".")) {
 			if(!skusPrejstNaNadradedny())
 			{
+				SetConsoleTextAttribute(handle, 113);
 				cout << "Už si v najnadradenejšom\n";
+				SetConsoleTextAttribute(handle, 15);
 			}
 			resetVyfiltrovanyZoznam();
 			vypisMenu();
@@ -124,6 +131,7 @@ void GUIZadanie2::startLoop()
 			catch (const std::invalid_argument)
 			{
 				vypisMenu();
+				SetConsoleTextAttribute(handle, 12);
 				string msg = vstup + " nie je cislo";
 
 				printError(nespravnyArgument, msg);
@@ -132,12 +140,18 @@ void GUIZadanie2::startLoop()
 			if (index < 0 || index > synovia->size()) {
 				vypisMenu();
 				string msg = vstup + " Argument je mimo rozsah.";
-				cout <<endl<< msg << endl;
+				SetConsoleTextAttribute(handle, 203);
+				cout <<endl<< msg;
+				SetConsoleTextAttribute(handle, 15);
+				cout << endl;
 				continue;
 			}
 			if (!skusPrejstNaPodradeny(index - 1)) {
 				vypisMenu();
-				cout << "Už sa nedá ís hlbšie\n";
+				SetConsoleTextAttribute(handle, 124);
+				cout << "Už sa nedá ís hlbšie";
+				SetConsoleTextAttribute(handle, 15);
+				cout << endl;
 				continue;
 			}
 			vypisMenu();
@@ -200,7 +214,13 @@ void GUIZadanie2::vypisMenu()
 	for (int i = 0; i < vypiln; i++) {
 		pom += "=";
 	}
-	cout << pom << zvolenaUzemnaJednotka->data_->getNazov() <<"=============================="<< endl;
+	SetConsoleTextAttribute(handle, 8);
+	cout << pom;
+	SetConsoleTextAttribute(handle, 11);
+	cout << zvolenaUzemnaJednotka->data_->getNazov();
+	SetConsoleTextAttribute(handle, 8);
+	cout << "==============================" << endl;
+	SetConsoleTextAttribute(handle, 15);
 	vypisOcislovanych();
 }
 
@@ -309,6 +329,11 @@ void GUIZadanie2::filtrujDialogZO(char volba)
 			cout << **akt;
 		}
 	}
+	SetConsoleTextAttribute(handle, 22);
+	std::cout << "\nNajdenych " << pomocna->size() << " zhod\n";
+	SetConsoleTextAttribute(handle, 9);
+	std::cout << "\n====================================================================================================================================\n\n";
+	SetConsoleTextAttribute(handle, 15);
 
 	pomocna->clear();
 	delete pomocna;
@@ -369,7 +394,10 @@ void GUIZadanie2::filtrujDialogT()
 			[](UzemnaJednotka* uj, ImplicitSequence<UzemnaJednotka*>* zoznam) {zoznam->insertLast().data_ = uj; });
 	}
 	else {
-		cout << "nespravne parametre.\n";
+		SetConsoleTextAttribute(handle, 192);
+		cout << "nespravne parametre.";
+		SetConsoleTextAttribute(handle, 15);
+		cout << endl;
 	}
 
 	auto stop = pomocna->end();
@@ -382,7 +410,11 @@ void GUIZadanie2::filtrujDialogT()
 			cout << **akt;
 		}
 	}
-
+	SetConsoleTextAttribute(handle, 22);
+	std::cout << "\nNajdenych " << pomocna->size() << " zhod\n";
+	SetConsoleTextAttribute(handle, 9);
+	std::cout << "\n====================================================================================================================================\n\n";
+	SetConsoleTextAttribute(handle, 15);
 
 	pomocna->clear();
 	delete pomocna;
