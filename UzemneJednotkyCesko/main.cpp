@@ -7,9 +7,8 @@
 #include <crtdbg.h>
 
 #include "IGUI.h"
-#include "GUI1.h"
+#include "Zadanie1/GUI1.h"
 
-//#include "Algoritmus.h"
 
 using namespace std;
 int main(int argc, char* argv[])
@@ -23,8 +22,8 @@ int main(int argc, char* argv[])
         }
         else
         {
+            IGUI* gui;
             try {
-                IGUI* gui;
                 gui = new GUI1(argv[1]);
                 gui->startLoop();
                 delete gui;

@@ -130,21 +130,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Algoritmus.cpp" />
-    <ClCompile Include="GUI1.cpp" />
     <ClCompile Include="IGUI.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Nacitavac.cpp" />
     <ClCompile Include="Obec.cpp" />
     <ClCompile Include="UzemnaJednotka.cpp" />
+    <ClCompile Include="Zadanie1\GUI1.cpp" />
+    <ClCompile Include="Zadanie1\Nacitavac1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algoritmus.h" />
-    <ClInclude Include="GUI1.h" />
     <ClInclude Include="IAlgorithmCompatible.h" />
     <ClInclude Include="IGUI.h" />
-    <ClInclude Include="Nacitavac.h" />
     <ClInclude Include="Obec.h" />
     <ClInclude Include="UzemnaJednotka.h" />
+    <ClInclude Include="Zadanie1\GUI1.h" />
+    <ClInclude Include="Zadanie1\Nacitavac1.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="converted.csv" />
