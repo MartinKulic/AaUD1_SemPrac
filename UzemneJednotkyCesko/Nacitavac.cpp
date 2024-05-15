@@ -2,11 +2,13 @@
 #include<iostream>
 
 #include "Nacitavac.h"
-#include "GUI.h"
+#include "GUI1.h"
 
 
 using namespace std;
-void Nacitavac::Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>& kraje, std::vector<UzemnaJednotka*>& okresy, std::vector<Obec*>& obce, GUI* progBar, int freq)
+using namespace Zadanie1;
+
+void Nacitavac::Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>& kraje, std::vector<UzemnaJednotka*>& okresy, std::vector<Obec*>& obce, GUI1* progBar, int freq)
 {
 
 	UzemnaJednotka* aktualnyKraj = nullptr;

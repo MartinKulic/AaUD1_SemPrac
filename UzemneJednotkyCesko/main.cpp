@@ -6,10 +6,9 @@
 #include <stdlib.h>
 #include <crtdbg.h>
 
+#include "IGUI.h"
+#include "GUI1.h"
 
-#include "GUI.h"
-#include "GUIZadanie2.h"
-#include "Nacitavac.h"
 //#include "Algoritmus.h"
 
 using namespace std;
@@ -20,12 +19,24 @@ int main(int argc, char* argv[])
         SetConsoleCP(1250);
 
         if (argc < 2) {
-            GUI::printError(nespravneSpustenie, "Malo parametrov");
+            IGUI::printError(nespravneSpustenie, "Malo parametrov");
         }
         else
         {
-            GUI gui(argv[1]);
-            gui.startLoop();
+            try {
+                IGUI* gui;
+                gui = new GUI1(argv[1]);
+                gui->startLoop();
+                delete gui;
+            }
+            catch (problemZoSuborumExeption e)
+            {
+                IGUI::printError(chybaSoVstupnymSuborom, e.getMsg());
+            }
+            catch (std::invalid_argument e)
+            {
+                IGUI::printError(chybaSoVstupnymSuborom, e.what());
+            }
         }
        
     }
