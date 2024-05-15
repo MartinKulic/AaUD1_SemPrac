@@ -3,13 +3,13 @@
 
 #include "Nacitavac1.h"
 #include "GUI1.h"
-#include "../IGUI.h"
+#include "../INacitavac.h"
 
 
 using namespace std;
 
 
-void Nacitavac::Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>& kraje, std::vector<UzemnaJednotka*>& okresy, std::vector<Obec*>& obce, GUI1* progBar, int freq)
+void Nacitavac1::Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>& kraje, std::vector<UzemnaJednotka*>& okresy, std::vector<Obec*>& obce, GUI1* progBar, int freq)
 {
 
 	UzemnaJednotka* aktualnyKraj = nullptr;
@@ -48,17 +48,17 @@ void Nacitavac::Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>&
 
 			polozky[0] = pomocny.substr(0, pomocny.find(';'));
 
-			aktualnyKraj = vytvorNovuUzemnuJednotku(polozky, kraj);
+			aktualnyKraj = INacitavac::vytvorNovuUzemnuJednotku(polozky, kraj);
 			kraje.push_back(aktualnyKraj);
 			continue;
 		}
 
-		Obec* novaObec = vytvorNovuObec(polozky);
+		Obec* novaObec = INacitavac::vytvorNovuObec(polozky);
 
 		// okres existuje a je v tom istom okrese ako predchadzajuci no problem : inak Vytvor novy okres
 		if ((!aktualnyOkres || aktualnyOkres->getKod() != polozky[1]) && (polozky[1] != "x"))
 		{
-			aktualnyOkres = vytvorNovuUzemnuJednotku(polozky, soorp);
+			aktualnyOkres = INacitavac::vytvorNovuUzemnuJednotku(polozky, soorp);
 			okresy.push_back(aktualnyOkres);
 		}
 
@@ -75,70 +75,8 @@ void Nacitavac::Nacitaj(const char vstupnySubor[], std::vector<UzemnaJednotka*>&
 	vstupnyCitac.close();
 }
 
-Obec* Nacitavac::vytvorNovuObec(string polozky[])
-{
-	Kanalizacia kanalizacia;
-	if (polozky[13] == "-")
-		kanalizacia = Kanalizacia(0);
-	else if (polozky[13] != "")
-		kanalizacia = Kanalizacia(stoi(polozky[13]));
-	else
-		kanalizacia = Kanalizacia(nezname);
 
-	if (polozky[4][0] == '\"')  // Pridane kvoli nekonzistencii vstupneho suboru - niektore zaznamy su v ""
-	{
-		polozky[4] = polozky[4].substr(1, polozky[4].size()-2);
-	}
 
-	odstranMedzery(polozky[9]);
-	odstranMedzery(polozky[10]);
-	odstranMedzery(polozky[11]);
-	odstranMedzery(polozky[12]);
-	Obec* toRet = new Obec(polozky[4], polozky[5], polozky[6], stoul( polozky[9]), stoul(polozky[10]), stoul(polozky[11]), stoul(polozky[12]), kanalizacia, polozky[14] != "-" ? 1 : 0, polozky[15] != "-" ? 1 : 0);
-	return toRet;
-}
-
-UzemnaJednotka* Nacitavac::vytvorNovuUzemnuJednotku(string polozky[], TypUzemia typ)
-{
-	UzemnaJednotka* newUzemnaJednotka;
-	switch (typ)
-	{
-	case kraj:
-		newUzemnaJednotka = new UzemnaJednotka(polozky[2], polozky[0], typ);
-		break;
-	case soorp:
-		newUzemnaJednotka = new UzemnaJednotka(polozky[2], polozky[1], typ);
-		break;
-	case obec:
-		newUzemnaJednotka = vytvorNovuObec(polozky);
-		break;
-	default:
-		newUzemnaJednotka = new UzemnaJednotka("Idn what", "happend", undef);
-		break;
-	}
-	return newUzemnaJednotka;;
-}
-
-void Nacitavac::odstranMedzery(string& textNaSpeacovanie)
-{
-	string pomocny;
-	for (char ch : textNaSpeacovanie)
-	{
-		if (ch != ' ')
-			pomocny += ch;
-	}
-	textNaSpeacovanie = pomocny;
-}
-
-Nacitavac::Nacitavac(const char subor[])
-{
-	prud.open(subor);
-}
-
-istream& Nacitavac::dajRiadok(std::string& line)
-{
-	return getline(prud, line);
-}
 
 
 

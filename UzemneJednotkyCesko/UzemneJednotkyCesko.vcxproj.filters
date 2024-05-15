@@ -38,6 +38,15 @@
     <ClCompile Include="Zadanie1\Nacitavac1.cpp">
       <Filter>Zadanie1</Filter>
     </ClCompile>
+    <ClCompile Include="INacitavac.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Zadanie2\Nacitavac2.cpp">
+      <Filter>Zadanie2</Filter>
+    </ClCompile>
+    <ClCompile Include="Zadanie2\GUI2.cpp">
+      <Filter>Zadanie2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UzemnaJednotka.h">
@@ -60,6 +69,15 @@
     </ClInclude>
     <ClInclude Include="Zadanie1\GUI1.h">
       <Filter>Zadanie1</Filter>
+    </ClInclude>
+    <ClInclude Include="INacitavac.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Zadanie2\Nacitavac2.h">
+      <Filter>Zadanie2</Filter>
+    </ClInclude>
+    <ClInclude Include="Zadanie2\GUI2.h">
+      <Filter>Zadanie2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

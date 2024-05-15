@@ -24,7 +24,7 @@ template<typename typVKontainery>
 template<typename tIterator, typename U>
 inline void Algoritmus<typVKontainery>::filtruj(tIterator begin, tIterator end, std::function<bool(typVKontainery)> predikat, U naplnaciaFunkcia) 
 {
-	for (auto aktualny = begin; aktualny != end; aktualny++)
+	for (auto aktualny = begin; aktualny != end; ++aktualny)
 	{
 		if (predikat(*aktualny))
 		{

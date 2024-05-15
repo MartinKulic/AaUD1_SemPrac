@@ -8,6 +8,7 @@
 
 #include "IGUI.h"
 #include "Zadanie1/GUI1.h"
+#include "Zadanie2/GUI2.h"
 
 
 using namespace std;

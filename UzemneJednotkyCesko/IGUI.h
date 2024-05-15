@@ -4,7 +4,8 @@ enum errorType {
 	VseobecnyHelp,
 	nespravneVstupnePar,
 	nespravneSpustenie,
-	chybaSoVstupnymSuborom
+	chybaSoVstupnymSuborom,
+	nespravnyArgument
 };
 class IGUI {
 public:

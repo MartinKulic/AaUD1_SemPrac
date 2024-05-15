@@ -1,5 +1,2 @@
-﻿  GUI1.cpp
-  Nacitavac1.cpp
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie1\Nacitavac1.cpp(33,28): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
+﻿  main.cpp
   UzemneJednotkyCesko.vcxproj -> C:\Users\Martin\source\repos\AaUD1_SemPrac\x64\Debug\UzemneJednotkyCesko.exe

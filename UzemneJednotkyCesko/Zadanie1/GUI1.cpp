@@ -3,7 +3,7 @@
 
 #include "GUI1.h"
 #include "Nacitavac1.h"
-#include "../UzemnaJednotka.h"
+
 
 
 #define WIDTH_OF_WINDOW 1300
@@ -106,7 +106,7 @@
     {
         cout << "Nacitavanie: ";
 
-        Nacitavac::Nacitaj(vstupnySubor, kraje, okresy, obce, this, 90);
+        Nacitavac1::Nacitaj(vstupnySubor, kraje, okresy, obce, this, 90);
 
 
         SetConsoleTextAttribute(handle, 32);
