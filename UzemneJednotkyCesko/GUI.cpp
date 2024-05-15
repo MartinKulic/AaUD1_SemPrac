@@ -3,7 +3,7 @@
 
 #include "GUI.h"
 #include "Nacitavac.h"
-
+#include "UzemnaJednotka.h"
 
 
 #define WIDTH_OF_WINDOW 1300
@@ -71,6 +71,19 @@ GUI::GUI(const char vstupnySubor[])
     MoveWindow(consloleWindow, rectangle.left, rectangle.top, WIDTH_OF_WINDOW, 600, TRUE);
     
 	this->nacitavanie(vstupnySubor);
+
+    //-------------------------------
+    // PLAYNG
+
+    //vector<Obec*>* vysledok = new vector<Obec*>;
+
+    //Algoritmus<Obec*> alg;
+    ////alg.filtruj(obce.begin(), obce.end(), [](Obec* o)->bool {return o->nazovStartsWith("Pi"); }, *vysledok, [](vector<Obec*>& k, Obec* p)->void {k.push_back(p); });
+    //alg.filtruj(obce.begin(), obce.end(), [](Obec* o)->bool {return o->nazovStartsWith("Pi"); }, [vysledok]( Obec* p)->void {vysledok->push_back(p); });
+
+    //for (auto a = vysledok->begin(); a != vysledok->end(); a++) {
+    //    cout << **a;
+    //}
 }
 
 void GUI::Progressed(int by)
@@ -131,6 +144,10 @@ void GUI::startLoop()
         string operacia;
         string param;
         string kde;
+        //string* pparam = &param;
+
+        std::function<bool(UzemnaJednotka*)> predicat;
+
 
         cout << "o = obsahuje, z = zacina na\n";
         cout << "Zvol operaciu (o/z): ";
@@ -140,11 +157,28 @@ void GUI::startLoop()
         {
             break;
         }
+        /*
         else if (operacia != "o" && operacia != "z")
         {
             GUI::printError(nespravneVstupnePar, operacia);
             continue;
+        }*/
+        switch (operacia.at(0))
+        {
+        case 'o':
+            predicat = [&param](UzemnaJednotka* u)->bool {return u->nazovContains(param); };
+            break;
+        case 'z':
+            predicat = [&param](UzemnaJednotka* u)->bool {return u->nazovStartsWith(param); };
+            break;
+        default:
+            {
+            GUI::printError(nespravneVstupnePar, operacia);
+            continue;
+            }
+            break;
         }
+        
         cout << "Zadaj h¾adaný reazec\n";
         
         cin >> ws;
@@ -154,24 +188,56 @@ void GUI::startLoop()
         cout << "Nad krorým po¾om: ";
         cin >> kde;
 
-        if (kde=="ob")
+        /*switch (operacia.at(0))
         {
-           this->filtruj<vector<Obec*>, Obec>(operacia, param, &obce);
+        case 'o':
+            predicat = [param](UzemnaJednotka* u)->bool {u->nazovContains(param); };
+            break;
+        case 'z':
+            predicat = [param](UzemnaJednotka* u)->bool {u->nazovStartsWith(param); };
+        default:
+            break;
+        }*/
 
+        std::vector<UzemnaJednotka*>* vysledok = new vector<UzemnaJednotka*>;
+        Algoritmus <UzemnaJednotka*> alg;
+        if (kde=="ob")
+        {          
+            alg.filtruj(obce.begin(), obce.end(), predicat, [vysledok](Obec* o) {vysledok->push_back(o); });
         }
         else if (kde == "ok")
         {
-            this->filtruj<vector<UzemnaJednotka*>, UzemnaJednotka>(operacia, param, &okresy);
+            alg.filtruj(okresy.begin(), okresy.end(), predicat, [vysledok](UzemnaJednotka* o) {vysledok->push_back(o); });
         }
         else if (kde == "kr")
         {
-            this->filtruj<vector<UzemnaJednotka*>, UzemnaJednotka>(operacia, param, &kraje);
+            alg.filtruj(kraje.begin(), kraje.end(), predicat, [vysledok](UzemnaJednotka* o) {vysledok->push_back(o); });
         }
         else
         {
             GUI::printError(nespravneVstupnePar, kde);
         }
-                
+
+        if (kde == "ob")
+            Obec::vypisHlavicku();
+        else
+            UzemnaJednotka::vypisHlavicku();
+        
+        for (auto uj = vysledok->begin(); uj != vysledok->end(); uj++) {
+            if ((*uj)->getType() == TypUzemia(obec))
+                cout << *(Obec*)*uj;
+            else
+                cout << **uj;
+        }
+        
+        SetConsoleTextAttribute(handle, 22);
+        std::cout << "\nNajdenych " << vysledok->size() << " zhod\n";
+        SetConsoleTextAttribute(handle, 9);
+        std::cout << "\n====================================================================================================================================\n\n";
+        SetConsoleTextAttribute(handle, 15);
+        
+        
+        delete vysledok;
     }
 }
 

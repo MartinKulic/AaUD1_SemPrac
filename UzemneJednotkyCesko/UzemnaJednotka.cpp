@@ -19,3 +19,18 @@ ostream& operator<<(ostream& os, const UzemnaJednotka& uj)
 	}
 	return os;
 }
+
+bool UzemnaJednotka::nazovStartsWith(const std::string& predloha)
+{
+	for (int i = 0; i < predloha.length();i++) {
+		if (predloha[i] != this->nazov[i]) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool UzemnaJednotka::nazovContains(const std::string& predloha)
+{
+	return this->nazov.find(predloha) != -1;
+}

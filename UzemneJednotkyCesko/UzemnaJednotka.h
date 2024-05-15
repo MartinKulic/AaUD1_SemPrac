@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 
+
 enum TypUzemia { //SOORP = ekvivalent okresu
 	kraj, soorp, obec, undef
 };
@@ -28,6 +29,9 @@ public:
 	std::string getNazov() { return this->nazov; };
 	TypUzemia getType() { return this->typUzemia; };
 	static void vypisHlavicku() { ; };
+
+	bool nazovStartsWith(const std::string& predloha);
+	bool nazovContains(const std::string& predloha);
 };
 
 

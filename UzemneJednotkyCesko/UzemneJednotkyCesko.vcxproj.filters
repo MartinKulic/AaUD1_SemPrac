@@ -9,14 +9,11 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="GUI">
-      <UniqueIdentifier>{09923e40-00f3-478b-a069-2a71213ecdf5}</UniqueIdentifier>
+    <Filter Include="Zadanie1">
+      <UniqueIdentifier>{e2a669f9-6556-4b1e-9b3f-d35d462c039d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GUI\HeaderFiles">
-      <UniqueIdentifier>{ae0ba3e1-66dd-4171-97fa-aa042a1bd6ee}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GUI\Source Files">
-      <UniqueIdentifier>{4506c2bc-bbe0-458e-a1ad-6556738b8dba}</UniqueIdentifier>
+    <Filter Include="Zadanie2">
+      <UniqueIdentifier>{141e9433-0200-42d3-83ae-5e83ae26512b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,15 +27,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Nacitavac.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Zadanie1</Filter>
     </ClCompile>
     <ClCompile Include="GUI.cpp">
-      <Filter>GUI\Source Files</Filter>
+      <Filter>Zadanie1</Filter>
     </ClCompile>
-    <ClCompile Include="GUIZadanie2.cpp">
-      <Filter>GUI\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NacitavacZadanie2.cpp">
+    <ClCompile Include="Algoritmus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -49,29 +43,20 @@
     <ClInclude Include="Obec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Nacitavac.h">
+      <Filter>Zadanie1</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI.h">
+      <Filter>Zadanie1</Filter>
+    </ClInclude>
     <ClInclude Include="Algoritmus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Nacitavac.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GUI.h">
-      <Filter>GUI\HeaderFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="GUIZadanie2.h">
-      <Filter>GUI\HeaderFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="NacitavacZadanie2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Algoritmus2.h">
+    <ClInclude Include="IAlgorithmCompatible.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="converted.csv" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="artCUJ.txt" />
   </ItemGroup>
 </Project>

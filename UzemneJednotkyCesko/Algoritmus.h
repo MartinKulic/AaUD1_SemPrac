@@ -1,40 +1,37 @@
 #pragma once
-#include <iterator>
+#include <functional>
 
-
-//using namespace std;
-
-template<typename DruhKontaineru>
+template<typename typVKontainery>
 class Algoritmus
 {
 public:
-	template<typename F, typename iter>
-	static void filtruj(iter begin, iter end, DruhKontaineru& vyfiltrovane, std::function<bool(F)> filter);
-	
-	template<typename F, typename iter>
-	static void filtruj(iter begin, iter end, std::function<bool(F)> filter, std::function<void(typename F)> naplnaciaFunkcia);
+	/*template<typename tIterator, typename tVyslednyKontainer, typename U>
+	void filtruj(tIterator begin, tIterator end, std::function<bool(typVKontainery a)> predikat, tVyslednyKontainer& vyslednyKontainer, U naplnaciaFunkcia)
+	{
+		for (auto aktualny = begin; aktualny != end; aktualny++)
+		{
+			if ( predikat(*aktualny) )
+			{
+				naplnaciaFunkcia(vyslednyKontainer, *aktualny);
+			}
+		}
+	};*/
+	template<typename tIterator, typename U>
+	void filtruj(tIterator begin, tIterator end, std::function<bool(typVKontainery)> predikat, U naplnaciaFunkcia); // U = std::function<void(typVKontainery)> naplnaciaFunkcia
 };
 
-template<typename DruhKontaineru>
-template<typename F, typename iter>
-inline void Algoritmus<DruhKontaineru>::filtruj(iter begin, iter end, typename DruhKontaineru& vyfiltrovane, std::function<bool(F)> filter)
+template<typename typVKontainery>
+template<typename tIterator, typename U>
+inline void Algoritmus<typVKontainery>::filtruj(tIterator begin, tIterator end, std::function<bool(typVKontainery)> predikat, U naplnaciaFunkcia) 
 {
-	for (iter aktualny = begin ; aktualny != end; aktualny++)
+	for (auto aktualny = begin; aktualny != end; aktualny++)
 	{
-		if (filter(*aktualny))
-			vyfiltrovane.push_back(*aktualny);
+		if (predikat(*aktualny))
+		{
+			naplnaciaFunkcia(*aktualny);
+		}
 	}
 }
 
-template<typename DruhKontaineru>
-template<typename F, typename iter>
-inline void Algoritmus<DruhKontaineru>::filtruj(iter begin, iter end, std::function<bool(F)> filter, std::function<void(F)> naplnaciaFunkcia)
-{
-	iter aktualny = begin;
-	while (aktualny != end)
-	{
-		if (filter(*aktualny))
-			naplnaciaFunkcia(*aktualny);
-		aktualny++;
-	}
-}
+
+

@@ -10,7 +10,7 @@
 #include "GUI.h"
 #include "GUIZadanie2.h"
 #include "Nacitavac.h"
-#include "Algoritmus.h"
+//#include "Algoritmus.h"
 
 using namespace std;
 int main(int argc, char* argv[])
@@ -24,34 +24,8 @@ int main(int argc, char* argv[])
         }
         else
         {
-            string zadanie;
-            cout << "Vyber zadanie 1/2: ";
-            cin >> zadanie;
-            try
-            {
-                if (zadanie == "1")
-                {
-                    GUI gui(argv[1]);
-                    gui.startLoop();
-                }
-                else if (zadanie == "2")
-                {
-                    GUIZadanie2 gui(argv[1]);
-                    gui.startLoop();
-                }
-                else
-                {
-                    cout << "\n Nezname parametre. Reštertuj program a skjs znova.\n";
-                }
-            }
-            catch (problemZoSuborumExeption e)
-            {
-                GUI::printError(chybaSoVstupnymSuborom, e.getMsg());
-            }
-            catch (std::invalid_argument e)
-            {
-                GUI::printError(chybaSoVstupnymSuborom, e.what());
-            }
+            GUI gui(argv[1]);
+            gui.startLoop();
         }
        
     }
