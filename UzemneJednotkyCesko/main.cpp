@@ -9,6 +9,7 @@
 #include "IGUI.h"
 #include "Zadanie1/GUI1.h"
 #include "Zadanie2/GUI2.h"
+#include "Zadanie3/GUI3.h"
 
 
 using namespace std;
@@ -25,7 +26,7 @@ int main(int argc, char* argv[])
         {
             IGUI* gui;
             try {
-                gui = new GUI1(argv[1]);
+                gui = new GUI3(argv[1]);
                 gui->startLoop();
                 delete gui;
             }

@@ -130,9 +130,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Algoritmus.cpp" />
+    <ClCompile Include="Zadanie3\GUI3.cpp" />
     <ClCompile Include="IGUI.cpp" />
     <ClCompile Include="INacitavac.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Zadanie3\Nacitavac3.cpp" />
     <ClCompile Include="Obec.cpp" />
     <ClCompile Include="UzemnaJednotka.cpp" />
     <ClCompile Include="Zadanie1\GUI1.cpp" />
@@ -142,9 +144,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algoritmus.h" />
+    <ClInclude Include="Zadanie3\MyBinaryTree.h" />
+    <ClInclude Include="Zadanie3\GUI3.h" />
     <ClInclude Include="INacitavac.h" />
     <ClInclude Include="IAlgorithmCompatible.h" />
     <ClInclude Include="IGUI.h" />
+    <ClInclude Include="Zadanie3\Nacitavac3.h" />
     <ClInclude Include="Obec.h" />
     <ClInclude Include="UzemnaJednotka.h" />
     <ClInclude Include="Zadanie1\GUI1.h" />

@@ -41,7 +41,7 @@ GUI2::GUI2(const char vstupnySubor[])
 	hierarchia = new MultiWayExplicitHierarchy<UzemnaJednotka*>;
 
 	zvolenaUzemnaJednotka = &hierarchia->emplaceRoot();
-	zvolenaUzemnaJednotka->data_ = new UzemnaJednotka("�esk� republika", "000000", TypUzemia(undef));
+	zvolenaUzemnaJednotka->data_ = new UzemnaJednotka("Česká republika", "000000", TypUzemia(undef));
 
 	synovia = new ImplicitSequence<ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>;
 
@@ -84,7 +84,7 @@ void GUI2::startLoop()
 			if (!skusPrejstNaNadradedny())
 			{
 				SetConsoleTextAttribute(handle, 113);
-				cout << "U� si v najnadradenej�om\n";
+				cout << "Už si v najnadradenej�om\n";
 				SetConsoleTextAttribute(handle, 15);
 			}
 			resetVyfiltrovanyZoznam();

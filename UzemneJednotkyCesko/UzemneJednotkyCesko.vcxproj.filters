@@ -47,6 +47,12 @@
     <ClCompile Include="Zadanie2\GUI2.cpp">
       <Filter>Zadanie2</Filter>
     </ClCompile>
+    <ClCompile Include="Zadanie3\Nacitavac3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Zadanie3\GUI3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UzemnaJednotka.h">
@@ -78,6 +84,15 @@
     </ClInclude>
     <ClInclude Include="Zadanie2\GUI2.h">
       <Filter>Zadanie2</Filter>
+    </ClInclude>
+    <ClInclude Include="Zadanie3\Nacitavac3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Zadanie3\GUI3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Zadanie3\MyBinaryTree.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

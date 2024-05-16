@@ -181,7 +181,7 @@ namespace ds::adt {
     template <typename T, typename HierarchyType>
     typename GeneralTree<T, HierarchyType>::Node& GeneralTree<T, HierarchyType>::emplaceSon(Node& parent, size_t sonORd)
     {
-        return this->getHierarchy()->emplaceSon(this->getNode(parent), sonORd);
+        return this->getHierarchy()->emplaceSon(parent, sonORd);
     }
 
     template <typename T, typename HierarchyType>
