@@ -10,10 +10,7 @@
 template <typename Item>
 class MyBinaryTree : public ds::adt::BinarySearchTree<std::string, ds::adt::ImplicitList<Item>*>
 {
-	//using tableIterator = ds::amt::BinaryEH<ds::adt::TableItem<std::string, ds::adt::ImplicitList<Item>*>>;
-	using ItemType = typename ds::adt::TableItem<std::string, ds::adt::ImplicitList<Item>*>; //ds::adt::GeneralBinarySearchTree<std::string, ds::adt::ImplicitList<Item>*, ItemType>::
-	//using tableIterator = typename ds::amt::BinaryEH<ItemType>::InOrderHierarchyIterator;
-	//using tableIterator = typename ds::amt::BinaryHierarchy<ds::amt::BinaryExplicitHierarchyBlock<ds::adt::TableItem<std::string, ds::adt::ImplicitList<Item>*>>>::InOrderHierarchyIterator;
+	using ItemType = typename ds::adt::TableItem<std::string, ds::adt::ImplicitList<Item>*>;
 	using tableIterator = typename ds::amt::BinaryHierarchy<ds::amt::BinaryExplicitHierarchyBlock<ItemType>>::InOrderHierarchyIterator;
 	using keyIterator = typename ds::amt::ImplicitSequence<Item>::ImplicitSequenceIterator;
 private:
@@ -22,12 +19,6 @@ public:
 
 	class MBTIterator
 	{
-		////using tableIterator = ds::amt::BinaryEH<ds::adt::TableItem<std::string, ds::adt::ImplicitList<Item>*>>;
-		//using ItemType = typename ds::adt::TableItem<std::string, ds::adt::ImplicitList<Item>*>; //ds::adt::GeneralBinarySearchTree<std::string, ds::adt::ImplicitList<Item>*, ItemType>::
-		////using tableIterator = typename ds::amt::BinaryEH<ItemType>::InOrderHierarchyIterator;
-		////using tableIterator = typename ds::amt::BinaryHierarchy<ds::amt::BinaryExplicitHierarchyBlock<ds::adt::TableItem<std::string, ds::adt::ImplicitList<Item>*>>>::InOrderHierarchyIterator;
-		//using tableIterator = typename ds::amt::BinaryHierarchy<ds::amt::BinaryExplicitHierarchyBlock<ItemType>>::InOrderHierarchyIterator;
-		//using keyIterator = typename ds::amt::ImplicitSequence<Item>::ImplicitSequenceIterator;
 	private: 
 		tableIterator kluce;
 		tableIterator kluceEnd;
@@ -60,6 +51,8 @@ public:
 	void deleteAll();
 	MBTIterator begin();
 	MBTIterator end();
+	tableIterator beginThroughtTabItem() { return this->getHierarchy()->begin(); };
+	tableIterator endThroughtTabItem() { return this->getHierarchy()->end(); };
 
 
 };

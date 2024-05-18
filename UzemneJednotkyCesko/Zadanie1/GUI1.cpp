@@ -66,18 +66,6 @@
 
         this->nacitavanie(vstupnySubor);
 
-        //-------------------------------
-        // PLAYNG
-
-        //vector<Obec*>* vysledok = new vector<Obec*>;
-
-        //Algoritmus<Obec*> alg;
-        ////alg.filtruj(obce.begin(), obce.end(), [](Obec* o)->bool {return o->nazovStartsWith("Pi"); }, *vysledok, [](vector<Obec*>& k, Obec* p)->void {k.push_back(p); });
-        //alg.filtruj(obce.begin(), obce.end(), [](Obec* o)->bool {return o->nazovStartsWith("Pi"); }, [vysledok]( Obec* p)->void {vysledok->push_back(p); });
-
-        //for (auto a = vysledok->begin(); a != vysledok->end(); a++) {
-        //    cout << **a;
-        //}
     }
 
     void GUI1::Progressed(int by)
