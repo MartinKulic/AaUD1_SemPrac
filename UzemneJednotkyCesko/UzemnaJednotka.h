@@ -32,6 +32,7 @@ public:
 
 	bool nazovStartsWith(const std::string& predloha);
 	bool nazovContains(const std::string& predloha);
+	bool hasType(TypUzemia predloha);
 };
 
 

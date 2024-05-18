@@ -1,6 +1,7 @@
 ﻿#include "GUI3.h"
 #include "Nacitavac3.h"
 #include "MyBinaryTree.h"
+#include "../Algoritmus.h"
 
 
 using namespace std;
@@ -52,6 +53,8 @@ GUI3::GUI3(const char vstupnySubor[])
 	table.deleteAll();*/
 	
 	this->nacitavanie(vstupnySubor);
+
+
 }
 
 GUI3::~GUI3()
@@ -70,7 +73,18 @@ GUI3::~GUI3()
 
 void GUI3::startLoop()
 {
+    GUI3::printError(VseobecnyHelp, "");
 
+	auto start = obce->begin();
+	auto stop = obce->end();
+	int count = 0;
+
+	for (; start != stop; ++start) {
+		cout << **start;
+		count++;
+	}
+
+	cout << "vypisanych: " << count << " obci";
 }
 
 void GUI3::nacitavanie(const char vstupnySubor[])
@@ -78,15 +92,12 @@ void GUI3::nacitavanie(const char vstupnySubor[])
 	cout << "Nacitavanie: ";
 	Nacitavac3::Nacitaj(vstupnySubor, kraje, okresy, obce , this, 60);
 
-	int pocObce = 0;
-	for (auto zaznam = obce->begin(); zaznam != obce->end(); ++zaznam) {
-		pocObce += (*zaznam).data_->size();		
-	}
+
 
 	
 	SetConsoleTextAttribute(handle, 32);
 
-	cout << "\nNačítanie prebehlo úspešne:\n" << "\n\tKraje: " << kraje->size() << "\n\n\tSORP:  " << okresy->size() << "\n\n\tObce:  " << pocObce;
+	cout << "\nNačítanie prebehlo úspešne:\n" << "\n\tKraje: " << kraje->size() << "\n\n\tSORP:  " << okresy->size() << "\n\n\t";
 	cout << endl;
 	SetConsoleTextAttribute(handle, 15);
 	

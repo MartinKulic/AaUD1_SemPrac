@@ -1,120 +1,70 @@
 #pragma once
 #include "libds/adt/table.h"
 #include "libds/adt/list.h"
+#include <libds/amt/implicit_sequence.h>
+//#include "libds/amt/explicit_hierarchy.h"
 #include "../UzemnaJednotka.h"
 
-//template < typename I>
-//class MyTableItem
-//{
-//private:
-//    ds::adt::ImplicitList<I>* prvky;
-//public:
-//    MyTableItem();
-//    ~MyTableItem() { delete prvky; };
-//    void add(I item);
-//    size_t size();
-//};
-//
-//template<typename I>
-//inline MyTableItem<I>::MyTableItem()
-//{
-//    prvky = new ds::adt::ImplicitList<I>;
-//};
-//
-//template<typename I>
-//inline void MyTableItem<I>::add(I item)
-//{
-//    prvky->insert(item);
-//}
-//
-//template<typename I>
-//inline size_t MyTableItem<I>::size()
-//{
-//    return this->prvky.size();
-//}
-//
 
 
-
-
-//template <typename K, typename I>
-//class MyBinaryTree     
-//{
-//private:
-//    ds::adt::BinarySearchTree<K, ds::amt::ImplicitSequence<I>*>* table;
-//public:
-//    MyBinaryTree();
-//    void insert(const K& key, I data);
-//};
-//
-//template<typename K, typename I>
-//inline MyBinaryTree<K, I>::MyBinaryTree()
-//{
-//    table = new ds::adt::BinarySearchTree<K, ds::amt::ImplicitSequence<I>*>;
-//}
-//
-//template<typename K, typename I>
-//inline void MyBinaryTree<K, I>::insert(const K& key, I data)
-//{
-//    ds::amt::ImplicitSequence<I>* finded = nullptr;
-//    if (table->tryFind(key, (finded))) {
-//        finded->add(data);
-//    }
-//    else
-//    {
-//        finded = new ds::amt::ImplicitSequence<I>;
-//        finded->add(data);
-//    }
-//    
-//}
-//class MyBinaryTree
-//{
-//private: 
-//	ds::adt::BinarySearchTree<std::string, ds::adt::ImplicitList<UzemnaJednotka*>*>* table;
-//public:
-//	MyBinaryTree();
-//	~MyBinaryTree();
-//	void insert(const std::string& key, UzemnaJednotka* data);
-//	void tryFind(const std::string& key, ds::adt::ImplicitList<UzemnaJednotka*>**& result);
-//	void deleteAll();
-//};
 template <typename Item>
 class MyBinaryTree : public ds::adt::BinarySearchTree<std::string, ds::adt::ImplicitList<Item>*>
 {
+	//using tableIterator = ds::amt::BinaryEH<ds::adt::TableItem<std::string, ds::adt::ImplicitList<Item>*>>;
+	using ItemType = typename ds::adt::TableItem<std::string, ds::adt::ImplicitList<Item>*>; //ds::adt::GeneralBinarySearchTree<std::string, ds::adt::ImplicitList<Item>*, ItemType>::
+	//using tableIterator = typename ds::amt::BinaryEH<ItemType>::InOrderHierarchyIterator;
+	//using tableIterator = typename ds::amt::BinaryHierarchy<ds::amt::BinaryExplicitHierarchyBlock<ds::adt::TableItem<std::string, ds::adt::ImplicitList<Item>*>>>::InOrderHierarchyIterator;
+	using tableIterator = typename ds::amt::BinaryHierarchy<ds::amt::BinaryExplicitHierarchyBlock<ItemType>>::InOrderHierarchyIterator;
+	using keyIterator = typename ds::amt::ImplicitSequence<Item>::ImplicitSequenceIterator;
 private:
-	//ds::adt::BinarySearchTree<std::string, ds::adt::ImplicitList<UzemnaJednotka*>*>* table;
+	ds::adt::BinarySearchTree<std::string, ds::adt::ImplicitList<Item>*> getBegin() { ds::adt::BinarySearchTree<std::string, ds::adt::ImplicitList<Item>*>::begin(); };
 public:
+
+	class MBTIterator
+	{
+		////using tableIterator = ds::amt::BinaryEH<ds::adt::TableItem<std::string, ds::adt::ImplicitList<Item>*>>;
+		//using ItemType = typename ds::adt::TableItem<std::string, ds::adt::ImplicitList<Item>*>; //ds::adt::GeneralBinarySearchTree<std::string, ds::adt::ImplicitList<Item>*, ItemType>::
+		////using tableIterator = typename ds::amt::BinaryEH<ItemType>::InOrderHierarchyIterator;
+		////using tableIterator = typename ds::amt::BinaryHierarchy<ds::amt::BinaryExplicitHierarchyBlock<ds::adt::TableItem<std::string, ds::adt::ImplicitList<Item>*>>>::InOrderHierarchyIterator;
+		//using tableIterator = typename ds::amt::BinaryHierarchy<ds::amt::BinaryExplicitHierarchyBlock<ItemType>>::InOrderHierarchyIterator;
+		//using keyIterator = typename ds::amt::ImplicitSequence<Item>::ImplicitSequenceIterator;
+	private: 
+		tableIterator kluce;
+		tableIterator kluceEnd;
+		keyIterator* vKluci;
+		keyIterator* vKluciEnd;
+		
+	public:
+		MBTIterator(tableIterator iterStart, MyBinaryTree& table) : kluce(iterStart), kluceEnd(table.getHierarchy()->end())
+		{			
+			if (kluce != kluceEnd) {
+				vKluci = new keyIterator((*kluce).data_->begin());
+				vKluciEnd = new keyIterator((*kluce).data_->end());
+			}
+		};
+		~MBTIterator() {
+			if (vKluci) {
+				delete vKluci;
+				delete vKluciEnd;
+			}
+		};
+		MBTIterator& operator++();
+		bool operator!=(const MBTIterator& other);
+		Item& operator*();
+
+		
+	};
+
+
 	void insert(const std::string& key, Item data);
-	//void tryFind(const std::string& key, ds::adt::ImplicitList<UzemnaJednotka*>**& result);
 	void deleteAll();
+	MBTIterator begin();
+	MBTIterator end();
+
+
 };
 
-//template<typename Item>
-//void MyBinaryTree<Item>::insert(const std::string& key, Item data)
-//{
-//	ds::adt::ImplicitList<Item>* finded = nullptr;
-//	ds::adt::ImplicitList<Item>** pfinded = &finded;
-//	if (!this->tryFind(key, (pfinded))) {
-//		finded = new ImplicitList<Item>;
-//		finded->insertLast(data);
-//		BinarySearchTree<std::string, ds::adt::ImplicitList<Item>*>::insert(data->getNazov(), finded);
-//	}
-//	else {
-//		(*pfinded)->insertLast(data);
-//	}
-//};
-//
-//template<typename Item>
-//void MyBinaryTree<Item>::deleteAll()
-//{
-//	for (auto zaznam = this->begin(); zaznam != this->end(); ++zaznam) {
-//		auto end = (*zaznam).data_->end();
-//		for (auto vZazname = (*zaznam).data_->begin(); vZazname != end; ++vZazname) {
-//			delete (*vZazname);
-//		}
-//		delete (*zaznam).data_;
-//	}
-//}
+
 
 template<typename Item>
 inline void MyBinaryTree<Item>::insert(const std::string& key, Item data)
@@ -129,16 +79,72 @@ inline void MyBinaryTree<Item>::insert(const std::string& key, Item data)
 	else {
 		(*pfinded)->insertLast(data);
 	}
+
 }
 
 template<typename Item>
 inline void MyBinaryTree<Item>::deleteAll()
 {
-	for (auto zaznam = this->begin(); zaznam != this->end(); ++zaznam) {
+	for (auto zaznam = this->getHierarchy()->begin(); zaznam != this->getHierarchy()->end(); ++zaznam) {
 		auto end = (*zaznam).data_->end();
 		for (auto vZazname = (*zaznam).data_->begin(); vZazname != end; ++vZazname) {
 			delete (*vZazname);
 		}
 		delete (*zaznam).data_;
 	}
+}
+
+template<typename Item>
+inline typename MyBinaryTree<Item>::MBTIterator MyBinaryTree<Item>::begin()
+{
+	return MBTIterator(this->getHierarchy()->begin(), *this);
+}
+
+template<typename Item>
+inline typename MyBinaryTree<Item>::MBTIterator MyBinaryTree<Item>::end()
+{
+	return MBTIterator(this->getHierarchy()->end(), *this);
+}
+
+
+
+
+//template<typename Item>
+//inline MyBinaryTree<Item>::MBTIterator::MBTIterator(tableIterator TableIter)
+//{
+//
+//	kluce = new tableIterator(TableIter);
+//	/*vKluci = new keyIterator((**kluce).data_->begin());
+//	vKluciEnd = new keyIterator((*TableIter).data_->end());*/
+//}
+
+template<typename Item>
+inline typename MyBinaryTree<Item>::MBTIterator& MyBinaryTree<Item>::MBTIterator::operator++()
+{
+	++(*vKluci);
+	if (*vKluci == *vKluciEnd)
+	{
+		++kluce;
+		if (kluce != kluceEnd)
+		{
+			delete vKluci;
+			vKluci = new keyIterator((*kluce).data_->begin());
+			delete vKluciEnd;
+			vKluciEnd = new keyIterator((*kluce).data_->end());
+		}
+	}
+
+	return *this;
+}
+
+template<typename Item>
+inline bool MyBinaryTree<Item>::MBTIterator::operator!=(const MBTIterator& other)
+{
+	return kluce!=other.kluce;
+}
+
+template<typename Item>
+inline Item& MyBinaryTree<Item>::MBTIterator::operator*()
+{
+	return *(*vKluci);
 }

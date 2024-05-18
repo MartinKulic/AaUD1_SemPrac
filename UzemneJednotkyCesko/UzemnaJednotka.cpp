@@ -34,3 +34,8 @@ bool UzemnaJednotka::nazovContains(const std::string& predloha)
 {
 	return this->nazov.find(predloha) != -1;
 }
+
+bool UzemnaJednotka::hasType(TypUzemia predloha)
+{
+	return this->typUzemia == predloha;
+}
