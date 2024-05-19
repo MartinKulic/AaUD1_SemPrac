@@ -53,6 +53,9 @@
     <ClCompile Include="Zadanie3\GUI3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Zadanie4\GUI4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UzemnaJednotka.h">
@@ -92,6 +95,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Zadanie3\MyBinaryTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Zadanie4\GUI4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

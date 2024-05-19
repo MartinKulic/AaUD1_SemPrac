@@ -108,7 +108,7 @@ inline void GUI3::pokracujVyhladajKluc(MyBinaryTree<DruhJednotky>* kde, std::str
 
 		(**uj).vypisHlavicku();
 		for (; uj != kon; ++uj) {
-			std::cout << **uj << std::endl;
+			std::cout << **uj;
 		}
 	}
 	else {

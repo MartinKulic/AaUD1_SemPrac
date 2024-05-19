@@ -133,7 +133,7 @@ void GUI2::startLoop()
 				printError(nespravnyArgument, msg);
 				continue;
 			}
-			if (index < 0 || index > synovia->size()) {
+			if (index <= 0 || index > synovia->size()) {
 				vypisMenu();
 				string msg = vstup + " Argument je mimo rozsah.";
 				SetConsoleTextAttribute(handle, 203);

@@ -1,4 +1,11 @@
-﻿  GUI3.cpp
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie3\GUI3.cpp(31,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie3\GUI3.cpp(33,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
+﻿  GUI4.cpp
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(18,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(19,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(20,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(22,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(23,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(27,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(29,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(144,13): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
+C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(184,13): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
   UzemneJednotkyCesko.vcxproj -> C:\Users\Martin\source\repos\AaUD1_SemPrac\x64\Debug\UzemneJednotkyCesko.exe

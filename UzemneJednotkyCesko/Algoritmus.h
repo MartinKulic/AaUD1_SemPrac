@@ -29,7 +29,7 @@ inline void Algoritmus<typVKontainery>::filtruj(tIterator begin, tIterator end, 
 		if (predikat(*aktualny))
 		{
 			naplnaciaFunkcia(*aktualny);
-		}
+		} 
 	}
 }
 
