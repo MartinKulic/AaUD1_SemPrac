@@ -5,6 +5,8 @@
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
+#include <locale>
+#include <string>
 
 #include "IGUI.h"
 #include "Zadanie1/GUI1.h"
@@ -19,6 +21,10 @@ int main(int argc, char* argv[])
     {
         SetConsoleOutputCP(1250);
         SetConsoleCP(1250);
+        std::locale::global(std::locale("Slovak_Slovakia.1250"));
+
+        //std::locale::global(std::locale("Slovak_Slovakia.1250"));
+
 
         if (argc < 2) {
             IGUI::printError(nespravneSpustenie, "Malo parametrov");

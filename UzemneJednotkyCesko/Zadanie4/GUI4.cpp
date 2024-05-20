@@ -3,6 +3,7 @@
 #include "../Algoritmus.h"
 
 #include "libds/adt/list.h"
+#include "libds/adt/sorts.h"
 
 using namespace std;
 //using namespace ds::adt;
@@ -17,9 +18,9 @@ void GUI4::printError(errorType et, std::string msg)
 		cout << msg;
 		cout << "\n* 1-n -> vnorenie, zadaj cislo zodpovedaj�ce po�adovanej uzemnej podmno�ine.\n";
 		cout << "*  .  -> spa�, prejde do nadradenej �zemnej jednotky.\n";
-		cout << "*  a  -> vypise cel� hierarcihu\n";
-		cout << "*  aa -> vypise podhierarchiu\n";
+
 		cout << "* z/o/t-> spust� filtrovania (z - zacina na, o - obsahuje, t - je typu)\n";
+		cout << "*         t |> ob/ok/kr\n";
 		cout << "*  e  -> ukon�enie\n\n";
 		break;
 	case nespravnyArgument:
@@ -60,35 +61,8 @@ void GUI4::vypisMoznosti()
 	myIterator->vypisOcislovanePodvrcholy();
 }
 
-void GUI4::filtrujDialogZO(std::function<bool(UzemnaJednotka*)> predicat, string* param)
-{
-	cout << "Hladaný retazec: ";
-	cin >> std::ws;
-	getline(std::cin, *param);
 
-	ds::adt::ImplicitList<UzemnaJednotka*>* vysledok = new ds::adt::ImplicitList<UzemnaJednotka*>;
 
-	Algoritmus<UzemnaJednotka*> alg;
-	alg.filtruj(myIterator->begin(), myIterator->end(), predicat, [vysledok](UzemnaJednotka* uj) {vysledok->insertLast(uj); });
-
-	auto end = vysledok->end();
-	for (auto a = vysledok->begin(); a != end; ++a) {
-		if ((*a)->getType() == TypUzemia(obec)) {
-			cout << *(Obec*)(*a);
-		}
-		else {
-			cout << **a;
-		}
-	}
-
-	SetConsoleTextAttribute(handle, 22);
-	std::cout << "\nNajdenych " << vysledok->size() << " zhod\n";
-	SetConsoleTextAttribute(handle, 9);
-	std::cout << "\n====================================================================================================================================\n\n";
-	SetConsoleTextAttribute(handle, 15);
-
-	delete vysledok;
-}
 
 GUI4::GUI4(const char vstupnySubor[])
 {
@@ -152,6 +126,7 @@ void GUI4::startLoop()
 			filtrujDialogZO([&param](UzemnaJednotka* uj) {return uj->nazovContains(param); }, &param);
 			break;
 		case 't': // typ
+			filtrujDialogT(&param);
 			break;
 		case 'u': //usporiadaj
 			break;
@@ -197,6 +172,92 @@ void GUI4::startLoop()
 void GUI4::Progressed(int by)
 {
 	cout << '*';
+}
+
+void GUI4::filtrujDialogT(std::string* param)
+{
+	cout << "Vyber typ (ob = obec / ok = okres / kr = kraj): ";
+	cin >> *param;
+	TypUzemia hladanyTyp = TypUzemia(undef);
+
+	if (param->_Equal("ob")) {
+		hladanyTyp = TypUzemia(obec);
+	}
+	else if (param->_Equal("ok")) {
+		hladanyTyp = TypUzemia(soorp);
+	}
+	else if (param->_Equal("kr")) {
+		hladanyTyp = TypUzemia(kraj);
+	}
+	else {
+		GUI4::printError(nespravnyArgument, *param);
+		return;
+	}
+	
+	ds::amt::ImplicitSequence<UzemnaJednotka*>* vysledok = new ds::amt::ImplicitSequence<UzemnaJednotka*>;
+	Algoritmus<UzemnaJednotka*> alg;
+	alg.filtruj(myIterator->begin(), myIterator->end(), [hladanyTyp](UzemnaJednotka* u) {return u->hasType(hladanyTyp); }, [vysledok](UzemnaJednotka* u) {vysledok->insertLast().data_=u; });
+
+	vypisVysledok(vysledok);
+
+	delete vysledok;
+
+}
+
+
+void GUI4::filtrujDialogZO(std::function<bool(UzemnaJednotka*)> predicat, string* param)
+{
+	cout << "Hladaný retazec: ";
+	cin >> std::ws;
+	getline(std::cin, *param);
+
+	ds::amt::ImplicitSequence<UzemnaJednotka*>* vysledok = new ds::amt::ImplicitSequence<UzemnaJednotka*>;
+
+	Algoritmus<UzemnaJednotka*> alg;
+	alg.filtruj(myIterator->begin(), myIterator->end(), predicat, [vysledok](UzemnaJednotka* uj) {vysledok->insertLast().data_=uj; });
+
+	vypisVysledok(vysledok);
+	
+	usporiadajVysledokDialog(vysledok);
+	
+	vypisVysledok(vysledok);
+
+
+	delete vysledok;
+}
+
+void GUI4::usporiadajVysledokDialog(ds::amt::ImplicitSequence<UzemnaJednotka*>* vysledok)
+{
+	string vstup;
+	cout << "UsporiadatVysledok a/n: ";
+	cin >> vstup;
+	if (!vstup._Equal("a")) {
+		return;
+	}
+	
+	ds::adt::HeapSort<UzemnaJednotka*> srt;
+	srt.sort(*vysledok, [](UzemnaJednotka* u1, UzemnaJednotka* u2) {return !u1->compareAlphabetical(u2); });
+	
+
+
+}
+void GUI4::vypisVysledok(ds::amt::ImplicitSequence<UzemnaJednotka*>* vysledok)
+{
+	auto end = vysledok->end();
+	for (auto a = vysledok->begin(); a != end; ++a) {
+		if ((*a)->getType() == TypUzemia(obec)) {
+			cout << *(Obec*)(*a);
+		}
+		else {
+			cout << **a;
+		}
+	}
+
+	SetConsoleTextAttribute(handle, 22);
+	std::cout << "\nNajdenych " << vysledok->size() << " zhod\n";
+	SetConsoleTextAttribute(handle, 9);
+	std::cout << "\n====================================================================================================================================\n\n";
+	SetConsoleTextAttribute(handle, 15);
 }
 
 

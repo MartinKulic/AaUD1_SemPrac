@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
-#include <vector>
+#include <algorithm>
+#include <locale>
 
 
 enum TypUzemia { //SOORP = ekvivalent okresu
@@ -17,10 +18,9 @@ protected:
 	std::string kod;
 private:
 	TypUzemia typUzemia = undef;
-
-
+	int consonantCount = -1;
+	
 public:
-
 	UzemnaJednotka(std::string nnazov, std::string nkod, TypUzemia ntypU) : nazov(nnazov), kod(nkod), typUzemia(ntypU)
 	{};
 
@@ -33,6 +33,22 @@ public:
 	bool nazovStartsWith(const std::string& predloha);
 	bool nazovContains(const std::string& predloha);
 	bool hasType(TypUzemia predloha);
+
+	int countConsonant();
+
+	bool compareAlphabetical(UzemnaJednotka* other) 
+	{		
+		static std::locale loc("");
+		return std::use_facet<std::collate<char>>(loc).compare(
+			this->nazov.data(), this->nazov.data() + this->nazov.size(),
+			other->nazov.data(), other->nazov.data() + this->nazov.size()
+		) > 0;
+	}; //return this->nazov.compare(other->getNazov()) < 0;
+	
+	bool compareConsonantCount(UzemnaJednotka* other) {
+		
+		return false;
+	};
 };
 
 

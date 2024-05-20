@@ -5,6 +5,8 @@
 #include "../IGUI.h"
 #include "../UzemnaJednotka.h"
 #include "libds/amt/explicit_hierarchy.h"
+#include "libds/adt/list.h"
+
 class MyIterator
 {
 private:
@@ -24,6 +26,8 @@ public:
 	//bool operator!=(const MyIterator& other);
 	MyIterator& operator--();
 	UzemnaJednotka* operator*();
+
+	
 };
 
 class GUI4 :
@@ -36,7 +40,9 @@ class GUI4 :
 	void nacitavanie(const char vstupnySubor[]);
 	void vypisMoznosti();
 	void filtrujDialogZO(std::function<bool(UzemnaJednotka*)>, std::string* param);
-	void filtrujDialogT();
+	void filtrujDialogT(std::string* param);
+	void usporiadajVysledokDialog(ds::amt::ImplicitSequence<UzemnaJednotka*>* vysledok);
+	void vypisVysledok(ds::amt::ImplicitSequence<UzemnaJednotka*>* vysledok);
 
 public:
 	GUI4(const char vstupnySubor[]);
@@ -46,6 +52,8 @@ public:
 	static void printError(errorType et, std::string msg);
 
 	void Progressed(int by);
+
+	static const std::string Consonant[];
 };
 
-
+const std::string GUI4::Consonant[] = {"a","e", "i", "o","u","ä","á","é","í", "ú", "ia", "ie", "iu", "ô", "A","E", "I", "O","U","Ä","Á","É","Í", "Ú", "Ia", "Ie", "Iu", "Ô" };
