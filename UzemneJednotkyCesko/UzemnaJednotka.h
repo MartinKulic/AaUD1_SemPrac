@@ -34,21 +34,29 @@ public:
 	bool nazovContains(const std::string& predloha);
 	bool hasType(TypUzemia predloha);
 
+	int countVowel();
 	int countConsonant();
 
-	bool compareAlphabetical(UzemnaJednotka* other) 
+	bool compareAlphabetical(UzemnaJednotka* other)  // isBiggerAlphabetical
 	{		
 		static std::locale loc("");
 		return std::use_facet<std::collate<char>>(loc).compare(
 			this->nazov.data(), this->nazov.data() + this->nazov.size(),
 			other->nazov.data(), other->nazov.data() + this->nazov.size()
 		) > 0;
-	}; //return this->nazov.compare(other->getNazov()) < 0;
+	}; 
 	
-	bool compareConsonantCount(UzemnaJednotka* other) {
-		
-		return false;
+	bool compareConsonantCount(UzemnaJednotka* other) { // isBiggerConsonantCount
+		if (this->consonantCount == -1) {
+			this->countConsonant();
+		}
+		if (other->consonantCount == -1) {
+			other->countConsonant();
+		}
+		return this->consonantCount > other->consonantCount;
 	};
+	
+	int getConsonantCount() { return this->consonantCount; };
 };
 
 

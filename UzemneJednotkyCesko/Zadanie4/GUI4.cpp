@@ -66,6 +66,22 @@ void GUI4::vypisMoznosti()
 
 GUI4::GUI4(const char vstupnySubor[])
 {
+	// test
+	//ds::amt::ImplicitSequence<UzemnaJednotka*> test;
+	//test.insertLast().data_ = new UzemnaJednotka("Prievidza nad Nitrou", "", TypUzemia(undef)); //9
+	//test.insertLast().data_ = new UzemnaJednotka("Kanianka", "", TypUzemia(undef)); //4
+	//test.insertLast().data_ = new UzemnaJednotka("Bojnice", "", TypUzemia(undef)); //4
+	//test.insertLast().data_ = new UzemnaJednotka("Opatovce nad Nitrou", "", TypUzemia(undef)); //9
+	//test.insertLast().data_ = new UzemnaJednotka("Nováky", "", TypUzemia(undef)); //3
+	//test.insertLast().data_ = new UzemnaJednotka("Šútovce", "", TypUzemia(undef)); //4
+	//test.insertLast().data_ = new UzemnaJednotka("Seč", "", TypUzemia(undef)); //2
+	//test.insertLast().data_ = new UzemnaJednotka("Kostolná Ves", "", TypUzemia(undef)); //7
+	//
+	//ds::adt::HeapSort<UzemnaJednotka*> sr;
+	//sr.sort(test, [](UzemnaJednotka* uj, UzemnaJednotka* uj2) {return uj->compareConsonantCount(uj2); });
+	//cout << endl;
+	//vypisVysledok(&test);
+
 	hierarchia = new MultiWayExplicitHierarchy<UzemnaJednotka*>;
 	hierarchia->emplaceRoot().data_ = new UzemnaJednotka("Česká republika", "000000", TypUzemia(undef));
 
@@ -216,8 +232,6 @@ void GUI4::filtrujDialogZO(std::function<bool(UzemnaJednotka*)> predicat, string
 	Algoritmus<UzemnaJednotka*> alg;
 	alg.filtruj(myIterator->begin(), myIterator->end(), predicat, [vysledok](UzemnaJednotka* uj) {vysledok->insertLast().data_=uj; });
 
-	vypisVysledok(vysledok);
-	
 	usporiadajVysledokDialog(vysledok);
 	
 	vypisVysledok(vysledok);
@@ -234,17 +248,22 @@ void GUI4::usporiadajVysledokDialog(ds::amt::ImplicitSequence<UzemnaJednotka*>* 
 	if (!vstup._Equal("a")) {
 		return;
 	}
-	
+	cout << "Zoradit podla (a = abecedne / s = p. spoluhlasok):";
+	cin >> vstup;
+	//std::collate<char>
+	std::function<bool(UzemnaJednotka* u1, UzemnaJednotka* u2)> comparator = [](UzemnaJednotka* u1, UzemnaJednotka* u2) {return ! u1->compareAlphabetical(u2); };
+	if (vstup._Equal("s")) {
+		comparator = [](UzemnaJednotka* u1, UzemnaJednotka* u2) {return u2->compareConsonantCount(u1); };
+	}
 	ds::adt::HeapSort<UzemnaJednotka*> srt;
-	srt.sort(*vysledok, [](UzemnaJednotka* u1, UzemnaJednotka* u2) {return !u1->compareAlphabetical(u2); });
+	srt.sort(*vysledok, comparator);
 	
-
-
 }
 void GUI4::vypisVysledok(ds::amt::ImplicitSequence<UzemnaJednotka*>* vysledok)
 {
 	auto end = vysledok->end();
 	for (auto a = vysledok->begin(); a != end; ++a) {
+		cout << (**a).getConsonantCount() << "\t";
 		if ((*a)->getType() == TypUzemia(obec)) {
 			cout << *(Obec*)(*a);
 		}

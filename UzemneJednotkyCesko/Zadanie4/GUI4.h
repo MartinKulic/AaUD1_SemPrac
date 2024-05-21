@@ -53,7 +53,10 @@ public:
 
 	void Progressed(int by);
 
-	static const std::string Consonant[];
+	static const char Vowels[];
+	static const char Consonant[];
 };
-
-const std::string GUI4::Consonant[] = {"a","e", "i", "o","u","ä","á","é","í", "ú", "ia", "ie", "iu", "ô", "A","E", "I", "O","U","Ä","Á","É","Í", "Ú", "Ia", "Ie", "Iu", "Ô" };
+__declspec(selectany)
+const char GUI4::Vowels[] = {'a','e','u', 'o', 'ä','á','é','í', 'ú', 'ô', 'A','E', 'I', 'O','U','Ä','Á','É','Í', 'Ú', 'Ô' }; //"i"
+__declspec(selectany)
+const char GUI4::Consonant[] = { 'd', 't', 'n', 'l', 'h', 'g', 'k', 'ï', '', 'ò', '¾', 'c', 'è', '', 'š', 'j', 'b', 'm', 'p', 'r', 's', 'v', 'z', 'f', 'D', 'T', 'N', 'L', 'H', 'G', 'K', 'Ï', '', 'Ò', '¼', 'C', 'È', '', 'Š', 'J', 'B', 'M', 'P', 'R', 'S', 'V', 'Z', 'F' }; //ch dz d
