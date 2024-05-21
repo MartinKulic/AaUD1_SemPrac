@@ -877,9 +877,64 @@ namespace ds::adt {
     template<typename K, typename T, typename ItemType>
     void GeneralBinarySearchTree<K, T, ItemType>::removeNode(BSTNodeType* node)
     {
-        // TODO 11
-        // po implementacii vymazte vyhodenie vynimky!
-        throw std::runtime_error("Not implemented yet");
+        BSTNodeType* otec = this->getHierarchy()->accessParent(*node);
+        
+        switch (this->getHierarchy()->degree(*node)) {
+
+        case 0 :
+        {
+            if (this->getHierarchy()->isRoot(*node)) {
+                this->getHierarchy()->clear();
+            }
+            else {
+                if (this->getHierarchy()->isLeftSon(*node)) {
+                    this->getHierarchy()->removeLeftSon(*otec);
+                }
+                else {
+                    this->getHierarchy()->removeRightSon(*otec);
+                }
+            }
+        }
+            break;
+
+        case 1:
+        {
+            BSTNodeType* syn = this->getHierarchy()->hasLeftSon(*node) ? node->left_ : node->right_;
+            if (node->left_ == syn) {
+                this->getHierarchy()->changeLeftSon(*node, nullptr);
+            }
+            else {
+                this->getHierarchy()->changeRightSon(*node, nullptr);
+            }
+
+            if (this->getHierarchy()->isRoot(*node)) {
+                this->getHierarchy()->clear();
+                this->getHierarchy()->changeRoot(syn);
+            }
+            else {
+                if (otec->left_ == node) {
+                    this->getHierarchy()->removeLeftSon(*otec);
+                    this->getHierarchy()->changeLeftSon(*otec, syn);
+                }
+                else {
+                    this->getHierarchy()->removeRightSon(*otec);
+                    this->getHierarchy()->changeRightSon(*otec, syn);
+                }
+            }
+        }
+            break;
+
+        case 2:
+            BSTNodeType * predchodcaVPoradi = node->left_;
+
+            while (this->getHierarchy()->hasRightSon(*predchodcaVPoradi)) {
+                predchodcaVPoradi = predchodcaVPoradi->right_;
+            }
+            std::swap(node->data_, predchodcaVPoradi->data_);
+            this->removeNode(predchodcaVPoradi);
+
+            break;
+        }
     }
 
     template<typename K, typename T, typename ItemType>

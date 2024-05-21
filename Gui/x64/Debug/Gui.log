@@ -1,4 +1,61 @@
 ﻿  main_form.cpp
+C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\libds\adt\sorts.h(187,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'main_form.cpp')
+  C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\libds\adt\sorts.h(187,20):
+  the template instantiation context (the oldest one first) is
+  	C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\tests\adt\sorts.test.h(264,77):
+  	while processing the default template argument of 'std::unique_ptr<ds::tests::Test,std::default_delete<_Ty>>::unique_ptr(std::unique_ptr<_Ux,_Dx> &&) noexcept'
+          with
+          [
+              _Ty=ds::tests::Test
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.39.33519\include\memory(3214,20):
+  	see reference to variable template 'const bool conjunction_v<std::negation<std::is_array<ds::tests::MultiCmpSortTest<ds::adt::HeapSort> > >,std::is_convertible<ds::tests::MultiCmpSortTest<ds::adt::HeapSort> *,ds::tests::Test *>,std::is_convertible<std::default_delete<ds::tests::MultiCmpSortTest<ds::adt::HeapSort> >,std::default_delete<ds::tests::Test> > >' being compiled
+  	C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.39.33519\include\memory(3214,20):
+  	see reference to class template instantiation 'std::is_convertible<ds::tests::MultiCmpSortTest<ds::adt::HeapSort> *,_Ty *>' being compiled
+          with
+          [
+              _Ty=ds::tests::Test
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.39.33519\include\type_traits(323,39):
+  	see reference to class template instantiation 'ds::tests::MultiCmpSortTest<ds::adt::HeapSort>' being compiled
+  	C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\tests\adt\sorts.test.h(176,9):
+  	while compiling class template member function 'ds::tests::MultiCmpSortTest<ds::adt::HeapSort>::MultiCmpSortTest(const std::string &,std::mt19937_64 &,std::initializer_list<_Ty>)'
+          with
+          [
+              _Ty=int
+          ]
+  		C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.39.33519\include\memory(3434,5):
+  		see the first reference to 'ds::tests::MultiCmpSortTest<ds::adt::HeapSort>::MultiCmpSortTest' in 'std::make_unique'
+  	C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\tests\adt\sorts.test.h(189,132):
+  	while processing the default template argument of 'std::unique_ptr<ds::tests::Test,std::default_delete<_Ty>>::unique_ptr(std::unique_ptr<_Ux,_Dx> &&) noexcept'
+          with
+          [
+              _Ty=ds::tests::Test
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.39.33519\include\memory(3214,20):
+  	see reference to variable template 'const bool conjunction_v<std::negation<std::is_array<ds::tests::GenericSortTest<ds::adt::HeapSort<int>,std::greater<void>,ds::tests::details::RandomIntKeyGenerator,ds::tests::details::IntKeyDisposer> > >,std::is_convertible<ds::tests::GenericSortTest<ds::adt::HeapSort<int>,std::greater<void>,ds::tests::details::RandomIntKeyGenerator,ds::tests::details::IntKeyDisposer> *,ds::tests::Test *>,std::is_convertible<std::default_delete<ds::tests::GenericSortTest<ds::adt::HeapSort<int>,std::greater<void>,ds::tests::details::RandomIntKeyGenerator,ds::tests::details::IntKeyDisposer> >,std::default_delete<ds::tests::Test> > >' being compiled
+  	C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.39.33519\include\memory(3214,20):
+  	see reference to class template instantiation 'std::is_convertible<ds::tests::GenericSortTest<ds::adt::HeapSort<int>,std::greater<void>,ds::tests::details::RandomIntKeyGenerator,ds::tests::details::IntKeyDisposer> *,_Ty *>' being compiled
+          with
+          [
+              _Ty=ds::tests::Test
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.39.33519\include\type_traits(323,39):
+  	see reference to class template instantiation 'ds::tests::GenericSortTest<ds::adt::HeapSort<int>,std::greater<void>,ds::tests::details::RandomIntKeyGenerator,ds::tests::details::IntKeyDisposer>' being compiled
+  	C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\tests\adt\sorts.test.h(152,14):
+  	while compiling class template member function 'void ds::tests::GenericSortTest<ds::adt::HeapSort<int>,std::greater<void>,ds::tests::details::RandomIntKeyGenerator,ds::tests::details::IntKeyDisposer>::test(void)'
+  	C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\tests\adt\sorts.test.h(155,32):
+  	see reference to class template instantiation 'ds::adt::HeapSort<int>' being compiled
+  	C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\libds\adt\sorts.h(170,5):
+  	while compiling class template member function 'void ds::adt::HeapSort<int>::sort(ds::amt::ImplicitSequence<T> &,std::function<bool (const T &,const T &)>)'
+          with
+          [
+              T=int
+          ]
+  		C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\tests\adt\sorts.test.h(156,24):
+  		see the first reference to 'ds::adt::HeapSort<int>::sort' in 'ds::tests::GenericSortTest<ds::adt::HeapSort<int>,std::greater<void>,ds::tests::details::RandomIntKeyGenerator,ds::tests::details::IntKeyDisposer>::test'
+  
   main_form.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
 DataStructures.lib(test.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
   Gui.vcxproj -> C:\Users\Martin\source\repos\AaUD1_SemPrac\x64\Debug\Gui.exe
