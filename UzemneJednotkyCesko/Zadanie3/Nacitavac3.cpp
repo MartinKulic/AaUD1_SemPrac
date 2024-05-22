@@ -7,7 +7,7 @@ using namespace std;
 using namespace ds::adt;
 
 
-void Nacitavac3::Nacitaj(const char vstupnySubor[], MyBinaryTree<UzemnaJednotka*>*& kraje, MyBinaryTree<UzemnaJednotka*>*& okresy, MyBinaryTree<Obec*>*& obce, IGUI* progBar, int freq)
+void Nacitavac3::Nacitaj(const char vstupnySubor[], MyBinaryTree<std::string, UzemnaJednotka*>*& kraje, MyBinaryTree<std::string, UzemnaJednotka*>*& okresy, MyBinaryTree<std::string, Obec*>*& obce, IGUI* progBar, int freq)
 {
 	UzemnaJednotka* aktualnyKraj = nullptr;
 	UzemnaJednotka* aktualnyOkres = nullptr;

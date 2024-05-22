@@ -11,6 +11,6 @@ class Nacitavac3 :
 {
 public:
     //static void Nacitaj(const char vstupnySubor[], ds::adt::Table<std::string, UzemnaJednotka*>*& kraje, ds::adt::Table<std::string, UzemnaJednotka*>*& okresy, ds::adt::Table<std::string, Obec*>*& obce, IGUI* progBar, int freq);
-    static void Nacitaj(const char vstupnySubor[], MyBinaryTree<UzemnaJednotka*>*& kraje, MyBinaryTree<UzemnaJednotka*>*& okresy, MyBinaryTree<Obec*>*& obce, IGUI* progBar, int freq);
+    static void Nacitaj(const char vstupnySubor[], MyBinaryTree<std::string, UzemnaJednotka*>*& kraje, MyBinaryTree<std::string, UzemnaJednotka*>*& okresy, MyBinaryTree<std::string, Obec*>*& obce, IGUI* progBar, int freq);
 };
 

@@ -23,17 +23,39 @@ int main(int argc, char* argv[])
         SetConsoleCP(1250);
         std::locale::global(std::locale("Slovak_Slovakia.1250"));
 
-        //std::locale::global(std::locale("Slovak_Slovakia.1250"));
-
 
         if (argc < 2) {
             IGUI::printError(nespravneSpustenie, "Malo parametrov");
         }
         else
         {
+            cout << "Vyber zadanie (1/2/3/4): ";
+            char volba;
+            cin >> volba;
+          
             IGUI* gui;
             try {
-                gui = new GUI4(argv[1]);
+
+                switch (volba)
+                {
+                case '1':
+                    gui = new GUI1(argv[1]);
+                    break;
+                case '2':
+                    gui = new GUI2(argv[1]);
+                    break;
+                case '3':
+                    gui = new GUI3(argv[1]);
+                    break;
+                case '4':
+                    gui = new GUI4(argv[1]);
+                    break;
+                default:
+                    cout << "--!!!--> Nerozpoznany argument. Reštartuj program a skus znova. <--!!!--\n";
+                    return 666;
+                    break;
+                }
+
                 gui->startLoop();
                 delete gui;
             }

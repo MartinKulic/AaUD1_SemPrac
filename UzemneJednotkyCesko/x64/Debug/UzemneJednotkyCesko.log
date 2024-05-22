@@ -1,28 +1,4 @@
-﻿  INacitavac.cpp
-  Obec.cpp
-  UzemnaJednotka.cpp
-  GUI1.cpp
-  Nacitavac1.cpp
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie1\Nacitavac1.cpp(33,28): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  GUI2.cpp
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie2\GUI2.cpp(17,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie2\GUI2.cpp(18,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie2\GUI2.cpp(19,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie2\GUI2.cpp(21,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie2\GUI2.cpp(22,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie2\GUI2.cpp(26,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie2\GUI2.cpp(28,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie2\GUI2.cpp(87,13): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie2\GUI2.cpp(148,13): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie2\GUI2.cpp(251,10): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
-  Nacitavac2.cpp
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie2\Nacitavac2.cpp(37,28): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  GUI3.cpp
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie3\GUI3.cpp(31,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie3\GUI3.cpp(33,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
-  Nacitavac3.cpp
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie3\Nacitavac3.cpp(30,28): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  GUI4.cpp
+﻿  GUI4.cpp
 C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(19,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
 C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(20,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
 C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(22,11): warning C4566: character represented by universal-character-name '\uFFFD' cannot be represented in the current code page (1250)
@@ -35,7 +11,7 @@ C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\libds\adt\sorts.h(187,
   (compiling source file 'Zadanie4/GUI4.cpp')
   C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\libds\adt\sorts.h(187,20):
   the template instantiation context (the oldest one first) is
-  	C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(258,37):
+  	C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(260,37):
   	see reference to class template instantiation 'ds::adt::HeapSort<UzemnaJednotka *>' being compiled
   	C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\libds\adt\sorts.h(170,5):
   	while compiling class template member function 'void ds::adt::HeapSort<UzemnaJednotka *>::sort(ds::amt::ImplicitSequence<UzemnaJednotka *> &,std::function<bool (const T &,const T &)>)'
@@ -43,9 +19,7 @@ C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\libds\adt\sorts.h(187,
           [
               T=UzemnaJednotka *
           ]
-  		C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(259,10):
+  		C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(261,10):
   		see the first reference to 'ds::adt::HeapSort<UzemnaJednotka *>::sort' in 'GUI4::usporiadajVysledokDialog'
   
-  main.cpp
-  Generating Code...
   UzemneJednotkyCesko.vcxproj -> C:\Users\Martin\source\repos\AaUD1_SemPrac\x64\Debug\UzemneJednotkyCesko.exe

@@ -19,18 +19,18 @@ private:
 	ds::adt::Table<std::string, UzemnaJednotka*>* okresy;
 	ds::adt::Table<std::string, Obec*>* obce;*/
 	
-	MyBinaryTree<UzemnaJednotka*>* kraje;
-	MyBinaryTree<UzemnaJednotka*>* okresy;
-	MyBinaryTree<Obec*>* obce;
+	MyBinaryTree<std::string, UzemnaJednotka*>* kraje;
+	MyBinaryTree<std::string, UzemnaJednotka*>* okresy;
+	MyBinaryTree<std::string, Obec*>* obce;
 
 
 	void nacitavanie(const char vstupnySubor[]);
 	
 	template <typename DruhJednotky>
-	void pokracujVyhladavanie(MyBinaryTree<DruhJednotky>* kde);
+	void pokracujVyhladavanie(MyBinaryTree<std::string, DruhJednotky>* kde);
 	void vyhladajKluc();
 	template <typename DruhJednotky>
-	void pokracujVyhladajKluc(MyBinaryTree<DruhJednotky>* kde, std::string kluc);
+	void pokracujVyhladajKluc(MyBinaryTree<std::string, DruhJednotky>* kde, std::string kluc);
 
 public:
 	GUI3(const char vstupnySubor[]);
@@ -42,7 +42,7 @@ public:
 };
 
 template<typename DruhJednotky>
-inline void GUI3::pokracujVyhladavanie(MyBinaryTree<DruhJednotky>* kde)
+inline void GUI3::pokracujVyhladavanie(MyBinaryTree<std::string, DruhJednotky>* kde)
 {
 	using TableItemType = typename ds::adt::TableItem<std::string, ds::adt::ImplicitList<DruhJednotky>*>;
 
@@ -99,7 +99,7 @@ inline void GUI3::pokracujVyhladavanie(MyBinaryTree<DruhJednotky>* kde)
 }
 
 template<typename DruhJednotky>
-inline void GUI3::pokracujVyhladajKluc(MyBinaryTree<DruhJednotky>* kde, std::string kluc)
+inline void GUI3::pokracujVyhladajKluc(MyBinaryTree<std::string, DruhJednotky>* kde, std::string kluc)
 {
 	ds::adt::ImplicitList<DruhJednotky>** vysledok;
 	if (kde->tryFind(kluc, vysledok)) {

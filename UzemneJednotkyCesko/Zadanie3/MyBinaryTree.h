@@ -7,10 +7,10 @@
 
 
 
-template <typename Item>
-class MyBinaryTree : public ds::adt::BinarySearchTree<std::string, ds::adt::ImplicitList<Item>*>
+template <typename Key ,typename Item>
+class MyBinaryTree : public ds::adt::BinarySearchTree<Key, ds::adt::ImplicitList<Item>*>
 {
-	using ItemType = typename ds::adt::TableItem<std::string, ds::adt::ImplicitList<Item>*>;
+	using ItemType = typename ds::adt::TableItem<Key, ds::adt::ImplicitList<Item>*>;
 	using tableIterator = typename ds::amt::BinaryHierarchy<ds::amt::BinaryExplicitHierarchyBlock<ItemType>>::InOrderHierarchyIterator;
 	using keyIterator = typename ds::amt::ImplicitSequence<Item>::ImplicitSequenceIterator;
 private:
@@ -47,7 +47,7 @@ public:
 	};
 
 
-	void insert(const std::string& key, Item data);
+	void insert(const Key & key, Item data);
 	void deleteAll();
 	MBTIterator begin();
 	MBTIterator end();
@@ -59,15 +59,15 @@ public:
 
 
 
-template<typename Item>
-inline void MyBinaryTree<Item>::insert(const std::string& key, Item data)
+template< typename Key, typename Item>
+inline void MyBinaryTree<Key,Item>::insert(const Key & key, Item data)
 {
 	ds::adt::ImplicitList<Item>* finded = nullptr;
 	ds::adt::ImplicitList<Item>** pfinded = &finded;
 	if (!this->tryFind(key, (pfinded))) {
 		finded = new ds::adt::ImplicitList<Item>;
 		finded->insertLast(data);
-		ds::adt::BinarySearchTree<std::string, ds::adt::ImplicitList<Item>*>::insert(key, finded);
+		ds::adt::BinarySearchTree<Key, ds::adt::ImplicitList<Item>*>::insert(key, finded);
 	}
 	else {
 		(*pfinded)->insertLast(data);
@@ -75,8 +75,8 @@ inline void MyBinaryTree<Item>::insert(const std::string& key, Item data)
 
 }
 
-template<typename Item>
-inline void MyBinaryTree<Item>::deleteAll()
+template< typename Key, typename Item>
+inline void MyBinaryTree<Key,Item>::deleteAll()
 {
 	for (auto zaznam = this->getHierarchy()->begin(); zaznam != this->getHierarchy()->end(); ++zaznam) {
 		auto end = (*zaznam).data_->end();
@@ -87,14 +87,14 @@ inline void MyBinaryTree<Item>::deleteAll()
 	}
 }
 
-template<typename Item>
-inline typename MyBinaryTree<Item>::MBTIterator MyBinaryTree<Item>::begin()
+template< typename Key, typename Item>
+inline typename MyBinaryTree<Key, Item>::MBTIterator MyBinaryTree<Key,Item>::begin()
 {
 	return MBTIterator(this->getHierarchy()->begin(), *this);
 }
 
-template<typename Item>
-inline typename MyBinaryTree<Item>::MBTIterator MyBinaryTree<Item>::end()
+template< typename Key, typename Item>
+inline typename MyBinaryTree<Key, Item>::MBTIterator MyBinaryTree<Key, Item>::end()
 {
 	return MBTIterator(this->getHierarchy()->end(), *this);
 }
@@ -111,8 +111,8 @@ inline typename MyBinaryTree<Item>::MBTIterator MyBinaryTree<Item>::end()
 //	vKluciEnd = new keyIterator((*TableIter).data_->end());*/
 //}
 
-template<typename Item>
-inline typename MyBinaryTree<Item>::MBTIterator& MyBinaryTree<Item>::MBTIterator::operator++()
+template< typename Key, typename Item>
+inline typename MyBinaryTree<Key,Item>::MBTIterator& MyBinaryTree<Key, Item>::MBTIterator::operator++()
 {
 	++(*vKluci);
 	if (*vKluci == *vKluciEnd)
@@ -130,14 +130,14 @@ inline typename MyBinaryTree<Item>::MBTIterator& MyBinaryTree<Item>::MBTIterator
 	return *this;
 }
 
-template<typename Item>
-inline bool MyBinaryTree<Item>::MBTIterator::operator!=(const MBTIterator& other)
+template< typename Key, typename Item >
+inline bool MyBinaryTree<Key, Item>::MBTIterator::operator!=(const MBTIterator& other)
 {
 	return kluce!=other.kluce;
 }
 
-template<typename Item>
-inline Item& MyBinaryTree<Item>::MBTIterator::operator*()
+template< typename Key, typename Item>
+inline Item& MyBinaryTree<Key, Item>::MBTIterator::operator*()
 {
 	return *(*vKluci);
 }

@@ -89,9 +89,9 @@ GUI3::GUI3(const char vstupnySubor[])
 	handle = GetStdHandle(STD_OUTPUT_HANDLE);
 
 
-	kraje = new MyBinaryTree<UzemnaJednotka*>;
-	okresy = new MyBinaryTree<UzemnaJednotka*>;
-	obce = new MyBinaryTree<Obec*>;
+	kraje = new MyBinaryTree<string,UzemnaJednotka*>;
+	okresy = new MyBinaryTree<string, UzemnaJednotka*>;
+	obce = new MyBinaryTree<string, Obec*>;
 
 	/*MyBinaryTree table;
 	table.insert("kraj", new UzemnaJednotka("kraj", "0000", TypUzemia(kraj)));

@@ -214,6 +214,8 @@ void GUI4::filtrujDialogT(std::string* param)
 	Algoritmus<UzemnaJednotka*> alg;
 	alg.filtruj(myIterator->begin(), myIterator->end(), [hladanyTyp](UzemnaJednotka* u) {return u->hasType(hladanyTyp); }, [vysledok](UzemnaJednotka* u) {vysledok->insertLast().data_=u; });
 
+	usporiadajVysledokDialog(vysledok);
+
 	vypisVysledok(vysledok);
 
 	delete vysledok;
