@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <Windows.h>
+
 enum errorType {
 	VseobecnyHelp,
 	nespravneVstupnePar,
@@ -8,11 +10,16 @@ enum errorType {
 	nespravnyArgument
 };
 class IGUI {
+protected:
+	HANDLE handle;
 public:
 	virtual void startLoop() = 0;
 	static void printError(errorType et, std::string msg);
 
 	virtual void Progressed(int by) = 0;
+	IGUI() {
+		handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	};
 	virtual ~IGUI() {};
 };
 

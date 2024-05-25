@@ -7,13 +7,12 @@
 #include "../Obec.h"
 #include "../Algoritmus.h"
 #include "MyBinaryTree.h"
-#include "libds/adt/tree.h"
+
 #include "libds//adt/table.h"
 
 class GUI3 : public IGUI
 {
 private:
-	HANDLE handle;
 	
 	/*ds::adt::Table<std::string, UzemnaJednotka*>* kraje;
 	ds::adt::Table<std::string, UzemnaJednotka*>* okresy;

@@ -28,9 +28,9 @@ void GUI3::printError(errorType et, std::string msg = "")
 		break;
 	case nespravnyArgument:
 		SetConsoleTextAttribute(handle, 12);
-		cout << "Chyba so zadan�m parametrom: ";
+		cout << "Chyba so zadaným parametrom: ";
 		cout << msg;
-		cout << "\nRozpoznan� argumenty su len:\n";
+		cout << "\nRozpoznané argumenty su len:\n";
 		SetConsoleTextAttribute(handle, 15);
 		printError(VseobecnyHelp, "");
 		break;
@@ -86,23 +86,11 @@ void GUI3::vyhladajKluc()
 
 GUI3::GUI3(const char vstupnySubor[])
 {
-	handle = GetStdHandle(STD_OUTPUT_HANDLE);
-
-
 	kraje = new MyBinaryTree<string,UzemnaJednotka*>;
 	okresy = new MyBinaryTree<string, UzemnaJednotka*>;
 	obce = new MyBinaryTree<string, Obec*>;
-
-	/*MyBinaryTree table;
-	table.insert("kraj", new UzemnaJednotka("kraj", "0000", TypUzemia(kraj)));
-	table.insert("kraj2", new UzemnaJednotka("kraj2", "0002", TypUzemia(kraj)));
-	table.insert("kraj", new UzemnaJednotka("kraj", "0003", TypUzemia(kraj)));
-
-	table.deleteAll();*/
 	
 	this->nacitavanie(vstupnySubor);
-
-
 }
 
 GUI3::~GUI3()

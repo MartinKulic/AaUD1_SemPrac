@@ -14,7 +14,6 @@
 #include "Zadanie3/GUI3.h"
 #include "Zadanie4/GUI4.h"
 
-
 using namespace std;
 int main(int argc, char* argv[])
 {
@@ -51,7 +50,7 @@ int main(int argc, char* argv[])
                     gui = new GUI4(argv[1]);
                     break;
                 default:
-                    cout << "--!!!--> Nerozpoznany argument. Reštartuj program a skus znova. <--!!!--\n";
+                    cout << "--!!!--> Nerozpoznaný argument. Reštartuj program a skus znova. <--!!!--\n";
                     return 666;
                     break;
                 }

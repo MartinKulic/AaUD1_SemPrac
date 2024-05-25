@@ -9,7 +9,7 @@
 
 class GUI2 : public IGUI
 {
-	HANDLE handle;
+
 	ds::amt::MultiWayExplicitHierarchy<UzemnaJednotka*>* hierarchia;
 	ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* zvolenaUzemnaJednotka; //Toto je moj iterator
 	//ds::amt::Hierarchy<ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>>::PreOrderHierarchyIterator*  iterator;

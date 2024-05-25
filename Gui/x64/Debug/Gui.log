@@ -56,6 +56,8 @@ C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\libds\adt\sorts.h(187,
   		C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\tests\adt\sorts.test.h(156,24):
   		see the first reference to 'ds::adt::HeapSort<int>::sort' in 'ds::tests::GenericSortTest<ds::adt::HeapSort<int>,std::greater<void>,ds::tests::details::RandomIntKeyGenerator,ds::tests::details::IntKeyDisposer>::test'
   
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Generating Code...
   main_form.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
 DataStructures.lib(test.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
   Gui.vcxproj -> C:\Users\Martin\source\repos\AaUD1_SemPrac\x64\Debug\Gui.exe

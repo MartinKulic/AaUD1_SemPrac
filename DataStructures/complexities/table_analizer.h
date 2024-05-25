@@ -45,9 +45,9 @@ namespace ds::utils
         explicit TableFindAnalyzer(const std::string& name);
 
     protected:
-        /*ds::adt::ImplicitList<int>* inded =nullptr;
-        ds::adt::ImplicitList<int>** finded = &inded;*/
-        int* finded = nullptr;
+        ds::adt::ImplicitList<int>* inded =nullptr;
+        ds::adt::ImplicitList<int>** finded = &inded;
+        //int* finded = nullptr;
 
         void executeOperation(Table& structure) override;
     };
@@ -120,9 +120,9 @@ namespace ds::utils
         CompositeAnalyzer("Tables")
     {
         this->addAnalyzer(std::make_unique<TableInsertAnalyzer<MyBinaryTree<int,int>>>("mybst-insert"));
-        //this->addAnalyzer(std::make_unique<TableFindAnalyzer<MyBinaryTree<int,int>>>("mybst-find"));
-        this->addAnalyzer(std::make_unique<TableInsertAnalyzer<ds::adt::BinarySearchTree<int,int>>>("bst-insert"));
-        this->addAnalyzer(std::make_unique<TableFindAnalyzer<ds::adt::BinarySearchTree<int,int>>>("bst-find"));
+        this->addAnalyzer(std::make_unique<TableFindAnalyzer<MyBinaryTree<int,int>>>("mybst-find"));
+        //this->addAnalyzer(std::make_unique<TableInsertAnalyzer<ds::adt::BinarySearchTree<int,int>>>("bst-insert"));
+        //this->addAnalyzer(std::make_unique<TableFindAnalyzer<ds::adt::BinarySearchTree<int,int>>>("bst-find"));
 
     }
    

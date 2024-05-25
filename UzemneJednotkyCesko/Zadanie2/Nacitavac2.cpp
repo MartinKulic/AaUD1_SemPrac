@@ -5,9 +5,7 @@ using namespace std;
 
 void Nacitavac2::Nacitaj(const char vstupnySubor[], ds::amt::MultiWayExplicitHierarchy<UzemnaJednotka*>& strom, IGUI* gui, int freq)
 {
-	int pocNacKraj = 0;
-	int pocNacOkres = 0;
-	int pocNacObce = 0;
+	
 	//-----------------------
 
 
@@ -57,7 +55,7 @@ void Nacitavac2::Nacitaj(const char vstupnySubor[], ds::amt::MultiWayExplicitHie
 			aktualnyKraj->data_ = INacitavac::vytvorNovuUzemnuJednotku(polozky, kraj);
 			ntyOkres = 0;
 			ntyKraj++;
-			pocNacKraj++;
+			
 
 			//Pridaj aktualny Kraj
 
@@ -78,14 +76,14 @@ void Nacitavac2::Nacitaj(const char vstupnySubor[], ds::amt::MultiWayExplicitHie
 			aktualnyOkres->data_ = INacitavac::vytvorNovuUzemnuJednotku(polozky, soorp);
 			ntaObec = 0;
 			ntyOkres++;
-			pocNacOkres++;
+			
 			//Pridaj aktualny okres
 		}
 
 		auto& stromObec = strom.emplaceSon(*aktualnyOkres, ntaObec);
 		stromObec.data_ = novaObec;
 		ntaObec++;
-		pocNacObce++;
+
 		//obce.push_back(novaObec);
 		// PridajNovu Obec
 		//cout << *novaObec;    

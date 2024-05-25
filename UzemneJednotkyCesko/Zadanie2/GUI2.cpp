@@ -14,18 +14,18 @@ void GUI2::printError(errorType et, std::string msg)
 	{
 	case VseobecnyHelp:
 		cout << msg;
-		cout << "\n* 1-n -> vnorenie, zadaj cislo zodpovedaj�ce po�adovanej uzemnej podmno�ine.\n";
-		cout << "*  .  -> spa�, prejde do nadradenej �zemnej jednotky.\n";
-		cout << "*  a  -> vypise cel� hierarcihu\n";
+		cout << "\n* 1-n -> vnorenie, zadaj cislo zodpovedajúce požadovanej uzemnej podmnožine.\n";
+		cout << "*  .  -> spať, prejde do nadradenej územnej jednotky.\n";
+		cout << "*  a  -> vypise celú hierarcihu\n";
 		cout << "*  aa -> vypise podhierarchiu\n";
-		cout << "* z/o/t-> spust� filtrovania (z - zacina na, o - obsahuje, t - je typu)\n";
-		cout << "*  e  -> ukon�enie\n\n";
+		cout << "* z/o/t-> spustí filtrovania (z - zacina na, o - obsahuje, t - je typu)\n";
+		cout << "*  e  -> ukončenie\n\n";
 		break;
 	case nespravnyArgument:
 		SetConsoleTextAttribute(handle, 12);
-		cout << "Chyba so zadan�m parametrom: ";
+		cout << "Chyba so zadaným parametrom: ";
 		cout << msg;
-		cout << "\nRozpoznan� argumenty su len:\n";
+		cout << "\nRozpoznané argumenty su len:\n";
 		SetConsoleTextAttribute(handle, 15);
 		printError(VseobecnyHelp, "");
 		break;
@@ -48,8 +48,6 @@ GUI2::GUI2(const char vstupnySubor[])
 	this->nacitavanie(vstupnySubor);
 
 	resetVyfiltrovanyZoznam();
-
-	handle = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	printError(errorType(VseobecnyHelp), "");
 }
@@ -84,7 +82,7 @@ void GUI2::startLoop()
 			if (!skusPrejstNaNadradedny())
 			{
 				SetConsoleTextAttribute(handle, 113);
-				cout << "Už si v najnadradenej�om\n";
+				cout << "Už si v najnadradenejšom\n";
 				SetConsoleTextAttribute(handle, 15);
 			}
 			resetVyfiltrovanyZoznam();
@@ -145,7 +143,7 @@ void GUI2::startLoop()
 			if (!skusPrejstNaPodradeny(index - 1)) {
 				vypisMenu();
 				SetConsoleTextAttribute(handle, 124);
-				cout << "U� sa ned� �s� hlb�ie";
+				cout << "Už sa nedá ísť hlbšie";
 				SetConsoleTextAttribute(handle, 15);
 				cout << endl;
 				continue;
@@ -248,7 +246,7 @@ bool GUI2::skusPrejstNaPodradeny(size_t index)
 
 void GUI2::filtrujDialogZO(char volba)
 {
-	cout << "Zadaj h�adan� re�azec\n";
+	cout << "Zadaj hľadaný reťazec\n";
 
 	string param;
 	cin >> ws;
@@ -312,30 +310,6 @@ void GUI2::filtrujDialogT()
 	string param;
 	cout << "Zvol hladany typ (ob/ok/kr): ";
 	cin >> param;
-
-	/*ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>* pomocna = new ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>;
-
-	if (param == "ob") {
-		Algoritmus2::filtruj(synovia->begin(), synovia->end(), *pomocna, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
-			return uj->data_->getType() == TypUzemia(obec);
-			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>& zoz) {zoz.insertLast().data_ = uj; });
-	}
-	else if (param == "ok") {
-		Algoritmus2::filtruj(synovia->begin(), synovia->end(), *pomocna, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
-			return uj->data_->getType() == TypUzemia(soorp);
-			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>& zoz) {zoz.insertLast().data_ = uj; });
-	}
-	else if (param == "kr") {
-		Algoritmus2::filtruj(synovia->begin(), synovia->end(), *pomocna, [param](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj) {
-			return uj->data_->getType() == TypUzemia(kraj);
-			}, [](MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* uj, ImplicitSequence<MultiWayExplicitHierarchyBlock<UzemnaJednotka*>*>& zoz) {zoz.insertLast().data_ = uj; });
-	}
-	else {
-		cout << "nespravne parametre.\n";
-	}
-
-	delete synovia;
-	synovia = pomocna;*/
 
 	ImplicitSequence<UzemnaJednotka*>* pomocna = new ImplicitSequence<UzemnaJednotka*>;
 	MultiWayExplicitHierarchy<UzemnaJednotka*> podhrierarchia;

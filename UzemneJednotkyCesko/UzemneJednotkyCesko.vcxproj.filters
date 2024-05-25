@@ -26,9 +26,6 @@
     <ClCompile Include="Obec.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Algoritmus.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="IGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -67,9 +64,6 @@
     <ClInclude Include="Algoritmus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IAlgorithmCompatible.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IGUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -103,5 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="converted.csv" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

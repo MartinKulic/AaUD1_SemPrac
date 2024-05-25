@@ -129,7 +129,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Algoritmus.cpp" />
     <ClCompile Include="Zadanie4\GUI4.cpp" />
     <ClCompile Include="Zadanie3\GUI3.cpp" />
     <ClCompile Include="IGUI.cpp" />
@@ -149,7 +148,6 @@
     <ClInclude Include="Zadanie3\MyBinaryTree.h" />
     <ClInclude Include="Zadanie3\GUI3.h" />
     <ClInclude Include="INacitavac.h" />
-    <ClInclude Include="IAlgorithmCompatible.h" />
     <ClInclude Include="IGUI.h" />
     <ClInclude Include="Zadanie3\Nacitavac3.h" />
     <ClInclude Include="Obec.h" />
@@ -160,6 +158,7 @@
     <ClInclude Include="Zadanie2\Nacitavac2.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="converted.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

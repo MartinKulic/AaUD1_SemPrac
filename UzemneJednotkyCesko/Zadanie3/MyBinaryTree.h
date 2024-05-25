@@ -14,7 +14,7 @@ class MyBinaryTree : public ds::adt::BinarySearchTree<Key, ds::adt::ImplicitList
 	using tableIterator = typename ds::amt::BinaryHierarchy<ds::amt::BinaryExplicitHierarchyBlock<ItemType>>::InOrderHierarchyIterator;
 	using keyIterator = typename ds::amt::ImplicitSequence<Item>::ImplicitSequenceIterator;
 private:
-	ds::adt::BinarySearchTree<std::string, ds::adt::ImplicitList<Item>*> getBegin() { ds::adt::BinarySearchTree<std::string, ds::adt::ImplicitList<Item>*>::begin(); };
+	ds::adt::BinarySearchTree<Key, ds::adt::ImplicitList<Item>*> getBegin() { ds::adt::BinarySearchTree<Key, ds::adt::ImplicitList<Item>*>::begin(); };
 public:
 
 	class MBTIterator
@@ -26,6 +26,14 @@ public:
 		keyIterator* vKluciEnd;
 		
 	public:
+		MBTIterator(MyBinaryTree& table) : kluce(table.getHierarchy()->begin()), kluceEnd(table.getHierarchy()->end()) {
+
+			if (kluce != kluceEnd) {
+				vKluci = new keyIterator((*kluce).data_->begin());
+				vKluciEnd = new keyIterator((*kluce).data_->end());
+			}
+		}
+
 		MBTIterator(tableIterator iterStart, MyBinaryTree& table) : kluce(iterStart), kluceEnd(table.getHierarchy()->end())
 		{			
 			if (kluce != kluceEnd) {
@@ -99,17 +107,6 @@ inline typename MyBinaryTree<Key, Item>::MBTIterator MyBinaryTree<Key, Item>::en
 	return MBTIterator(this->getHierarchy()->end(), *this);
 }
 
-
-
-
-//template<typename Item>
-//inline MyBinaryTree<Item>::MBTIterator::MBTIterator(tableIterator TableIter)
-//{
-//
-//	kluce = new tableIterator(TableIter);
-//	/*vKluci = new keyIterator((**kluce).data_->begin());
-//	vKluciEnd = new keyIterator((*TableIter).data_->end());*/
-//}
 
 template< typename Key, typename Item>
 inline typename MyBinaryTree<Key,Item>::MBTIterator& MyBinaryTree<Key, Item>::MBTIterator::operator++()

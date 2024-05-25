@@ -54,7 +54,7 @@ int UzemnaJednotka::countVowel()
 			next = current + 1;
 			bool je = false;
 			for (int i = 0; i < 3; i++) {
-				if (*next == GUI4::Vowels[i]) {
+				if (*next == UzemnaJednotka::Vowels[i]) {
 					this->consonantCount++;
 					je = true;
 					break;
@@ -70,7 +70,7 @@ int UzemnaJednotka::countVowel()
 			}
 		}
 		else {
-			for (const char spoluhlaska : GUI4::Vowels) {
+			for (const char spoluhlaska : UzemnaJednotka::Vowels) {
 				if (*current == spoluhlaska) {
 					this->consonantCount++;
 					break;
@@ -106,7 +106,7 @@ int UzemnaJednotka::countConsonant()
 			continue;
 		}
 		
-		for (const char spoluhlaska : GUI4::Consonant) {
+		for (const char spoluhlaska : UzemnaJednotka::Consonant) {
 			if (*current == spoluhlaska) {
 				this->consonantCount++;
 				break;

@@ -16,11 +16,10 @@
 	class GUI1 : public IGUI
 	{
 	private:
-		std::vector<UzemnaJednotka*> kraje;
-		std::vector<UzemnaJednotka*> okresy;
-		std::vector<Obec*> obce;
+		std::vector<UzemnaJednotka*>* kraje;
+		std::vector<UzemnaJednotka*>* okresy;
+		std::vector<Obec*>* obce;
 
-		HANDLE handle;
 
 		void nacitavanie(const char vstupnySubor[]);
 

@@ -56,7 +56,10 @@
 
     GUI1::GUI1(const char vstupnySubor[])
     {
-        handle = GetStdHandle(STD_OUTPUT_HANDLE);
+        obce = new std::vector<Obec*>;
+        okresy = new std::vector<UzemnaJednotka*>;
+        kraje = new std::vector<UzemnaJednotka*>;
+        
 
         HWND consloleWindow = GetConsoleWindow();
         RECT rectangle;
@@ -75,18 +78,21 @@
 
     GUI1::~GUI1()
     {
-        for (Obec* o : obce)
+        for (Obec* o : *obce)
         {
             delete o;
         }
-        for (UzemnaJednotka* u : okresy)
+        for (UzemnaJednotka* u : *okresy)
         {
             delete u;
         }
-        for (UzemnaJednotka* u : kraje)
+        for (UzemnaJednotka* u : *kraje)
         {
             delete u;
         }
+        delete kraje;
+        delete okresy;
+        delete obce;
     }
 
 
@@ -94,12 +100,12 @@
     {
         cout << "Nacitavanie: ";
 
-        Nacitavac1::Nacitaj(vstupnySubor, kraje, okresy, obce, this, 90);
+        Nacitavac1::Nacitaj(vstupnySubor, *kraje, *okresy, *obce, this, 90);
 
 
         SetConsoleTextAttribute(handle, 32);
 
-        cout << "\nNaèítanie prebehlo úspešne:\n" << "\n\tKraje: " << kraje.size() << "\n\n\tSORP:  " << okresy.size() << "\n\n\tObce:  " << obce.size();
+        cout << "\nNaèítanie prebehlo úspešne:\n" << "\n\tKraje: " << kraje->size() << "\n\n\tSORP:  " << okresy->size() << "\n\n\tObce:  " << obce->size();
         cout << endl;
         SetConsoleTextAttribute(handle, 8);
 
@@ -185,15 +191,15 @@
             Algoritmus <UzemnaJednotka*> alg;
             if (kde == "ob")
             {
-                alg.filtruj(obce.begin(), obce.end(), predicat, [vysledok](Obec* o) {vysledok->push_back(o); });
+                alg.filtruj(obce->begin(), obce->end(), predicat, [vysledok](Obec* o) {vysledok->push_back(o); });
             }
             else if (kde == "ok")
             {
-                alg.filtruj(okresy.begin(), okresy.end(), predicat, [vysledok](UzemnaJednotka* o) {vysledok->push_back(o); });
+                alg.filtruj(okresy->begin(), okresy->end(), predicat, [vysledok](UzemnaJednotka* o) {vysledok->push_back(o); });
             }
             else if (kde == "kr")
             {
-                alg.filtruj(kraje.begin(), kraje.end(), predicat, [vysledok](UzemnaJednotka* o) {vysledok->push_back(o); });
+                alg.filtruj(kraje->begin(), kraje->end(), predicat, [vysledok](UzemnaJednotka* o) {vysledok->push_back(o); });
             }
             else
             {

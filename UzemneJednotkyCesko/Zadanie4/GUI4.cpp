@@ -16,18 +16,18 @@ void GUI4::printError(errorType et, std::string msg)
 	{
 	case VseobecnyHelp:
 		cout << msg;
-		cout << "\n* 1-n -> vnorenie, zadaj cislo zodpovedaj�ce po�adovanej uzemnej podmno�ine.\n";
-		cout << "*  .  -> spa�, prejde do nadradenej �zemnej jednotky.\n";
+		cout << "\n* 1-n -> vnorenie, zadaj číslo zodpovedajúce požadovanej uzemnej podmnožine.\n";
+		cout << "*  .  -> spať, prejde do nadradenej územnej jednotky.\n";
 
-		cout << "* z/o/t-> spust� filtrovania (z - zacina na, o - obsahuje, t - je typu)\n";
+		cout << "* z/o/t-> spustí filtrovania (z - zacina na, o - obsahuje, t - je typu)\n";
 		cout << "*         t |> ob/ok/kr\n";
-		cout << "*  e  -> ukon�enie\n\n";
+		cout << "*  e  -> ukončenie\n\n";
 		break;
 	case nespravnyArgument:
 		SetConsoleTextAttribute(handle, 12);
-		cout << "Chyba so zadan�m parametrom: ";
+		cout << "Chyba so zadaným parametrom: ";
 		cout << msg;
-		cout << "\nRozpoznan� argumenty su len:\n";
+		cout << "\nRozpoznané argumenty su len:\n";
 		SetConsoleTextAttribute(handle, 15);
 		printError(VseobecnyHelp, "");
 		break;
@@ -66,30 +66,13 @@ void GUI4::vypisMoznosti()
 
 GUI4::GUI4(const char vstupnySubor[])
 {
-	// test
-	//ds::amt::ImplicitSequence<UzemnaJednotka*> test;
-	//test.insertLast().data_ = new UzemnaJednotka("Prievidza nad Nitrou", "", TypUzemia(undef)); //9
-	//test.insertLast().data_ = new UzemnaJednotka("Kanianka", "", TypUzemia(undef)); //4
-	//test.insertLast().data_ = new UzemnaJednotka("Bojnice", "", TypUzemia(undef)); //4
-	//test.insertLast().data_ = new UzemnaJednotka("Opatovce nad Nitrou", "", TypUzemia(undef)); //9
-	//test.insertLast().data_ = new UzemnaJednotka("Nováky", "", TypUzemia(undef)); //3
-	//test.insertLast().data_ = new UzemnaJednotka("Šútovce", "", TypUzemia(undef)); //4
-	//test.insertLast().data_ = new UzemnaJednotka("Seč", "", TypUzemia(undef)); //2
-	//test.insertLast().data_ = new UzemnaJednotka("Kostolná Ves", "", TypUzemia(undef)); //7
-	//
-	//ds::adt::HeapSort<UzemnaJednotka*> sr;
-	//sr.sort(test, [](UzemnaJednotka* uj, UzemnaJednotka* uj2) {return uj->compareConsonantCount(uj2); });
-	//cout << endl;
-	//vypisVysledok(&test);
-
 	hierarchia = new MultiWayExplicitHierarchy<UzemnaJednotka*>;
 	hierarchia->emplaceRoot().data_ = new UzemnaJednotka("Česká republika", "000000", TypUzemia(undef));
 
 	this->nacitavanie(vstupnySubor);
 
-	myIterator = new MyIterator(hierarchia);
+	myIterator = new MyPseudoIterator(hierarchia);
 
-	handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	printError(errorType(VseobecnyHelp), "");
 }
 
@@ -131,7 +114,7 @@ void GUI4::startLoop()
 			if (!myIterator->skusPrejstNaNadradedny())
 			{
 				SetConsoleTextAttribute(handle, 113);
-				cout << "Už si v najnadradenej�om\n";
+				cout << "Už si v najnadradenejšom\n";
 				SetConsoleTextAttribute(handle, 15);
 			}
 			break;
@@ -172,7 +155,7 @@ void GUI4::startLoop()
 			if (!myIterator->skusPrejstNaPodradeny(index - 1)) {
 				vypisMoznosti();
 				SetConsoleTextAttribute(handle, 124);
-				cout << "U� sa ned� �s� hlb�ie";
+				cout << "Už sa nedá ísť hlbšie";
 				SetConsoleTextAttribute(handle, 15);
 				cout << endl;
 				continue;
@@ -285,13 +268,13 @@ void GUI4::vypisVysledok(ds::amt::ImplicitSequence<UzemnaJednotka*>* vysledok)
 
 
 
-MyIterator::MyIterator(ds::amt::MultiWayExplicitHierarchy<UzemnaJednotka*>* predloha)
+MyPseudoIterator::MyPseudoIterator(ds::amt::MultiWayExplicitHierarchy<UzemnaJednotka*>* predloha)
 {
 	hierarchia = predloha;
 	zvolenyVrchol = predloha->accessRoot();
 }
 
-bool MyIterator::skusPrejstNaNadradedny()
+bool MyPseudoIterator::skusPrejstNaNadradedny()
 {
 	if (hierarchia->isRoot(*zvolenyVrchol)) {
 		return false;
@@ -305,7 +288,7 @@ bool MyIterator::skusPrejstNaNadradedny()
 	return true;
 }
 
-bool MyIterator::skusPrejstNaPodradeny(size_t index)
+bool MyPseudoIterator::skusPrejstNaPodradeny(size_t index)
 {
 	ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>* zastupca = zvolenyVrchol->sons_->access(index)->data_;
 	if (zastupca == nullptr || hierarchia->isLeaf(*zastupca)) {
@@ -316,7 +299,7 @@ bool MyIterator::skusPrejstNaPodradeny(size_t index)
 	return true;
 }
 
-void MyIterator::vypisOcislovanePodvrcholy()
+void MyPseudoIterator::vypisOcislovanePodvrcholy()
 {
 	size_t poc = 1;
 	auto stop = zvolenyVrchol->sons_->end();
@@ -328,25 +311,25 @@ void MyIterator::vypisOcislovanePodvrcholy()
 }
 
 
-ds::amt::Hierarchy<ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>>::PreOrderHierarchyIterator MyIterator::end()
+ds::amt::Hierarchy<ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>>::PreOrderHierarchyIterator MyPseudoIterator::end()
 {
 	return ds::amt::Hierarchy<ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>>::PreOrderHierarchyIterator(hierarchia, nullptr);
 }
 
-ds::amt::Hierarchy<ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>>::PreOrderHierarchyIterator MyIterator::begin()
+ds::amt::Hierarchy<ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>>::PreOrderHierarchyIterator MyPseudoIterator::begin()
 {
 	return ds::amt::Hierarchy<ds::amt::MultiWayExplicitHierarchyBlock<UzemnaJednotka*>>::PreOrderHierarchyIterator(hierarchia, zvolenyVrchol);
 }
 
 
-MyIterator& MyIterator::operator--()
+MyPseudoIterator& MyPseudoIterator::operator--()
 {
 	skusPrejstNaNadradedny();
 	return *this;
 }
 
 
-UzemnaJednotka* MyIterator::operator*()
+UzemnaJednotka* MyPseudoIterator::operator*()
 {
 	return zvolenyVrchol->data_;
 }
