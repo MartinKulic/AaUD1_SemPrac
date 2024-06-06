@@ -1,25 +1,32 @@
 #pragma once
-#include <iterator>
+#include <functional>
+#include "libds/adt/priority_queue.h"
 
-
-//using namespace std;
-
-template<typename DruhKontaineru>
+template<typename typVKontainery>
 class Algoritmus
 {
 public:
-	template<typename F>
-	static void filtruj(typename DruhKontaineru::iterator begin, typename DruhKontaineru::iterator end, DruhKontaineru& vyfiltrovane, std::function<bool(F)> filter);
+	template<typename tIterator, typename U>
+	void filtruj(tIterator begin, tIterator end, std::function<bool(typVKontainery)> predikat, U naplnaciaFunkcia); // U = std::function<void(typVKontainery)> naplnaciaFunkcia
+
 };
 
-template<typename DruhKontaineru>
-template<typename F>
-inline void Algoritmus<DruhKontaineru>::filtruj(typename DruhKontaineru::iterator begin, typename DruhKontaineru::iterator end, typename DruhKontaineru& vyfiltrovane, std::function<bool(F)> filter)
+template<typename typVKontainery>
+template<typename tIterator, typename U>
+inline void Algoritmus<typVKontainery>::filtruj(tIterator begin, tIterator end, std::function<bool(typVKontainery)> predikat, U naplnaciaFunkcia)
 {
-	for (typename DruhKontaineru::iterator aktualny = begin ; aktualny != end; aktualny++)
+	/*for (auto aktualny = begin; aktualny != end; ++aktualny)
 	{
-		if (filter(*aktualny))
-			vyfiltrovane.push_back(*aktualny);
+		if (predikat(*aktualny))
+		{
+			naplnaciaFunkcia(*aktualny);
+		} 
+	}*/
+	for (; begin != end; ++begin)
+	{
+		if (predikat(*begin))
+		{
+			naplnaciaFunkcia(*begin);
+		}
 	}
 }
-

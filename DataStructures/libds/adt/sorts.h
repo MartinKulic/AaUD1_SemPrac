@@ -69,6 +69,7 @@ namespace ds::adt
     {
     public:
         void sort(amt::ImplicitSequence<T>& is, std::function<bool(const T&, const T&)> compare) override;
+        void sort(adt::ImplicitList<T>& is, std::function<bool(const T&, const T&)> compare);
     };
 
     //----------
@@ -167,9 +168,105 @@ namespace ds::adt
     template<typename T>
     void HeapSort<T>::sort(amt::ImplicitSequence<T>& is, std::function<bool(const T&, const T&)> compare)
     {
-        // TODO 12
-        // po implementacii vymazte vyhodenie vynimky!
-        throw std::runtime_error("Not implemented yet");
+        for (int i = 1; i < is.size(); i++)
+        {
+            bool vymena;
+            int aktualny = i;
+
+            do {
+                vymena = false;
+                int otec = (aktualny - 1) / 2;
+                if (aktualny > 0 && compare(is.access(otec)->data_, is.access(aktualny)->data_))
+                {
+                    std::swap(is.access(aktualny)->data_, is.access(otec)->data_);
+                    aktualny = otec;
+                    vymena = true;
+                }
+            } while (vymena);
+        }
+        for (int i = is.size() - 1; i > 0; i--)
+        {
+            std::swap(is.access(0)->data_, is.access(i)->data_);
+            bool vymena;
+            int aktualny = 0;
+            do {
+                vymena = false;
+                int lavy = (2 * aktualny) + 1;
+                int pravy = (2 * aktualny) + 2;
+                int max;
+
+                if (lavy < i && pravy < i) {
+                    max = compare(is.access(pravy)->data_, is.access(lavy)->data_) ? lavy : pravy;
+                }
+                else {
+                    max = lavy < i ? lavy : pravy;
+                }
+
+                if (max < i && compare(is.access(aktualny)->data_, is.access(max)->data_)) {
+                    std::swap(is.access(aktualny)->data_, is.access(max)->data_);
+                    aktualny = max;
+                    vymena = true;
+                }
+
+            } while (vymena);
+        }
+    }
+    template<typename T>
+    void HeapSort<T>::sort(adt::ImplicitList<T>& is, std::function<bool(const T&, const T&)> compare)
+    {
+        for (int i = 1; i < is.size(); i++)
+        {
+            bool vymena;
+            int aktualny = i;
+
+            do {
+                vymena = false;
+                int otec = (aktualny - 1) / 2;
+                if (aktualny > 0 && compare(is.access(aktualny), is.access(otec)))
+                {
+                    //std::swap(is.access(aktualny), is.access(otec));
+                    T pom = is.access(aktualny);
+                    is.set(aktualny, is.access(otec));
+                    is.set(otec, pom);
+                    aktualny = otec;
+                    vymena = true;
+                }
+            } while (vymena);
+        }
+        for (int i = is.size() - 1; i > 1; i--)
+        {
+            //std::swap(is.access(0), is.access(i));
+            T pom = is.access(i);
+            is.set(i, is.access(0));
+            is.set(0, pom);
+
+            bool vymena = false;
+            int aktualny = 0;
+            do {
+                vymena = false;
+                int lavy = (2 * aktualny) + 1;
+                int pravy = (2 * aktualny) + 2;
+                int max;
+
+                if (lavy < i && pravy < i) {
+                    max = compare(is.access(pravy), is.access(lavy)) ? lavy : pravy;
+                }
+                else {
+                    max = lavy < i ? lavy : pravy;
+                }
+
+                if (max < i && compare(is.access(aktualny), is.access(max))) {
+                    //std::swap(is.access(aktualny), is.access(max));
+                    T pom = is.access(aktualny);
+                    is.set(aktualny, is.access(max));
+                    is.set(max, pom);
+                    
+                    aktualny = max;
+                    vymena = true;
+                }
+
+            } while (vymena);
+        }
     }
 
     template<typename T>

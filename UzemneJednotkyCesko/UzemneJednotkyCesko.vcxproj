@@ -129,24 +129,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GUI.cpp" />
+    <ClCompile Include="Zadanie4\GUI4.cpp" />
+    <ClCompile Include="Zadanie3\GUI3.cpp" />
+    <ClCompile Include="IGUI.cpp" />
+    <ClCompile Include="INacitavac.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Nacitavac.cpp" />
+    <ClCompile Include="Zadanie3\Nacitavac3.cpp" />
     <ClCompile Include="Obec.cpp" />
     <ClCompile Include="UzemnaJednotka.cpp" />
+    <ClCompile Include="Zadanie1\GUI1.cpp" />
+    <ClCompile Include="Zadanie1\Nacitavac1.cpp" />
+    <ClCompile Include="Zadanie2\GUI2.cpp" />
+    <ClCompile Include="Zadanie2\Nacitavac2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Algoritmus.h" />
-    <ClInclude Include="GUI.h" />
-    <ClInclude Include="Nacitavac.h" />
+    <ClInclude Include="Zadanie4\GUI4.h" />
+    <ClInclude Include="Zadanie3\MyBinaryTree.h" />
+    <ClInclude Include="Zadanie3\GUI3.h" />
+    <ClInclude Include="INacitavac.h" />
+    <ClInclude Include="IGUI.h" />
+    <ClInclude Include="Zadanie3\Nacitavac3.h" />
     <ClInclude Include="Obec.h" />
     <ClInclude Include="UzemnaJednotka.h" />
+    <ClInclude Include="Zadanie1\GUI1.h" />
+    <ClInclude Include="Zadanie1\Nacitavac1.h" />
+    <ClInclude Include="Zadanie2\GUI2.h" />
+    <ClInclude Include="Zadanie2\Nacitavac2.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="converted.csv" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="artCUJ.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

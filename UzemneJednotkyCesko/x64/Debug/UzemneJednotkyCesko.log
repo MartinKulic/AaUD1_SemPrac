@@ -1,7 +1,21 @@
-﻿  GUI.cpp
+﻿  GUI2.cpp
+  GUI3.cpp
+  GUI4.cpp
+C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\libds\adt\sorts.h(187,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Zadanie4/GUI4.cpp')
+  C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\libds\adt\sorts.h(187,20):
+  the template instantiation context (the oldest one first) is
+  	C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(244,37):
+  	see reference to class template instantiation 'ds::adt::HeapSort<UzemnaJednotka *>' being compiled
+  	C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\libds\adt\sorts.h(170,5):
+  	while compiling class template member function 'void ds::adt::HeapSort<UzemnaJednotka *>::sort(ds::amt::ImplicitSequence<UzemnaJednotka *> &,std::function<bool (const T &,const T &)>)'
+          with
+          [
+              T=UzemnaJednotka *
+          ]
+  		C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Zadanie4\GUI4.cpp(245,10):
+  		see the first reference to 'ds::adt::HeapSort<UzemnaJednotka *>::sort' in 'GUI4::usporiadajVysledokDialog'
+  
   main.cpp
-  Nacitavac.cpp
-C:\Users\Martin\source\repos\AaUD1_SemPrac\UzemneJednotkyCesko\Nacitavac.cpp(30,28): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  UzemnaJednotka.cpp
   Generating Code...
   UzemneJednotkyCesko.vcxproj -> C:\Users\Martin\source\repos\AaUD1_SemPrac\x64\Debug\UzemneJednotkyCesko.exe

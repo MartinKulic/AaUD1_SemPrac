@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Algoritmus&lt;typVKontainery&gt;">
+    <Position X="11" Y="1" Width="7.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Algoritmus.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyPseudoIterator">
+    <Position X="14" Y="10.25" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAiAAAAAAAAAIUACAAQAAAAAAAAABQgAAAAAAA=</HashCode>
+      <FileName>Zadanie4\GUI4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUI4">
+    <Position X="14.75" Y="3.25" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAgCAAIAEAAIQAACAAAAAAAAAIQAAAAAEAAIA=</HashCode>
+      <FileName>Zadanie4\GUI4.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="myIterator" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MyBinaryTree&lt;Key, Item&gt;">
+    <Position X="9.5" Y="10.25" Width="3.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="MyBinaryTree&lt;Key, Item&gt;::MBTIterator">
+        <TypeIdentifier>
+          <NewMemberFileName>Zadanie3\MyBinaryTree.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <InheritanceLine Type="ds::adt::BinarySearchTree&lt;K, T&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="13.25" Y="9.691" />
+        <Point X="13.25" Y="9.95" />
+        <Point X="12.562" Y="9.95" />
+        <Point X="12.562" Y="10.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAECAABAAACAAAAAAAAQAAAAAAAAAACAAAAAACA=</HashCode>
+      <FileName>Zadanie3\MyBinaryTree.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUI3">
+    <Position X="9.5" Y="3.25" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAACAFIAEAEAAAAAQAAAAAAAAAAkAAAAAABIA=</HashCode>
+      <FileName>Zadanie3\GUI3.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="kraje" />
+      <Field Name="okresy" />
+      <Field Name="obce" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="INacitavac">
+    <Position X="2.75" Y="13.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAgAAAAIAA=</HashCode>
+      <FileName>INacitavac.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IGUI">
+    <Position X="4.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAIAEAAAAAAAAAAAAAAAAAAAACAAAAAAI=</HashCode>
+      <FileName>IGUI.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="problemZoSuborumExeption">
+    <Position X="1" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAABAACA=</HashCode>
+      <FileName>IGUI.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nacitavac3">
+    <Position X="7" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Zadanie3\Nacitavac3.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Obec">
+    <Position X="2.5" Y="16.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAIIAAAAAAAAAAAAAAAAhASAAAAABAAACAAAAA=</HashCode>
+      <FileName>Obec.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="kanalizacia" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UzemnaJednotka">
+    <Position X="7.5" Y="16.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>BIAAAAAJAAgAEAAAAAAQQAEBEQCAECgAAABAAAAAgAA=</HashCode>
+      <FileName>UzemnaJednotka.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="typUzemia" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GUI1">
+    <Position X="0.5" Y="3.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAACAFIAEAAAAAAAAAAAAAAAAACAAAAAAABIA=</HashCode>
+      <FileName>Zadanie1\GUI1.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nacitavac1">
+    <Position X="0.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Zadanie1\Nacitavac1.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUI2">
+    <Position X="4" Y="3.25" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AggAAAAAgGAQIAEAAAQAAAAIAAAAAAAIAQQAQAgAQMA=</HashCode>
+      <FileName>Zadanie2\GUI2.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nacitavac2">
+    <Position X="4" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Zadanie2\Nacitavac2.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ds::adt::BinarySearchTree&lt;K, T&gt;" Collapsed="true">
+    <Position X="12.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ds::adt::HeapSort&lt;T&gt;" Collapsed="true">
+    <Position X="16.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\libds\adt\sorts.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ds::amt::ImplicitSequence&lt;DataType&gt;" Collapsed="true">
+    <Position X="3.5" Y="8.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\libds\amt\implicit_sequence.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ds::amt::MultiWayExplicitHierarchy&lt;DataType&gt;" Collapsed="true">
+    <Position X="16" Y="8.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\libds\amt\explicit_hierarchy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="ds::amt::MultiWayExplicitHierarchyBlock&lt;DataType&gt;" Collapsed="true">
+    <Position X="16" Y="9.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>C:\Users\Martin\source\repos\AaUD1_SemPrac\DataStructures\libds\amt\explicit_hierarchy.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="errorType">
+    <Position X="7.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAQAQAAAASAAAAAAAAAAAAA=</HashCode>
+      <FileName>IGUI.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Kanalizacia">
+    <Position X="2.5" Y="20.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Obec.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TypUzemia">
+    <Position X="4.5" Y="20.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAUAAA=</HashCode>
+      <FileName>UzemnaJednotka.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
