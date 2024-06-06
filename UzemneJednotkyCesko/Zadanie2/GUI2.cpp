@@ -252,10 +252,11 @@ void GUI2::filtrujDialogZO(char volba)
 	cin >> ws;
 	getline(cin, param);
 
-	ImplicitSequence<UzemnaJednotka*>* pomocna = new ImplicitSequence<UzemnaJednotka*>;
+	ImplicitSequence<UzemnaJednotka*>* pomocna = new ImplicitSequence<UzemnaJednotka*>; // uklada vysledok
 	MultiWayExplicitHierarchy<UzemnaJednotka*> podhrierarchia;
 	auto* parent = zvolenaUzemnaJednotka->parent_;
 	podhrierarchia.changeRoot(zvolenaUzemnaJednotka);
+	
 	Algoritmus<UzemnaJednotka*> alg;
 	if (volba == 'z') {
 		alg.filtruj(podhrierarchia.begin(), podhrierarchia.end(),
@@ -311,7 +312,7 @@ void GUI2::filtrujDialogT()
 	cout << "Zvol hladany typ (ob/ok/kr): ";
 	cin >> param;
 
-	ImplicitSequence<UzemnaJednotka*>* pomocna = new ImplicitSequence<UzemnaJednotka*>;
+	ImplicitSequence<UzemnaJednotka*>* pomocna = new ImplicitSequence<UzemnaJednotka*>; // uklada vysledok
 	MultiWayExplicitHierarchy<UzemnaJednotka*> podhrierarchia;
 	auto* parent = zvolenaUzemnaJednotka->parent_;
 	podhrierarchia.changeRoot(zvolenaUzemnaJednotka);

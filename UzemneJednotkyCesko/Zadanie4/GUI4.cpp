@@ -143,6 +143,7 @@ void GUI4::startLoop()
 				printError(nespravnyArgument, msg);
 				continue;
 			}
+
 			if (index <= 0 || index > myIterator->size()) {
 				vypisMoznosti();
 				string msg = vstup + " Argument je mimo rozsah.";
@@ -235,7 +236,7 @@ void GUI4::usporiadajVysledokDialog(ds::amt::ImplicitSequence<UzemnaJednotka*>* 
 	}
 	cout << "Zoradit podla (a = abecedne / s = p. spoluhlasok):";
 	cin >> vstup;
-	//std::collate<char>
+	
 	std::function<bool(UzemnaJednotka* u1, UzemnaJednotka* u2)> comparator = [](UzemnaJednotka* u1, UzemnaJednotka* u2) {return ! u1->compareAlphabetical(u2); };
 	if (vstup._Equal("s")) {
 		comparator = [](UzemnaJednotka* u1, UzemnaJednotka* u2) {return u2->compareConsonantCount(u1); };

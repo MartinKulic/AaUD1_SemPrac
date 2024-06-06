@@ -40,6 +40,9 @@ public:
 	void Progressed(int by);
 };
 
+/// <summary>
+/// Dialog pre filtrovanie
+/// </summary>
 template<typename DruhJednotky>
 inline void GUI3::pokracujVyhladavanie(MyBinaryTree<std::string, DruhJednotky>* kde)
 {
@@ -97,6 +100,9 @@ inline void GUI3::pokracujVyhladavanie(MyBinaryTree<std::string, DruhJednotky>* 
 	delete vysledok;
 }
 
+/// <summary>
+/// Dialog pre vyhladanie klucu
+/// </summary>
 template<typename DruhJednotky>
 inline void GUI3::pokracujVyhladajKluc(MyBinaryTree<std::string, DruhJednotky>* kde, std::string kluc)
 {
